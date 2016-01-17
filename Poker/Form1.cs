@@ -3170,7 +3170,9 @@
 
         private readonly Panel b5Panel = new Panel();
 
-        private int call = 500, foldedPlayers = 5;
+        private int call = 500;
+            
+        private int foldedPlayers = 5;
 
         public int Chips = 10000,
                    bot1Chips = 10000,
@@ -3247,8 +3249,15 @@
 
         private readonly Timer Updates = new Timer();
 
-        private int t = 60, i, bb = 500, sb = 250, up = 10000000, turnCount;
+        private int i, turnCount;
 
+        private int bb = 500;
+
+        private int sb = 250;
+
+        private int up = 10000000;
+
+        private int t = 60;
         #endregion
 
         #region UI
