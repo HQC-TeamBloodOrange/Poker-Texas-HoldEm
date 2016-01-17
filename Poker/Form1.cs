@@ -13,6 +13,7 @@
         public Form1()
         {
             ////bools.Add(PFturn); bools.Add(B1Fturn); bools.Add(B2Fturn); bools.Add(B3Fturn); bools.Add(B4Fturn); bools.Add(B5Fturn);
+            //tb stands for TextBox
             this.call = this.bb;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
