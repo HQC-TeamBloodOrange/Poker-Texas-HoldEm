@@ -116,6 +116,7 @@
                     this.pPanel.Width = 180;
                     this.pPanel.Visible = false;
                 }
+
                 if (this.bot1Chips > 0)
                 {
                     this.foldedPlayers--;
