@@ -8,7 +8,7 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Clean maxBlind any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bFold = new System.Windows.Forms.Button();
+            this.bFold = new System.Windows.Forms.Button(); // b = Button
             this.bCheck = new System.Windows.Forms.Button();
             this.bCall = new System.Windows.Forms.Button();
             this.bRaise = new System.Windows.Forms.Button();
-            this.pbTimer = new System.Windows.Forms.ProgressBar();
-            this.tbChips = new System.Windows.Forms.TextBox();
+            this.pbTimer = new System.Windows.Forms.ProgressBar(); // pb = ProgressBar
+            this.tbChips = new System.Windows.Forms.TextBox(); // tb = TextBox
             this.bAdd = new System.Windows.Forms.Button();
             this.tbAdd = new System.Windows.Forms.TextBox();
             this.tbBotChips5 = new System.Windows.Forms.TextBox();
