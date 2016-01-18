@@ -240,12 +240,14 @@
                         {
                             this.Holder[9].Tag = this.Reserve[9];
                         }
+
                         this.Holder[8].Tag = this.Reserve[8];
                         if (!check)
                         {
                             horizontal = 1115;
                             vertical = 65;
                         }
+
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Top | AnchorStyles.Right);
                         this.Holder[this.i].Image = backImage;
@@ -265,6 +267,7 @@
                         }
                     }
                 }
+
                 if (this.bot5Chips > 0)
                 {
                     this.foldedPlayers--;
@@ -280,6 +283,7 @@
                             horizontal = 1160;
                             vertical = 420;
                         }
+
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
                         this.Holder[this.i].Image = backImage;
@@ -784,7 +788,8 @@
                         Power = (st1.Max()) / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 8
+                            Power = Power,
+                            Current = 8
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -794,7 +799,8 @@
                         Power = (st1.Max()) / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 9
+                            Power = Power,
+                            Current = 9
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -807,7 +813,8 @@
                         Power = (st2.Max()) / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 8
+                            Power = Power,
+                            Current = 8
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -817,7 +824,8 @@
                         Power = (st2.Max()) / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 9
+                            Power = Power,
+                            Current = 9
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -830,7 +838,8 @@
                         Power = (st3.Max()) / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 8
+                            Power = Power,
+                            Current = 8
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -840,7 +849,8 @@
                         Power = (st3.Max()) / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 9
+                            Power = Power,
+                            Current = 9
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -853,7 +863,8 @@
                         Power = (st4.Max()) / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 8
+                            Power = Power,
+                            Current = 8
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -863,7 +874,8 @@
                         Power = (st4.Max()) / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 9
+                            Power = Power,
+                            Current = 9
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -883,7 +895,8 @@
                         Power = (Straight[j] / 4) * 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 7
+                            Power = Power,
+                            Current = 7
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -893,7 +906,8 @@
                         Power = 13 * 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 7
+                            Power = Power,
+                            Current = 7
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -920,7 +934,8 @@
                                 Power = 13 * 2 + current * 100;
                                 this.Win.Add(new Type
                                 {
-                                    Power = Power, Current = 6
+                                    Power = Power,
+                                    Current = 6
                                 });
                                 this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                                 break;
@@ -931,7 +946,8 @@
                                 Power = fh.Max() / 4 * 2 + current * 100;
                                 this.Win.Add(new Type
                                 {
-                                    Power = Power, Current = 6
+                                    Power = Power,
+                                    Current = 6
                                 });
                                 this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                                 break;
@@ -979,7 +995,8 @@
                             Power = this.Reserve[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -990,7 +1007,8 @@
                             Power = this.Reserve[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1001,7 +1019,8 @@
                             Power = f1.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1018,7 +1037,8 @@
                             Power = this.Reserve[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1029,7 +1049,8 @@
                             Power = f1.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1043,7 +1064,8 @@
                             Power = this.Reserve[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1054,7 +1076,8 @@
                             Power = f1.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1069,7 +1092,8 @@
                         Power = this.Reserve[this.i] + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1080,7 +1104,8 @@
                         Power = this.Reserve[this.i + 1] + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1091,7 +1116,8 @@
                         Power = f1.Max() + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1108,7 +1134,8 @@
                             Power = this.Reserve[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1119,7 +1146,8 @@
                             Power = this.Reserve[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1130,7 +1158,8 @@
                             Power = f2.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1147,7 +1176,8 @@
                             Power = this.Reserve[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1158,7 +1188,8 @@
                             Power = f2.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1172,7 +1203,8 @@
                             Power = this.Reserve[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1183,7 +1215,8 @@
                             Power = f2.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1198,7 +1231,8 @@
                         Power = this.Reserve[this.i] + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1209,7 +1243,8 @@
                         Power = this.Reserve[this.i + 1] + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1220,7 +1255,8 @@
                         Power = f2.Max() + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1237,7 +1273,8 @@
                             Power = this.Reserve[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1248,7 +1285,8 @@
                             Power = this.Reserve[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1259,7 +1297,8 @@
                             Power = f3.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1276,7 +1315,8 @@
                             Power = this.Reserve[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1287,7 +1327,8 @@
                             Power = f3.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1301,7 +1342,8 @@
                             Power = this.Reserve[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1312,7 +1354,8 @@
                             Power = f3.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1327,7 +1370,8 @@
                         Power = this.Reserve[this.i] + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1338,7 +1382,8 @@
                         Power = this.Reserve[this.i + 1] + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1349,7 +1394,8 @@
                         Power = f3.Max() + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1366,7 +1412,8 @@
                             Power = this.Reserve[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1377,7 +1424,8 @@
                             Power = this.Reserve[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1388,7 +1436,8 @@
                             Power = f4.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1405,7 +1454,8 @@
                             Power = this.Reserve[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1416,7 +1466,8 @@
                             Power = f4.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1430,7 +1481,8 @@
                             Power = this.Reserve[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1441,7 +1493,8 @@
                             Power = f4.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 5
+                                Power = Power,
+                                Current = 5
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
@@ -1456,7 +1509,8 @@
                         Power = this.Reserve[this.i] + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1467,7 +1521,8 @@
                         Power = this.Reserve[this.i + 1] + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1478,7 +1533,8 @@
                         Power = f4.Max() + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5
+                            Power = Power,
+                            Current = 5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
@@ -1493,7 +1549,8 @@
                         Power = 13 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5.5
+                            Power = Power,
+                            Current = 5.5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -1503,7 +1560,8 @@
                         Power = 13 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5.5
+                            Power = Power,
+                            Current = 5.5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -1516,7 +1574,8 @@
                         Power = 13 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5.5
+                            Power = Power,
+                            Current = 5.5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -1526,7 +1585,8 @@
                         Power = 13 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5.5
+                            Power = Power,
+                            Current = 5.5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -1539,7 +1599,8 @@
                         Power = 13 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5.5
+                            Power = Power,
+                            Current = 5.5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -1549,7 +1610,8 @@
                         Power = 13 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5.5
+                            Power = Power,
+                            Current = 5.5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -1562,7 +1624,8 @@
                         Power = 13 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5.5
+                            Power = Power,
+                            Current = 5.5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -1572,7 +1635,8 @@
                         Power = 13 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 5.5
+                            Power = Power,
+                            Current = 5.5
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -1596,7 +1660,8 @@
                             Power = op.Max() + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 4
+                                Power = Power,
+                                Current = 4
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         }
@@ -1606,7 +1671,8 @@
                             Power = op[j + 4] + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 4
+                                Power = Power,
+                                Current = 4
                             });
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         }
@@ -1617,7 +1683,8 @@
                         Power = 13 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power, Current = 4
+                            Power = Power,
+                            Current = 4
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
@@ -1640,7 +1707,8 @@
                             Power = 13 * 3 + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 3
+                                Power = Power,
+                                Current = 3
                             });
                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                         }
@@ -1650,7 +1718,8 @@
                             Power = fh[0] / 4 + fh[1] / 4 + fh[2] / 4 + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 3
+                                Power = Power,
+                                Current = 3
                             });
                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                         }
@@ -1688,7 +1757,8 @@
                                             Power = 13 * 4 + (this.Reserve[this.i + 1] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
-                                                Power = Power, Current = 2
+                                                Power = Power,
+                                                Current = 2
                                             });
                                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                         }
@@ -1698,7 +1768,8 @@
                                             Power = 13 * 4 + (this.Reserve[this.i] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
-                                                Power = Power, Current = 2
+                                                Power = Power,
+                                                Current = 2
                                             });
                                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                         }
@@ -1708,7 +1779,8 @@
                                             Power = (this.Reserve[this.i] / 4) * 2 + (this.Reserve[this.i + 1] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
-                                                Power = Power, Current = 2
+                                                Power = Power,
+                                                Current = 2
                                             });
                                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                         }
@@ -1751,7 +1823,8 @@
                                             Power = (this.Reserve[this.i] / 4) * 2 + 13 * 4 + current * 100;
                                             this.Win.Add(new Type
                                             {
-                                                Power = Power, Current = 2
+                                                Power = Power,
+                                                Current = 2
                                             });
                                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                         }
@@ -1761,7 +1834,8 @@
                                             Power = (this.Reserve[this.i + 1] / 4) * 2 + 13 * 4 + current * 100;
                                             this.Win.Add(new Type
                                             {
-                                                Power = Power, Current = 2
+                                                Power = Power,
+                                                Current = 2
                                             });
                                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                         }
@@ -1771,7 +1845,8 @@
                                             Power = (this.Reserve[tc] / 4) * 2 + (this.Reserve[this.i + 1] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
-                                                Power = Power, Current = 2
+                                                Power = Power,
+                                                Current = 2
                                             });
                                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                         }
@@ -1781,7 +1856,8 @@
                                             Power = (this.Reserve[tc] / 4) * 2 + (this.Reserve[this.i] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
-                                                Power = Power, Current = 2
+                                                Power = Power,
+                                                Current = 2
                                             });
                                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                         }
@@ -1800,7 +1876,8 @@
                                                 Power = 13 + this.Reserve[this.i] / 4 + current * 100;
                                                 this.Win.Add(new Type
                                                 {
-                                                    Power = Power, Current = 1
+                                                    Power = Power,
+                                                    Current = 1
                                                 });
                                                 this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                             }
@@ -1810,7 +1887,8 @@
                                                 Power = this.Reserve[tc] / 4 + this.Reserve[this.i] / 4 + current * 100;
                                                 this.Win.Add(new Type
                                                 {
-                                                    Power = Power, Current = 1
+                                                    Power = Power,
+                                                    Current = 1
                                                 });
                                                 this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                             }
@@ -1823,7 +1901,8 @@
                                                 Power = 13 + this.Reserve[this.i + 1] + current * 100;
                                                 this.Win.Add(new Type
                                                 {
-                                                    Power = Power, Current = 1
+                                                    Power = Power,
+                                                    Current = 1
                                                 });
                                                 this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                             }
@@ -1833,8 +1912,10 @@
                                                 Power = this.Reserve[tc] / 4 + this.Reserve[this.i + 1] / 4 + current * 100;
                                                 this.Win.Add(new Type
                                                 {
-                                                    Power = Power, Current = 1
+                                                    Power = Power,
+                                                    Current = 1
                                                 });
+
                                                 this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                             }
                                         }
@@ -1864,7 +1945,8 @@
                             Power = 13 * 4 + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 1
+                                Power = Power,
+                                Current = 1
                             });
                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                         }
@@ -1874,7 +1956,8 @@
                             Power = (this.Reserve[this.i + 1] / 4) * 4 + current * 100;
                             this.Win.Add(new Type
                             {
-                                Power = Power, Current = 1
+                                Power = Power,
+                                Current = 1
                             });
                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                         }
@@ -1893,7 +1976,8 @@
                                 Power = 13 * 4 + this.Reserve[this.i] / 4 + current * 100;
                                 this.Win.Add(new Type
                                 {
-                                    Power = Power, Current = 1
+                                    Power = Power,
+                                    Current = 1
                                 });
                                 this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                             }
@@ -1903,7 +1987,8 @@
                                 Power = (this.Reserve[this.i + 1] / 4) * 4 + this.Reserve[this.i] / 4 + current * 100;
                                 this.Win.Add(new Type
                                 {
-                                    Power = Power, Current = 1
+                                    Power = Power,
+                                    Current = 1
                                 });
                                 this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                             }
@@ -1920,7 +2005,8 @@
                                 Power = 13 * 4 + this.Reserve[this.i + 1] / 4 + current * 100;
                                 this.Win.Add(new Type
                                 {
-                                    Power = Power, Current = 1
+                                    Power = Power,
+                                    Current = 1
                                 });
                                 this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                             }
@@ -1930,7 +2016,8 @@
                                 Power = (this.Reserve[tc] / 4) * 4 + this.Reserve[this.i + 1] / 4 + current * 100;
                                 this.Win.Add(new Type
                                 {
-                                    Power = Power, Current = 1
+                                    Power = Power,
+                                    Current = 1
                                 });
                                 this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                             }
@@ -1949,9 +2036,11 @@
                 {
                     current = -1;
                     Power = this.Reserve[this.i] / 4;
+
                     this.Win.Add(new Type
                     {
-                        Power = Power, Current = -1
+                        Power = Power,
+                        Current = -1
                     });
                     this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                 }
@@ -1959,20 +2048,27 @@
                 {
                     current = -1;
                     Power = this.Reserve[this.i + 1] / 4;
+
                     this.Win.Add(new Type
                     {
-                        Power = Power, Current = -1
+                        Power = Power,
+                        Current = -1
                     });
+
                     this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                 }
+
                 if (this.Reserve[this.i] / 4 == 0 || this.Reserve[this.i + 1] / 4 == 0)
                 {
                     current = -1;
                     Power = 13;
+
                     this.Win.Add(new Type
                     {
-                        Power = Power, Current = -1
+                        Power = Power,
+                        Current = -1
                     });
+
                     this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                 }
             }
@@ -2711,7 +2807,7 @@
         private void AI(int c1, int c2, ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower, double botCurrent)
         {
             // TODO: make it with switch case.
-            if (!sFTurn) 
+            if (!sFTurn)
             {
                 if (botCurrent == -1)
                 {

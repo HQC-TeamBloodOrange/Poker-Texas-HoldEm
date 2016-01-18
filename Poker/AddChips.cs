@@ -19,15 +19,18 @@
         public void button1_Click(object sender, EventArgs e)
         {
             int parsedValue;
+
             if (int.Parse(this.textBox1.Text) > 100000000)
             {
                 MessageBox.Show("The maximium chips you can add is 100000000");
                 return;
             }
+
             if (!int.TryParse(this.textBox1.Text, out parsedValue))
             {
                 MessageBox.Show("This is a number only field");
             }
+
             if (int.TryParse(this.textBox1.Text, out parsedValue) && int.Parse(this.textBox1.Text) <= 100000000)
             {
                 this.a = int.Parse(this.textBox1.Text);
