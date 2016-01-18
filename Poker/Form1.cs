@@ -136,6 +136,7 @@
                         {
                             this.Holder[3].Tag = this.Reserve[3];
                         }
+
                         this.Holder[2].Tag = this.Reserve[2];
                         if (!check)
                         {
@@ -172,12 +173,14 @@
                         {
                             this.Holder[5].Tag = this.Reserve[5];
                         }
+
                         this.Holder[4].Tag = this.Reserve[4];
                         if (!check)
                         {
                             horizontal = 75;
                             vertical = 65;
                         }
+
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Top | AnchorStyles.Left);
                         this.Holder[this.i].Image = backImage;
@@ -197,6 +200,7 @@
                         }
                     }
                 }
+
                 if (this.bot3Chips > 0)
                 {
                     this.foldedPlayers--;
@@ -206,6 +210,7 @@
                         {
                             this.Holder[7].Tag = this.Reserve[7];
                         }
+
                         this.Holder[6].Tag = this.Reserve[6];
                         if (!check)
                         {
@@ -277,6 +282,7 @@
                         {
                             this.Holder[11].Tag = this.Reserve[11];
                         }
+
                         this.Holder[10].Tag = this.Reserve[10];
                         if (!check)
                         {
@@ -304,25 +310,31 @@
                     }
                 }
 
+                /// TODO: Refactor the list of if's. Replace the magic numbers.
                 if (this.i >= 12)
                 {
                     this.Holder[12].Tag = this.Reserve[12];
+
                     if (this.i > 12)
                     {
                         this.Holder[13].Tag = this.Reserve[13];
                     }
+
                     if (this.i > 13)
                     {
                         this.Holder[14].Tag = this.Reserve[14];
                     }
+
                     if (this.i > 14)
                     {
                         this.Holder[15].Tag = this.Reserve[15];
                     }
+
                     if (this.i > 15)
                     {
                         this.Holder[16].Tag = this.Reserve[16];
                     }
+
                     if (!check)
                     {
                         horizontal = 410;
@@ -361,6 +373,7 @@
                         }
                     }
                 }
+
                 if (this.bot2Chips <= 0)
                 {
                     this.B2Fturn = true;
@@ -379,6 +392,7 @@
                         }
                     }
                 }
+
                 if (this.bot3Chips <= 0)
                 {
                     this.B3Fturn = true;
@@ -397,6 +411,7 @@
                         }
                     }
                 }
+
                 if (this.bot4Chips <= 0)
                 {
                     this.B4Fturn = true;
@@ -415,6 +430,7 @@
                         }
                     }
                 }
+
                 if (this.bot5Chips <= 0)
                 {
                     this.B5Fturn = true;
@@ -433,6 +449,7 @@
                         }
                     }
                 }
+
                 if (this.i == 16)
                 {
                     if (!this.restart)
@@ -440,9 +457,11 @@
                         this.MaximizeBox = true;
                         this.MinimizeBox = true;
                     }
+
                     this.timer.Start();
                 }
             }
+
             if (this.foldedPlayers == 5)
             {
                 var dialogResult = MessageBox.Show("Would You Like To Play Again ?", "You Won , Congratulations ! ", MessageBoxButtons.YesNo);
@@ -459,6 +478,7 @@
             {
                 this.foldedPlayers = 5;
             }
+
             if (this.i == 17)
             {
                 this.bRaise.Enabled = true;
@@ -493,6 +513,7 @@
                     this.FixCall(this.pStatus, ref this.pCall, ref this.pRaise, 2);
                 }
             }
+
             if (this.PFturn || !this.Pturn)
             {
                 await this.AllIn();
@@ -506,6 +527,7 @@
                         this.pFolded = true;
                     }
                 }
+
                 await this.CheckRaise(0, 0);
                 this.pbTimer.Visible = false;
                 this.bRaise.Enabled = false;
@@ -530,6 +552,7 @@
                         this.B2turn = true;
                     }
                 }
+
                 if (this.B1Fturn && !this.b1Folded)
                 {
                     this.bools.RemoveAt(1);
@@ -537,11 +560,13 @@
                     this.maxLeft--;
                     this.b1Folded = true;
                 }
+
                 if (this.B1Fturn || !this.B1turn)
                 {
                     await this.CheckRaise(1, 1);
                     this.B2turn = true;
                 }
+
                 if (!this.B2Fturn)
                 {
                     if (this.B2turn)
@@ -557,6 +582,7 @@
                         this.B3turn = true;
                     }
                 }
+
                 if (this.B2Fturn && !this.b2Folded)
                 {
                     this.bools.RemoveAt(2);
@@ -564,11 +590,13 @@
                     this.maxLeft--;
                     this.b2Folded = true;
                 }
+
                 if (this.B2Fturn || !this.B2turn)
                 {
                     await this.CheckRaise(2, 2);
                     this.B3turn = true;
                 }
+
                 if (!this.B3Fturn)
                 {
                     if (this.B3turn)
@@ -584,6 +612,7 @@
                         this.B4turn = true;
                     }
                 }
+
                 if (this.B3Fturn && !this.b3Folded)
                 {
                     this.bools.RemoveAt(3);
@@ -591,11 +620,13 @@
                     this.maxLeft--;
                     this.b3Folded = true;
                 }
+
                 if (this.B3Fturn || !this.B3turn)
                 {
                     await this.CheckRaise(3, 3);
                     this.B4turn = true;
                 }
+
                 if (!this.B4Fturn)
                 {
                     if (this.B4turn)
@@ -611,6 +642,7 @@
                         this.B5turn = true;
                     }
                 }
+
                 if (this.B4Fturn && !this.b4Folded)
                 {
                     this.bools.RemoveAt(4);
@@ -618,11 +650,13 @@
                     this.maxLeft--;
                     this.b4Folded = true;
                 }
+
                 if (this.B4Fturn || !this.B4turn)
                 {
                     await this.CheckRaise(4, 4);
                     this.B5turn = true;
                 }
+
                 if (!this.B5Fturn)
                 {
                     if (this.B5turn)
@@ -637,6 +671,7 @@
                         this.B5turn = false;
                     }
                 }
+
                 if (this.B5Fturn && !this.b5Folded)
                 {
                     this.bools.RemoveAt(5);
@@ -644,11 +679,13 @@
                     this.maxLeft--;
                     this.b5Folded = true;
                 }
+
                 if (this.B5Fturn || !this.B5turn)
                 {
                     await this.CheckRaise(5, 5);
                     this.Pturn = true;
                 }
+
                 if (this.PFturn && !this.pFolded)
                 {
                     if (this.bCall.Text.Contains("All in") == false || this.bRaise.Text.Contains("All in") == false)

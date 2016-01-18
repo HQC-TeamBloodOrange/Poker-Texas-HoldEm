@@ -6,6 +6,7 @@
 
     public partial class AddChips : Form
     {
+        //TODO: We must not have public variables.
         public int a;
 
         public AddChips()
@@ -16,7 +17,7 @@
             this.label1.BorderStyle = BorderStyle.FixedSingle;
         }
 
-        public void button1_Click(object sender, EventArgs e)
+        public void Button1Click(object sender, EventArgs e)
         {
             int parsedValue;
 
@@ -38,7 +39,7 @@
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2Click(object sender, EventArgs e)
         {
             var message = "Are you sure?";
             var title = "Quit";
