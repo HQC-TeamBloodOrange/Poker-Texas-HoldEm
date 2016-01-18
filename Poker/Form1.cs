@@ -720,24 +720,24 @@
                 #region Variables
 
                 bool done = false, vf = false;
-                var Straight1 = new int[5];
-                var Straight = new int[7];
-                Straight[0] = this.Reserve[c1];
-                Straight[1] = this.Reserve[c2];
-                Straight1[0] = Straight[2] = this.Reserve[12];
-                Straight1[1] = Straight[3] = this.Reserve[13];
-                Straight1[2] = Straight[4] = this.Reserve[14];
-                Straight1[3] = Straight[5] = this.Reserve[15];
-                Straight1[4] = Straight[6] = this.Reserve[16];
-                var a = Straight.Where(o => o % 4 == 0).ToArray();
-                var b = Straight.Where(o => o % 4 == 1).ToArray();
-                var c = Straight.Where(o => o % 4 == 2).ToArray();
-                var d = Straight.Where(o => o % 4 == 3).ToArray();
+                var straight1 = new int[5];
+                var straight = new int[7];
+                straight[0] = this.Reserve[c1];
+                straight[1] = this.Reserve[c2];
+                straight1[0] = straight[2] = this.Reserve[12];
+                straight1[1] = straight[3] = this.Reserve[13];
+                straight1[2] = straight[4] = this.Reserve[14];
+                straight1[3] = straight[5] = this.Reserve[15];
+                straight1[4] = straight[6] = this.Reserve[16];
+                var a = straight.Where(o => o % 4 == 0).ToArray();
+                var b = straight.Where(o => o % 4 == 1).ToArray();
+                var c = straight.Where(o => o % 4 == 2).ToArray();
+                var d = straight.Where(o => o % 4 == 3).ToArray();
                 var st1 = a.Select(o => o / 4).Distinct().ToArray();
                 var st2 = b.Select(o => o / 4).Distinct().ToArray();
                 var st3 = c.Select(o => o / 4).Distinct().ToArray();
                 var st4 = d.Select(o => o / 4).Distinct().ToArray();
-                Array.Sort(Straight);
+                Array.Sort(straight);
                 Array.Sort(st1);
                 Array.Sort(st2);
                 Array.Sort(st3);
@@ -767,31 +767,31 @@
 
                         #region Three of a kind current = 3
 
-                        this.rThreeOfAKind(ref current, ref Power, Straight);
+                        this.rThreeOfAKind(ref current, ref Power, straight);
 
                         #endregion
 
                         #region Straight current = 4
 
-                        this.rStraight(ref current, ref Power, Straight);
+                        this.rStraight(ref current, ref Power, straight);
 
                         #endregion
 
                         #region Flush current = 5 || 5.5
 
-                        this.rFlush(ref current, ref Power, ref vf, Straight1);
+                        this.rFlush(ref current, ref Power, ref vf, straight1);
 
                         #endregion
 
                         #region Full House current = 6
 
-                        this.rFullHouse(ref current, ref Power, ref done, Straight);
+                        this.rFullHouse(ref current, ref Power, ref done, straight);
 
                         #endregion
 
                         #region Four of a Kind current = 7
 
-                        this.rFourOfAKind(ref current, ref Power, Straight);
+                        this.rFourOfAKind(ref current, ref Power, straight);
 
                         #endregion
 
@@ -813,7 +813,7 @@
         // TODO: RoyalFlush
         // ----------------------------------------------------------------------
         // TODO: Milen
-        private void rStraightFlush(ref double current, ref double Power, int[] st1, int[] st2, int[] st3, int[] st4)
+        private void rStraightFlush(ref double current, ref double power, int[] st1, int[] st2, int[] st3, int[] st4)
         {
             if (current >= -1)
             {
@@ -822,35 +822,37 @@
                     if (st1[0] + 4 == st1[4])
                     {
                         current = 8;
-                        Power = (st1.Max()) / 4 + current * 100;
+                        power = st1.Max() / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power,
+                            Power = power,
                             Current = 8
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
+
                     if (st1[0] == 0 && st1[1] == 9 && st1[2] == 10 && st1[3] == 11 && st1[0] + 12 == st1[4])
                     {
                         current = 9;
-                        Power = (st1.Max()) / 4 + current * 100;
+                        power = st1.Max() / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power,
+                            Power = power,
                             Current = 9
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
                 }
+
                 if (st2.Length >= 5)
                 {
                     if (st2[0] + 4 == st2[4])
                     {
                         current = 8;
-                        Power = (st2.Max()) / 4 + current * 100;
+                        power = (st2.Max()) / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power,
+                            Power = power,
                             Current = 8
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
@@ -858,24 +860,25 @@
                     if (st2[0] == 0 && st2[1] == 9 && st2[2] == 10 && st2[3] == 11 && st2[0] + 12 == st2[4])
                     {
                         current = 9;
-                        Power = (st2.Max()) / 4 + current * 100;
+                        power = (st2.Max()) / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power,
+                            Power = power,
                             Current = 9
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
                 }
+
                 if (st3.Length >= 5)
                 {
                     if (st3[0] + 4 == st3[4])
                     {
                         current = 8;
-                        Power = (st3.Max()) / 4 + current * 100;
+                        power = st3.Max() / 4 + (current * 100);
                         this.Win.Add(new Type
                         {
-                            Power = Power,
+                            Power = power,
                             Current = 8
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
@@ -883,24 +886,25 @@
                     if (st3[0] == 0 && st3[1] == 9 && st3[2] == 10 && st3[3] == 11 && st3[0] + 12 == st3[4])
                     {
                         current = 9;
-                        Power = (st3.Max()) / 4 + current * 100;
+                        power = st3.Max() / 4 + (current * 100);
                         this.Win.Add(new Type
                         {
-                            Power = Power,
+                            Power = power,
                             Current = 9
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
                 }
+
                 if (st4.Length >= 5)
                 {
                     if (st4[0] + 4 == st4[4])
                     {
                         current = 8;
-                        Power = (st4.Max()) / 4 + current * 100;
+                        power = st4.Max() / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power,
+                            Power = power,
                             Current = 8
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
@@ -908,10 +912,10 @@
                     if (st4[0] == 0 && st4[1] == 9 && st4[2] == 10 && st4[3] == 11 && st4[0] + 12 == st4[4])
                     {
                         current = 9;
-                        Power = (st4.Max()) / 4 + current * 100;
+                        power = st4.Max() / 4 + current * 100;
                         this.Win.Add(new Type
                         {
-                            Power = Power,
+                            Power = power,
                             Current = 9
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
@@ -990,6 +994,7 @@
                                 break;
                             }
                         }
+
                         if (!done)
                         {
                             if (fh.Max() / 4 == 0)
@@ -1007,6 +1012,7 @@
                         }
                     }
                 }
+
                 if (current != 6)
                 {
                     Power = this.type;
@@ -1446,7 +1452,7 @@
                         if (this.Reserve[this.i] / 4 > f4.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i] + current * 100;
+                            Power = this.Reserve[this.i] + (current * 100);
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1455,6 +1461,7 @@
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
                         }
+
                         if (this.Reserve[this.i + 1] / 4 > f4.Max() / 4)
                         {
                             current = 5;

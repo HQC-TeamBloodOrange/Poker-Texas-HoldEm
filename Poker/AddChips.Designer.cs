@@ -2,6 +2,12 @@
 {
     partial class AddChips
     {
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox1;
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -20,7 +26,6 @@
 
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -86,15 +91,8 @@
             this.Name = "AddChips";
             this.Text = "You Ran Out Of Chips";
             this.ResumeLayout(false);
-            this.PerformLayout();
-
+            this.PerformLayout();  
         }
-
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }
