@@ -1791,7 +1791,8 @@
                             }
                             if (tc - k >= 12)
                             {
-                                if (this.Reserve[this.i] / 4 == this.Reserve[tc] / 4 && this.Reserve[this.i + 1] / 4 == this.Reserve[tc - k] / 4 || this.Reserve[this.i + 1] / 4 == this.Reserve[tc] / 4 && this.Reserve[this.i] / 4 == this.Reserve[tc - k] / 4)
+                                if (this.Reserve[this.i] / 4 == this.Reserve[tc] / 4 && this.Reserve[this.i + 1] / 4 == this.Reserve[tc - k] / 4 || 
+                                    this.Reserve[this.i + 1] / 4 == this.Reserve[tc] / 4 && this.Reserve[this.i] / 4 == this.Reserve[tc - k] / 4)
                                 {
                                     if (!msgbox)
                                     {
@@ -1829,6 +1830,7 @@
                                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                                         }
                                     }
+
                                     msgbox = true;
                                 }
                             }
@@ -1964,6 +1966,7 @@
                                             }
                                         }
                                     }
+
                                     msgbox1 = true;
                                 }
                             }

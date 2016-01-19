@@ -1,10 +1,55 @@
 ﻿namespace Poker
 {
-    partial class Form1
+    public partial class Form1
     {
-        
-
         #region Windows Form Designer generated code
+
+        private System.Windows.Forms.Button bFold;
+        private System.Windows.Forms.Button bCheck;
+        private System.Windows.Forms.Button bCall;
+        private System.Windows.Forms.Button bRaise;
+        private System.Windows.Forms.ProgressBar pbTimer;
+        private System.Windows.Forms.TextBox tbChips;
+        private System.Windows.Forms.Button bAdd;
+        private System.Windows.Forms.TextBox tbAdd;
+        private System.Windows.Forms.TextBox tbBotChips5;
+        private System.Windows.Forms.TextBox tbBotChips4;
+        private System.Windows.Forms.TextBox tbBotChips3;
+        private System.Windows.Forms.TextBox tbBotChips2;
+        private System.Windows.Forms.TextBox tbBotChips1;
+        private System.Windows.Forms.TextBox tbPot;
+        private System.Windows.Forms.Button bOptions;
+        private System.Windows.Forms.Button bBB;
+        private System.Windows.Forms.TextBox tbSB;
+        private System.Windows.Forms.Button bSB;
+        private System.Windows.Forms.TextBox tbBB;
+        private System.Windows.Forms.Label b5Status;
+        private System.Windows.Forms.Label b4Status;
+        private System.Windows.Forms.Label b3Status;
+        private System.Windows.Forms.Label b1Status;
+        private System.Windows.Forms.Label pStatus;
+        private System.Windows.Forms.Label b2Status;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbRaise;
+
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+
+            base.Dispose(disposing);
+        }
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -341,55 +386,8 @@
             this.Layout += new System.Windows.Forms.LayoutEventHandler(this.Layout_Change);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        #endregion
-
-        private System.Windows.Forms.Button bFold;
-        private System.Windows.Forms.Button bCheck;
-        private System.Windows.Forms.Button bCall;
-        private System.Windows.Forms.Button bRaise;
-        private System.Windows.Forms.ProgressBar pbTimer;
-        private System.Windows.Forms.TextBox tbChips;
-        private System.Windows.Forms.Button bAdd;
-        private System.Windows.Forms.TextBox tbAdd;
-        private System.Windows.Forms.TextBox tbBotChips5;
-        private System.Windows.Forms.TextBox tbBotChips4;
-        private System.Windows.Forms.TextBox tbBotChips3;
-        private System.Windows.Forms.TextBox tbBotChips2;
-        private System.Windows.Forms.TextBox tbBotChips1;
-        private System.Windows.Forms.TextBox tbPot;
-        private System.Windows.Forms.Button bOptions;
-        private System.Windows.Forms.Button bBB;
-        private System.Windows.Forms.TextBox tbSB;
-        private System.Windows.Forms.Button bSB;
-        private System.Windows.Forms.TextBox tbBB;
-        private System.Windows.Forms.Label b5Status;
-        private System.Windows.Forms.Label b4Status;
-        private System.Windows.Forms.Label b3Status;
-        private System.Windows.Forms.Label b1Status;
-        private System.Windows.Forms.Label pStatus;
-        private System.Windows.Forms.Label b2Status;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbRaise;
-
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        #endregion    
     }
 }
