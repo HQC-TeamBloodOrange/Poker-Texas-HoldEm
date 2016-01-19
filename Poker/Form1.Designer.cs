@@ -26,9 +26,9 @@
         private System.Windows.Forms.Label bot5Status;
         private System.Windows.Forms.Label bot4Status;
         private System.Windows.Forms.Label bot3Status;
-        private System.Windows.Forms.Label b2Status;
-        private System.Windows.Forms.Label b1Status;
-        private System.Windows.Forms.Label pStatus;
+        private System.Windows.Forms.Label bot2Status;
+        private System.Windows.Forms.Label bot1Status;
+        private System.Windows.Forms.Label playerStatus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbRaise;
 
@@ -79,9 +79,9 @@
             this.bot5Status = new System.Windows.Forms.Label();
             this.bot4Status = new System.Windows.Forms.Label();
             this.bot3Status = new System.Windows.Forms.Label();
-            this.b1Status = new System.Windows.Forms.Label();
-            this.pStatus = new System.Windows.Forms.Label();
-            this.b2Status = new System.Windows.Forms.Label();
+            this.bot1Status = new System.Windows.Forms.Label();
+            this.playerStatus = new System.Windows.Forms.Label();
+            this.bot2Status = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbRaise = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -306,26 +306,26 @@
             // 
             // b1Status
             // 
-            this.b1Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.b1Status.Location = new System.Drawing.Point(181, 579);
-            this.b1Status.Name = "b1Status";
-            this.b1Status.Size = new System.Drawing.Size(142, 32);
-            this.b1Status.TabIndex = 29;
+            this.bot1Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.bot1Status.Location = new System.Drawing.Point(181, 579);
+            this.bot1Status.Name = "bot1Status";
+            this.bot1Status.Size = new System.Drawing.Size(142, 32);
+            this.bot1Status.TabIndex = 29;
             // 
             // pStatus
             // 
-            this.pStatus.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.pStatus.Location = new System.Drawing.Point(755, 579);
-            this.pStatus.Name = "pStatus";
-            this.pStatus.Size = new System.Drawing.Size(163, 32);
-            this.pStatus.TabIndex = 30;
+            this.playerStatus.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.playerStatus.Location = new System.Drawing.Point(755, 579);
+            this.playerStatus.Name = "playerStatus";
+            this.playerStatus.Size = new System.Drawing.Size(163, 32);
+            this.playerStatus.TabIndex = 30;
             // 
             // b2Status
             // 
-            this.b2Status.Location = new System.Drawing.Point(276, 107);
-            this.b2Status.Name = "b2Status";
-            this.b2Status.Size = new System.Drawing.Size(133, 32);
-            this.b2Status.TabIndex = 31;
+            this.bot2Status.Location = new System.Drawing.Point(276, 107);
+            this.bot2Status.Name = "bot2Status";
+            this.bot2Status.Size = new System.Drawing.Size(133, 32);
+            this.bot2Status.TabIndex = 31;
             // 
             // label1
             // 
@@ -354,9 +354,9 @@
             this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.tbRaise);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.b2Status);
-            this.Controls.Add(this.pStatus);
-            this.Controls.Add(this.b1Status);
+            this.Controls.Add(this.bot2Status);
+            this.Controls.Add(this.playerStatus);
+            this.Controls.Add(this.bot1Status);
             this.Controls.Add(this.bot3Status);
             this.Controls.Add(this.bot4Status);
             this.Controls.Add(this.bot5Status);
