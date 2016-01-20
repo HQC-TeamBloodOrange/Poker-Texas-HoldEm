@@ -3006,9 +3006,9 @@
         // TODO: Tedi - edited
         private void PairHand(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
         {
-            var randomPair = new Random();
-            var randomCall = randomPair.Next(10, 16);
-            var randomRaise = randomPair.Next(10, 13);
+            var pairHand = new Random();
+            var randomCall = pairHand.Next(10, 16);
+            var randomRaise = pairHand.Next(10, 13);
 
             if (botPower <= 199 && botPower >= 140)
             {
@@ -3028,9 +3028,9 @@
 
         private void TwoPair(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
         {
-            var randomPair = new Random();
-            var randomCall = randomPair.Next(6, 11);
-            var randomRaise = randomPair.Next(6, 11);
+            var twoPair = new Random();
+            var randomCall = twoPair.Next(6, 11);
+            var randomRaise = twoPair.Next(6, 11);
 
             if (botPower <= 290 && botPower >= 246)
             {
