@@ -123,9 +123,9 @@
             this.textBoxBot4Chips.Text = "Chips : " + this.bot4Chips;
             this.textBoxBot5Chips.Text = "Chips : " + this.bot5Chips;
             this.timer.Interval = (1 * 1 * 1000);
-            this.timer.Tick += this.timer_Tick;
+            this.timer.Tick += this.TimerTick;
             this.Updates.Interval = (1 * 1 * 100);
-            this.Updates.Tick += this.Update_Tick;
+            this.Updates.Tick += this.UpdateTick;
             this.textBoxBB.Visible = true;
             this.textboxSB.Visible = true;
             this.buttonBB.Visible = true;
@@ -843,13 +843,13 @@
 
                         #region Pair or Two Pair from Table current = 2 || 0
 
-                        this.rPairTwoPair(ref current, ref Power);
+                        this.PairTwoPairRule(ref current, ref Power);
 
                         #endregion
 
                         #region Two Pair current = 2
 
-                        this.rTwoPair(ref current, ref Power);
+                        this.TwoPairRule(ref current, ref Power);
 
                         #endregion
 
@@ -1861,28 +1861,36 @@
         }
 
         // TODO: Tedi
-        private void rTwoPair(ref double current, ref double Power)
+        private void TwoPairRule(ref double current, ref double Power)
         {
             if (current >= -1)
             {
-                var msgbox = false;
-                for (var tc = 16; tc >= 12; tc--)
+                bool messageBox = false;
+
+                int maxIndexOfCardInTable = 16;
+                int minIndexOfCardInTable = 12;
+
+                for (int cardInTableIndex = maxIndexOfCardInTable; cardInTableIndex >= minIndexOfCardInTable; cardInTableIndex--)
                 {
-                    var max = tc - 12;
+                    int max = cardInTableIndex - minIndexOfCardInTable;
+
                     if (this.Reserve[this.i] / 4 != this.Reserve[this.i + 1] / 4)
                     {
-                        for (var k = 1; k <= max; k++)
+                        for (int k = 1; k <= max; k++)
                         {
-                            if (tc - k < 12)
+                            if (cardInTableIndex - k < 12)
                             {
                                 max--;
                             }
-                            if (tc - k >= 12)
+
+                            if (cardInTableIndex - k >= 12)
                             {
-                                if (this.Reserve[this.i] / 4 == this.Reserve[tc] / 4 && this.Reserve[this.i + 1] / 4 == this.Reserve[tc - k] / 4 || 
-                                    this.Reserve[this.i + 1] / 4 == this.Reserve[tc] / 4 && this.Reserve[this.i] / 4 == this.Reserve[tc - k] / 4)
+                                if (this.Reserve[this.i] / 4 == this.Reserve[cardInTableIndex] / 4 && 
+                                    this.Reserve[this.i + 1] / 4 == this.Reserve[cardInTableIndex - k] / 4 || 
+                                    this.Reserve[this.i + 1] / 4 == this.Reserve[cardInTableIndex] / 4 && 
+                                    this.Reserve[this.i] / 4 == this.Reserve[cardInTableIndex - k] / 4)
                                 {
-                                    if (!msgbox)
+                                    if (!messageBox)
                                     {
                                         if (this.Reserve[this.i] / 4 == 0)
                                         {
@@ -1893,8 +1901,12 @@
                                                 Power = Power,
                                                 Current = 2
                                             });
-                                            this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                            this.sorted = this.Win
+                                                .OrderByDescending(op => op.Current)
+                                                .ThenByDescending(op => op.Power)
+                                                .First();
                                         }
+
                                         if (this.Reserve[this.i + 1] / 4 == 0)
                                         {
                                             current = 2;
@@ -1904,8 +1916,12 @@
                                                 Power = Power,
                                                 Current = 2
                                             });
-                                            this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                            this.sorted = this.Win
+                                                .OrderByDescending(op => op.Current)
+                                                .ThenByDescending(op => op.Power)
+                                                .First();
                                         }
+
                                         if (this.Reserve[this.i + 1] / 4 != 0 && this.Reserve[this.i] / 4 != 0)
                                         {
                                             current = 2;
@@ -1915,11 +1931,14 @@
                                                 Power = Power,
                                                 Current = 2
                                             });
-                                            this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                            this.sorted = this.Win
+                                                .OrderByDescending(op => op.Current)
+                                                .ThenByDescending(op => op.Power)
+                                                .First();
                                         }
                                     }
 
-                                    msgbox = true;
+                                    messageBox = true;
                                 }
                             }
                         }
@@ -1928,28 +1947,36 @@
             }
         }
 
-        private void rPairTwoPair(ref double current, ref double Power)
+        private void PairTwoPairRule(ref double current, ref double Power)
         {
             if (current >= -1)
             {
-                var msgbox = false;
-                var msgbox1 = false;
-                for (var tc = 16; tc >= 12; tc--)
+                bool mesaggeBox = false;
+                bool otherMesaggeBox = false;
+
+                int maxIndexOfCardInTable = 16;
+                int minIndexOfCardInTable = 12;
+
+                for (int cardsInTableIndex = maxIndexOfCardInTable; cardsInTableIndex >= minIndexOfCardInTable; cardsInTableIndex--)
                 {
-                    var max = tc - 12;
-                    for (var k = 1; k <= max; k++)
+                    int max = cardsInTableIndex - minIndexOfCardInTable;
+
+                    for (int k = 1; k <= max; k++)
                     {
-                        if (tc - k < 12)
+                        if (cardsInTableIndex - k < 12)
                         {
                             max--;
                         }
-                        if (tc - k >= 12)
+
+                        if (cardsInTableIndex - k >= 12)
                         {
-                            if (this.Reserve[tc] / 4 == this.Reserve[tc - k] / 4)
+                            if (this.Reserve[cardsInTableIndex] / 4 == this.Reserve[cardsInTableIndex - k] / 4)
                             {
-                                if (this.Reserve[tc] / 4 != this.Reserve[this.i] / 4 && this.Reserve[tc] / 4 != this.Reserve[this.i + 1] / 4 && current == 1)
+                                if (this.Reserve[cardsInTableIndex] / 4 != this.Reserve[this.i] / 4 && 
+                                    this.Reserve[cardsInTableIndex] / 4 != this.Reserve[this.i + 1] / 4 &&
+                                    current == 1)
                                 {
-                                    if (!msgbox)
+                                    if (!mesaggeBox)
                                     {
                                         if (this.Reserve[this.i + 1] / 4 == 0)
                                         {
@@ -1960,8 +1987,12 @@
                                                 Power = Power,
                                                 Current = 2
                                             });
-                                            this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                            this.sorted = this.Win
+                                                .OrderByDescending(op => op.Current)
+                                                .ThenByDescending(op => op.Power)
+                                                .First();
                                         }
+
                                         if (this.Reserve[this.i] / 4 == 0)
                                         {
                                             current = 2;
@@ -1971,40 +2002,53 @@
                                                 Power = Power,
                                                 Current = 2
                                             });
-                                            this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                            this.sorted = this.Win
+                                                .OrderByDescending(op => op.Current)
+                                                .ThenByDescending(op => op.Power)
+                                                .First();
                                         }
+
                                         if (this.Reserve[this.i + 1] / 4 != 0)
                                         {
                                             current = 2;
-                                            Power = (this.Reserve[tc] / 4) * 2 + (this.Reserve[this.i + 1] / 4) * 2 + current * 100;
+                                            Power = (this.Reserve[cardsInTableIndex] / 4) * 2 + (this.Reserve[this.i + 1] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
                                                 Power = Power,
                                                 Current = 2
                                             });
-                                            this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                            this.sorted = this.Win
+                                                .OrderByDescending(op => op.Current)
+                                                .ThenByDescending(op => op.Power)
+                                                .First();
                                         }
+
                                         if (this.Reserve[this.i] / 4 != 0)
                                         {
                                             current = 2;
-                                            Power = (this.Reserve[tc] / 4) * 2 + (this.Reserve[this.i] / 4) * 2 + current * 100;
+                                            Power = (this.Reserve[cardsInTableIndex] / 4) * 2 + (this.Reserve[this.i] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
                                                 Power = Power,
                                                 Current = 2
                                             });
-                                            this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                            this.sorted = this.Win
+                                                .OrderByDescending(op => op.Current)
+                                                .ThenByDescending(op => op.Power)
+                                                .First();
                                         }
                                     }
-                                    msgbox = true;
+
+                                    mesaggeBox = true;
                                 }
+
                                 if (current == -1)
                                 {
-                                    if (!msgbox1)
+                                    if (!otherMesaggeBox)
                                     {
                                         if (this.Reserve[this.i] / 4 > this.Reserve[this.i + 1] / 4)
                                         {
-                                            if (this.Reserve[tc] / 4 == 0)
+                                            if (this.Reserve[cardsInTableIndex] / 4 == 0)
                                             {
                                                 current = 0;
                                                 Power = 13 + this.Reserve[this.i] / 4 + current * 100;
@@ -2013,23 +2057,29 @@
                                                     Power = Power,
                                                     Current = 1
                                                 });
-                                                this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                                this.sorted = this.Win
+                                                    .OrderByDescending(op => op.Current)
+                                                    .ThenByDescending(op => op.Power)
+                                                    .First();
                                             }
                                             else
                                             {
                                                 current = 0;
-                                                Power = this.Reserve[tc] / 4 + this.Reserve[this.i] / 4 + current * 100;
+                                                Power = this.Reserve[cardsInTableIndex] / 4 + this.Reserve[this.i] / 4 + current * 100;
                                                 this.Win.Add(new Type
                                                 {
                                                     Power = Power,
                                                     Current = 1
                                                 });
-                                                this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                                this.sorted = this.Win
+                                                    .OrderByDescending(op => op.Current)
+                                                    .ThenByDescending(op => op.Power)
+                                                    .First();
                                             }
                                         }
                                         else
                                         {
-                                            if (this.Reserve[tc] / 4 == 0)
+                                            if (this.Reserve[cardsInTableIndex] / 4 == 0)
                                             {
                                                 current = 0;
                                                 Power = 13 + this.Reserve[this.i + 1] + current * 100;
@@ -2038,24 +2088,30 @@
                                                     Power = Power,
                                                     Current = 1
                                                 });
-                                                this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                                this.sorted = this.Win
+                                                    .OrderByDescending(op => op.Current)
+                                                    .ThenByDescending(op => op.Power)
+                                                    .First();
                                             }
                                             else
                                             {
                                                 current = 0;
-                                                Power = this.Reserve[tc] / 4 + this.Reserve[this.i + 1] / 4 + current * 100;
+                                                Power = this.Reserve[cardsInTableIndex] / 4 + this.Reserve[this.i + 1] / 4 + current * 100;
                                                 this.Win.Add(new Type
                                                 {
                                                     Power = Power,
                                                     Current = 1
                                                 });
 
-                                                this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                                this.sorted = this.Win
+                                                    .OrderByDescending(op => op.Current)
+                                                    .ThenByDescending(op => op.Power)
+                                                    .First();
                                             }
                                         }
                                     }
 
-                                    msgbox1 = true;
+                                    otherMesaggeBox = true;
                                 }
                             }
                         }
@@ -3383,8 +3439,9 @@
 
 
         #region UI
-
-        private async void timer_Tick(object sender, object e)
+        //------------------------------------------------------------------
+        // TODO: Add to namespace Events.
+        private async void TimerTick(object sender, object e)
         {
             if (this.progressBarTimer.Value <= 0)
             {
@@ -3398,7 +3455,7 @@
             }
         }
 
-        private void Update_Tick(object sender, object e)
+        private void UpdateTick(object sender, object e)
         {
             if (this.playerChips <= 0)
             {
@@ -3484,9 +3541,8 @@
                 this.bRaise.Enabled = false;
             }
         }
-        //------------------------------------------------------------------
-        // TODO: Add to namespace Events.
-        private async void bFold_Click(object sender, EventArgs e)
+        
+        private async void ButtonFoldClick(object sender, EventArgs e)
         {
             this.playerStatus.Text = "Fold";
             this.isPlayerTurn = false;
@@ -3494,7 +3550,7 @@
             await this.Turns();
         }
 
-        private async void bCheck_Click(object sender, EventArgs e)
+        private async void ButtonCheckClick(object sender, EventArgs e)
         {
             if (this.call <= 0)
             {
@@ -3510,7 +3566,7 @@
             await this.Turns();
         }
 
-        private async void bCall_Click(object sender, EventArgs e)
+        private async void ButtonCallClick(object sender, EventArgs e)
         {
             this.Rules(0, 1, "Player", ref this.playerType, ref this.playerPower, this.PFturn);
             if (this.playerChips >= this.call)
@@ -3542,7 +3598,7 @@
             await this.Turns();
         }
 
-        private async void bRaise_Click(object sender, EventArgs e)
+        private async void ButtonRaiseClick(object sender, EventArgs e)
         {
             this.Rules(0, 1, "Player", ref this.playerType, ref this.playerPower, this.PFturn);
             int parsedValue;
@@ -3590,7 +3646,7 @@
             await this.Turns();
         }
 
-        private void bAdd_Click(object sender, EventArgs e)
+        private void ButtonAddClick(object sender, EventArgs e)
         {
             if (this.textBoxAdd.Text == "")
             {
@@ -3607,7 +3663,7 @@
             this.textBoxChips.Text = "Chips : " + this.playerChips;
         }
 
-        private void bOptions_Click(object sender, EventArgs e)
+        private void ButtonOptionsClick(object sender, EventArgs e)
         {
             this.textBoxBB.Text = this.bigBlind.ToString();
             this.textboxSB.Text = this.smallBlind.ToString();
@@ -3627,7 +3683,7 @@
             }
         }
 
-        private void bSB_Click(object sender, EventArgs e)
+        private void ButtonSBClick(object sender, EventArgs e)
         {
             int parsedValue;
             if (this.textboxSB.Text.Contains(",") || this.textboxSB.Text.Contains("."))
@@ -3658,7 +3714,7 @@
             }
         }
 
-        private void bBB_Click(object sender, EventArgs e)
+        private void ButtonBBClick(object sender, EventArgs e)
         {
             int parsedValue;
             if (this.textBoxBB.Text.Contains(",") || this.textBoxBB.Text.Contains("."))
@@ -3689,7 +3745,7 @@
             }
         }
 
-        private void Layout_Change(object sender, LayoutEventArgs e)
+        private void LayoutChange(object sender, LayoutEventArgs e)
         {
             this.width = this.Width;
             this.height = this.Height;
