@@ -1992,7 +1992,6 @@
                                 Power = Power,
                                 Current = 1
                             });
-                            this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                         }
                         else
                         {
@@ -2003,6 +2002,7 @@
                                 Power = Power,
                                 Current = 1
                             });
+                            this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                             this.sorted = this.Win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                         }
                     }
