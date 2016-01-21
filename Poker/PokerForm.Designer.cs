@@ -1,6 +1,6 @@
 ﻿namespace Poker
 {
-    public partial class Form1
+    public partial class PokerForm
     {
         #region Windows Form Designer generated code
 
