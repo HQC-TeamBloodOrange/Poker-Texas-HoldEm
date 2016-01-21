@@ -36,7 +36,7 @@
 
         private readonly List<int> ints = new List<int>();
 
-        private readonly int[] Reserve = new int[17];
+        private readonly int[] drawnCards = new int[17];
 
         private readonly Image[] Deck = new Image[52];
 
@@ -182,7 +182,7 @@
                     this.ImgLocation[this.i] = this.ImgLocation[this.i].Replace(c, string.Empty);
                 }
 
-                this.Reserve[this.i] = int.Parse(this.ImgLocation[this.i]) - 1;
+                this.drawnCards[this.i] = int.Parse(this.ImgLocation[this.i]) - 1;
                 this.Holder[this.i] = new PictureBox();
                 this.Holder[this.i].SizeMode = PictureBoxSizeMode.StretchImage;
                 this.Holder[this.i].Height = 130;
@@ -197,10 +197,10 @@
                 {
                     if (this.Holder[0].Tag != null)
                     {
-                        this.Holder[1].Tag = this.Reserve[1];
+                        this.Holder[1].Tag = this.drawnCards[1];
                     }
 
-                    this.Holder[0].Tag = this.Reserve[0];
+                    this.Holder[0].Tag = this.drawnCards[0];
                     this.Holder[this.i].Image = this.Deck[this.i];
                     this.Holder[this.i].Anchor = (AnchorStyles.Bottom);
 
@@ -222,10 +222,10 @@
                     {
                         if (this.Holder[2].Tag != null)
                         {
-                            this.Holder[3].Tag = this.Reserve[3];
+                            this.Holder[3].Tag = this.drawnCards[3];
                         }
 
-                        this.Holder[2].Tag = this.Reserve[2];
+                        this.Holder[2].Tag = this.drawnCards[2];
                         if (!check)
                         {
                             horizontal = 15;
@@ -259,10 +259,10 @@
                     {
                         if (this.Holder[4].Tag != null)
                         {
-                            this.Holder[5].Tag = this.Reserve[5];
+                            this.Holder[5].Tag = this.drawnCards[5];
                         }
 
-                        this.Holder[4].Tag = this.Reserve[4];
+                        this.Holder[4].Tag = this.drawnCards[4];
                         if (!check)
                         {
                             horizontal = 75;
@@ -296,10 +296,10 @@
                     {
                         if (this.Holder[6].Tag != null)
                         {
-                            this.Holder[7].Tag = this.Reserve[7];
+                            this.Holder[7].Tag = this.drawnCards[7];
                         }
 
-                        this.Holder[6].Tag = this.Reserve[6];
+                        this.Holder[6].Tag = this.drawnCards[6];
                         if (!check)
                         {
                             horizontal = 590;
@@ -331,10 +331,10 @@
                     {
                         if (this.Holder[8].Tag != null)
                         {
-                            this.Holder[9].Tag = this.Reserve[9];
+                            this.Holder[9].Tag = this.drawnCards[9];
                         }
 
-                        this.Holder[8].Tag = this.Reserve[8];
+                        this.Holder[8].Tag = this.drawnCards[8];
                         if (!check)
                         {
                             horizontal = 1115;
@@ -368,10 +368,10 @@
                     {
                         if (this.Holder[10].Tag != null)
                         {
-                            this.Holder[11].Tag = this.Reserve[11];
+                            this.Holder[11].Tag = this.drawnCards[11];
                         }
 
-                        this.Holder[10].Tag = this.Reserve[10];
+                        this.Holder[10].Tag = this.drawnCards[10];
                         if (!check)
                         {
                             horizontal = 1160;
@@ -401,26 +401,26 @@
                 /// TODO: Refactor the list of if's. Replace the magic numbers.
                 if (this.i >= 12)
                 {
-                    this.Holder[12].Tag = this.Reserve[12];
+                    this.Holder[12].Tag = this.drawnCards[12];
 
                     if (this.i > 12)
                     {
-                        this.Holder[13].Tag = this.Reserve[13];
+                        this.Holder[13].Tag = this.drawnCards[13];
                     }
 
                     if (this.i > 13)
                     {
-                        this.Holder[14].Tag = this.Reserve[14];
+                        this.Holder[14].Tag = this.drawnCards[14];
                     }
 
                     if (this.i > 14)
                     {
-                        this.Holder[15].Tag = this.Reserve[15];
+                        this.Holder[15].Tag = this.drawnCards[15];
                     }
 
                     if (this.i > 15)
                     {
-                        this.Holder[16].Tag = this.Reserve[16];
+                        this.Holder[16].Tag = this.drawnCards[16];
                     }
 
                     if (!check)
@@ -799,43 +799,56 @@
         // ----------------------------------------------------------------------
         private void Rules(int c1, int c2, string currentText, ref double current, ref double Power, bool foldedTurn)
         {
-            if (c1 == 0 && c2 == 1)
-            {
-            }
+            //if (c1 == 0 && c2 == 1)
+            //{
+            //}
 
             if (!foldedTurn || c1 == 0 && c2 == 1 && this.playerStatus.Text.Contains("Fold") == false)
             {
                 #region Variables
 
                 bool done = false, vf = false;
-                var straight1 = new int[5];
-                var straight = new int[7];
-                straight[0] = this.Reserve[c1];
-                straight[1] = this.Reserve[c2];
-                straight1[0] = straight[2] = this.Reserve[12];
-                straight1[1] = straight[3] = this.Reserve[13];
-                straight1[2] = straight[4] = this.Reserve[14];
-                straight1[3] = straight[5] = this.Reserve[15];
-                straight1[4] = straight[6] = this.Reserve[16];
-                var a = straight.Where(o => o % 4 == 0).ToArray();
-                var b = straight.Where(o => o % 4 == 1).ToArray();
-                var c = straight.Where(o => o % 4 == 2).ToArray();
-                var d = straight.Where(o => o % 4 == 3).ToArray();
-                var st1 = a.Select(o => o / 4).Distinct().ToArray();
-                var st2 = b.Select(o => o / 4).Distinct().ToArray();
-                var st3 = c.Select(o => o / 4).Distinct().ToArray();
-                var st4 = d.Select(o => o / 4).Distinct().ToArray();
-                Array.Sort(straight);
-                Array.Sort(st1);
-                Array.Sort(st2);
-                Array.Sort(st3);
-                Array.Sort(st4);
+                var cardsOnTable = new int[5];
+                var cardsOnTableWithPlayerCards = new int[7];
+
+                cardsOnTableWithPlayerCards[0] = this.drawnCards[c1];
+                cardsOnTableWithPlayerCards[1] = this.drawnCards[c2];
+
+                //drawnCards[0,1] = player cards;
+                //drawnCards[2,3] = bot1 cards;
+                //drawnCards[3,4] = bot2 cards;
+                //drawnCards[5,6] = bot3 cards;
+                //drawncards[7,8] = bot4 cards;
+                //drawnCards[9,10] = bot5 cards;
+                //drawnCards[11,12,13,14,15,16] = cards on table;
+                
+                cardsOnTable[0] = cardsOnTableWithPlayerCards[2] = this.drawnCards[12];
+                cardsOnTable[1] = cardsOnTableWithPlayerCards[3] = this.drawnCards[13];
+                cardsOnTable[2] = cardsOnTableWithPlayerCards[4] = this.drawnCards[14];
+                cardsOnTable[3] = cardsOnTableWithPlayerCards[5] = this.drawnCards[15];
+                cardsOnTable[4] = cardsOnTableWithPlayerCards[6] = this.drawnCards[16];
+
+                var clubs = cardsOnTableWithPlayerCards.Where(o => o % 4 == 0).ToArray();
+                var diamonds = cardsOnTableWithPlayerCards.Where(o => o % 4 == 1).ToArray();
+                var hearts = cardsOnTableWithPlayerCards.Where(o => o % 4 == 2).ToArray();
+                var spades = cardsOnTableWithPlayerCards.Where(o => o % 4 == 3).ToArray();
+
+                var cardsOfClubs = clubs.Select(o => o / 4).Distinct().ToArray();
+                var cardsOfDiamonds = diamonds.Select(o => o / 4).Distinct().ToArray();
+                var cardsOfHearts = hearts.Select(o => o / 4).Distinct().ToArray();
+                var cardsOfSpades = spades.Select(o => o / 4).Distinct().ToArray();
+
+                Array.Sort(cardsOnTableWithPlayerCards);
+                Array.Sort(cardsOfClubs);
+                Array.Sort(cardsOfDiamonds);
+                Array.Sort(cardsOfHearts);
+                Array.Sort(cardsOfSpades);
 
                 #endregion
 
                 for (this.i = 0; this.i < 16; this.i++)
                 {
-                    if (this.Reserve[this.i] == int.Parse(this.Holder[c1].Tag.ToString()) && this.Reserve[this.i + 1] == int.Parse(this.Holder[c2].Tag.ToString()))
+                    if (this.drawnCards[this.i] == int.Parse(this.Holder[c1].Tag.ToString()) && this.drawnCards[this.i + 1] == int.Parse(this.Holder[c2].Tag.ToString()))
                     {
                         ////Pair from Hand current = 1
 
@@ -855,37 +868,37 @@
 
                         #region Three of a kind current = 3
 
-                        this.rThreeOfAKind(ref current, ref Power, straight);
+                        this.rThreeOfAKind(ref current, ref Power, cardsOnTableWithPlayerCards);
 
                         #endregion
 
                         #region Straight current = 4
 
-                        this.rStraight(ref current, ref Power, straight);
+                        this.rStraight(ref current, ref Power, cardsOnTableWithPlayerCards);
 
                         #endregion
 
                         #region Flush current = 5 || 5.5
 
-                        this.rFlush(ref current, ref Power, ref vf, straight1);
+                        this.rFlush(ref current, ref Power, ref vf, cardsOnTable);
 
                         #endregion
 
                         #region Full House current = 6
 
-                        this.rFullHouse(ref current, ref Power, ref done, straight);
+                        this.rFullHouse(ref current, ref Power, ref done, cardsOnTableWithPlayerCards);
 
                         #endregion
 
                         #region Four of a Kind current = 7
 
-                        this.rFourOfAKind(ref current, ref Power, straight);
+                        this.rFourOfAKind(ref current, ref Power, cardsOnTableWithPlayerCards);
 
                         #endregion
 
                         #region Straight Flush current = 8 || 9
 
-                        this.rStraightFlush(ref current, ref Power, st1, st2, st3, st4);
+                        this.rStraightFlush(ref current, ref Power, cardsOfClubs, cardsOfDiamonds, cardsOfHearts, cardsOfSpades);
 
                         #endregion
 
@@ -1118,12 +1131,12 @@
                 var f4 = Straight1.Where(o => o % 4 == 3).ToArray();
                 if (f1.Length == 3 || f1.Length == 4)
                 {
-                    if (this.Reserve[this.i] % 4 == this.Reserve[this.i + 1] % 4 && this.Reserve[this.i] % 4 == f1[0] % 4)
+                    if (this.drawnCards[this.i] % 4 == this.drawnCards[this.i + 1] % 4 && this.drawnCards[this.i] % 4 == f1[0] % 4)
                     {
-                        if (this.Reserve[this.i] / 4 > f1.Max() / 4)
+                        if (this.drawnCards[this.i] / 4 > f1.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i] + current * 100;
+                            Power = this.drawnCards[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1132,10 +1145,10 @@
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
                         }
-                        if (this.Reserve[this.i + 1] / 4 > f1.Max() / 4)
+                        if (this.drawnCards[this.i + 1] / 4 > f1.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i + 1] + current * 100;
+                            Power = this.drawnCards[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1144,7 +1157,7 @@
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
                         }
-                        else if (this.Reserve[this.i] / 4 < f1.Max() / 4 && this.Reserve[this.i + 1] / 4 < f1.Max() / 4)
+                        else if (this.drawnCards[this.i] / 4 < f1.Max() / 4 && this.drawnCards[this.i + 1] / 4 < f1.Max() / 4)
                         {
                             current = 5;
                             Power = f1.Max() + current * 100;
@@ -1160,12 +1173,12 @@
                 }
                 if (f1.Length == 4) ////different cards in hand
                 {
-                    if (this.Reserve[this.i] % 4 != this.Reserve[this.i + 1] % 4 && this.Reserve[this.i] % 4 == f1[0] % 4)
+                    if (this.drawnCards[this.i] % 4 != this.drawnCards[this.i + 1] % 4 && this.drawnCards[this.i] % 4 == f1[0] % 4)
                     {
-                        if (this.Reserve[this.i] / 4 > f1.Max() / 4)
+                        if (this.drawnCards[this.i] / 4 > f1.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i] + current * 100;
+                            Power = this.drawnCards[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1187,12 +1200,12 @@
                             vf = true;
                         }
                     }
-                    if (this.Reserve[this.i + 1] % 4 != this.Reserve[this.i] % 4 && this.Reserve[this.i + 1] % 4 == f1[0] % 4)
+                    if (this.drawnCards[this.i + 1] % 4 != this.drawnCards[this.i] % 4 && this.drawnCards[this.i + 1] % 4 == f1[0] % 4)
                     {
-                        if (this.Reserve[this.i + 1] / 4 > f1.Max() / 4)
+                        if (this.drawnCards[this.i + 1] / 4 > f1.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i + 1] + current * 100;
+                            Power = this.drawnCards[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1217,10 +1230,10 @@
                 }
                 if (f1.Length == 5)
                 {
-                    if (this.Reserve[this.i] % 4 == f1[0] % 4 && this.Reserve[this.i] / 4 > f1.Min() / 4)
+                    if (this.drawnCards[this.i] % 4 == f1[0] % 4 && this.drawnCards[this.i] / 4 > f1.Min() / 4)
                     {
                         current = 5;
-                        Power = this.Reserve[this.i] + current * 100;
+                        Power = this.drawnCards[this.i] + current * 100;
                         this.Win.Add(new Type
                         {
                             Power = Power,
@@ -1229,10 +1242,10 @@
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
                     }
-                    if (this.Reserve[this.i + 1] % 4 == f1[0] % 4 && this.Reserve[this.i + 1] / 4 > f1.Min() / 4)
+                    if (this.drawnCards[this.i + 1] % 4 == f1[0] % 4 && this.drawnCards[this.i + 1] / 4 > f1.Min() / 4)
                     {
                         current = 5;
-                        Power = this.Reserve[this.i + 1] + current * 100;
+                        Power = this.drawnCards[this.i + 1] + current * 100;
                         this.Win.Add(new Type
                         {
                             Power = Power,
@@ -1241,7 +1254,7 @@
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
                     }
-                    else if (this.Reserve[this.i] / 4 < f1.Min() / 4 && this.Reserve[this.i + 1] / 4 < f1.Min())
+                    else if (this.drawnCards[this.i] / 4 < f1.Min() / 4 && this.drawnCards[this.i + 1] / 4 < f1.Min())
                     {
                         current = 5;
                         Power = f1.Max() + current * 100;
@@ -1257,12 +1270,12 @@
 
                 if (f2.Length == 3 || f2.Length == 4)
                 {
-                    if (this.Reserve[this.i] % 4 == this.Reserve[this.i + 1] % 4 && this.Reserve[this.i] % 4 == f2[0] % 4)
+                    if (this.drawnCards[this.i] % 4 == this.drawnCards[this.i + 1] % 4 && this.drawnCards[this.i] % 4 == f2[0] % 4)
                     {
-                        if (this.Reserve[this.i] / 4 > f2.Max() / 4)
+                        if (this.drawnCards[this.i] / 4 > f2.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i] + current * 100;
+                            Power = this.drawnCards[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1271,10 +1284,10 @@
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
                         }
-                        if (this.Reserve[this.i + 1] / 4 > f2.Max() / 4)
+                        if (this.drawnCards[this.i + 1] / 4 > f2.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i + 1] + current * 100;
+                            Power = this.drawnCards[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1283,7 +1296,7 @@
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
                         }
-                        else if (this.Reserve[this.i] / 4 < f2.Max() / 4 && this.Reserve[this.i + 1] / 4 < f2.Max() / 4)
+                        else if (this.drawnCards[this.i] / 4 < f2.Max() / 4 && this.drawnCards[this.i + 1] / 4 < f2.Max() / 4)
                         {
                             current = 5;
                             Power = f2.Max() + current * 100;
@@ -1299,12 +1312,12 @@
                 }
                 if (f2.Length == 4) ////different cards in hand
                 {
-                    if (this.Reserve[this.i] % 4 != this.Reserve[this.i + 1] % 4 && this.Reserve[this.i] % 4 == f2[0] % 4)
+                    if (this.drawnCards[this.i] % 4 != this.drawnCards[this.i + 1] % 4 && this.drawnCards[this.i] % 4 == f2[0] % 4)
                     {
-                        if (this.Reserve[this.i] / 4 > f2.Max() / 4)
+                        if (this.drawnCards[this.i] / 4 > f2.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i] + current * 100;
+                            Power = this.drawnCards[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1326,12 +1339,12 @@
                             vf = true;
                         }
                     }
-                    if (this.Reserve[this.i + 1] % 4 != this.Reserve[this.i] % 4 && this.Reserve[this.i + 1] % 4 == f2[0] % 4)
+                    if (this.drawnCards[this.i + 1] % 4 != this.drawnCards[this.i] % 4 && this.drawnCards[this.i + 1] % 4 == f2[0] % 4)
                     {
-                        if (this.Reserve[this.i + 1] / 4 > f2.Max() / 4)
+                        if (this.drawnCards[this.i + 1] / 4 > f2.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i + 1] + current * 100;
+                            Power = this.drawnCards[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1356,10 +1369,10 @@
                 }
                 if (f2.Length == 5)
                 {
-                    if (this.Reserve[this.i] % 4 == f2[0] % 4 && this.Reserve[this.i] / 4 > f2.Min() / 4)
+                    if (this.drawnCards[this.i] % 4 == f2[0] % 4 && this.drawnCards[this.i] / 4 > f2.Min() / 4)
                     {
                         current = 5;
-                        Power = this.Reserve[this.i] + current * 100;
+                        Power = this.drawnCards[this.i] + current * 100;
                         this.Win.Add(new Type
                         {
                             Power = Power,
@@ -1368,10 +1381,10 @@
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
                     }
-                    if (this.Reserve[this.i + 1] % 4 == f2[0] % 4 && this.Reserve[this.i + 1] / 4 > f2.Min() / 4)
+                    if (this.drawnCards[this.i + 1] % 4 == f2[0] % 4 && this.drawnCards[this.i + 1] / 4 > f2.Min() / 4)
                     {
                         current = 5;
-                        Power = this.Reserve[this.i + 1] + current * 100;
+                        Power = this.drawnCards[this.i + 1] + current * 100;
                         this.Win.Add(new Type
                         {
                             Power = Power,
@@ -1380,7 +1393,7 @@
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
                     }
-                    else if (this.Reserve[this.i] / 4 < f2.Min() / 4 && this.Reserve[this.i + 1] / 4 < f2.Min())
+                    else if (this.drawnCards[this.i] / 4 < f2.Min() / 4 && this.drawnCards[this.i + 1] / 4 < f2.Min())
                     {
                         current = 5;
                         Power = f2.Max() + current * 100;
@@ -1396,12 +1409,12 @@
 
                 if (f3.Length == 3 || f3.Length == 4)
                 {
-                    if (this.Reserve[this.i] % 4 == this.Reserve[this.i + 1] % 4 && this.Reserve[this.i] % 4 == f3[0] % 4)
+                    if (this.drawnCards[this.i] % 4 == this.drawnCards[this.i + 1] % 4 && this.drawnCards[this.i] % 4 == f3[0] % 4)
                     {
-                        if (this.Reserve[this.i] / 4 > f3.Max() / 4)
+                        if (this.drawnCards[this.i] / 4 > f3.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i] + current * 100;
+                            Power = this.drawnCards[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1410,10 +1423,10 @@
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
                         }
-                        if (this.Reserve[this.i + 1] / 4 > f3.Max() / 4)
+                        if (this.drawnCards[this.i + 1] / 4 > f3.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i + 1] + current * 100;
+                            Power = this.drawnCards[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1422,7 +1435,7 @@
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
                         }
-                        else if (this.Reserve[this.i] / 4 < f3.Max() / 4 && this.Reserve[this.i + 1] / 4 < f3.Max() / 4)
+                        else if (this.drawnCards[this.i] / 4 < f3.Max() / 4 && this.drawnCards[this.i + 1] / 4 < f3.Max() / 4)
                         {
                             current = 5;
                             Power = f3.Max() + current * 100;
@@ -1438,12 +1451,12 @@
                 }
                 if (f3.Length == 4) ////different cards in hand
                 {
-                    if (this.Reserve[this.i] % 4 != this.Reserve[this.i + 1] % 4 && this.Reserve[this.i] % 4 == f3[0] % 4)
+                    if (this.drawnCards[this.i] % 4 != this.drawnCards[this.i + 1] % 4 && this.drawnCards[this.i] % 4 == f3[0] % 4)
                     {
-                        if (this.Reserve[this.i] / 4 > f3.Max() / 4)
+                        if (this.drawnCards[this.i] / 4 > f3.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i] + current * 100;
+                            Power = this.drawnCards[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1465,12 +1478,12 @@
                             vf = true;
                         }
                     }
-                    if (this.Reserve[this.i + 1] % 4 != this.Reserve[this.i] % 4 && this.Reserve[this.i + 1] % 4 == f3[0] % 4)
+                    if (this.drawnCards[this.i + 1] % 4 != this.drawnCards[this.i] % 4 && this.drawnCards[this.i + 1] % 4 == f3[0] % 4)
                     {
-                        if (this.Reserve[this.i + 1] / 4 > f3.Max() / 4)
+                        if (this.drawnCards[this.i + 1] / 4 > f3.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i + 1] + current * 100;
+                            Power = this.drawnCards[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1495,10 +1508,10 @@
                 }
                 if (f3.Length == 5)
                 {
-                    if (this.Reserve[this.i] % 4 == f3[0] % 4 && this.Reserve[this.i] / 4 > f3.Min() / 4)
+                    if (this.drawnCards[this.i] % 4 == f3[0] % 4 && this.drawnCards[this.i] / 4 > f3.Min() / 4)
                     {
                         current = 5;
-                        Power = this.Reserve[this.i] + current * 100;
+                        Power = this.drawnCards[this.i] + current * 100;
                         this.Win.Add(new Type
                         {
                             Power = Power,
@@ -1507,10 +1520,10 @@
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
                     }
-                    if (this.Reserve[this.i + 1] % 4 == f3[0] % 4 && this.Reserve[this.i + 1] / 4 > f3.Min() / 4)
+                    if (this.drawnCards[this.i + 1] % 4 == f3[0] % 4 && this.drawnCards[this.i + 1] / 4 > f3.Min() / 4)
                     {
                         current = 5;
-                        Power = this.Reserve[this.i + 1] + current * 100;
+                        Power = this.drawnCards[this.i + 1] + current * 100;
                         this.Win.Add(new Type
                         {
                             Power = Power,
@@ -1519,7 +1532,7 @@
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
                     }
-                    else if (this.Reserve[this.i] / 4 < f3.Min() / 4 && this.Reserve[this.i + 1] / 4 < f3.Min())
+                    else if (this.drawnCards[this.i] / 4 < f3.Min() / 4 && this.drawnCards[this.i + 1] / 4 < f3.Min())
                     {
                         current = 5;
                         Power = f3.Max() + current * 100;
@@ -1535,12 +1548,12 @@
 
                 if (f4.Length == 3 || f4.Length == 4)
                 {
-                    if (this.Reserve[this.i] % 4 == this.Reserve[this.i + 1] % 4 && this.Reserve[this.i] % 4 == f4[0] % 4)
+                    if (this.drawnCards[this.i] % 4 == this.drawnCards[this.i + 1] % 4 && this.drawnCards[this.i] % 4 == f4[0] % 4)
                     {
-                        if (this.Reserve[this.i] / 4 > f4.Max() / 4)
+                        if (this.drawnCards[this.i] / 4 > f4.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i] + (current * 100);
+                            Power = this.drawnCards[this.i] + (current * 100);
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1550,10 +1563,10 @@
                             vf = true;
                         }
 
-                        if (this.Reserve[this.i + 1] / 4 > f4.Max() / 4)
+                        if (this.drawnCards[this.i + 1] / 4 > f4.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i + 1] + current * 100;
+                            Power = this.drawnCards[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1562,7 +1575,7 @@
                             this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                             vf = true;
                         }
-                        else if (this.Reserve[this.i] / 4 < f4.Max() / 4 && this.Reserve[this.i + 1] / 4 < f4.Max() / 4)
+                        else if (this.drawnCards[this.i] / 4 < f4.Max() / 4 && this.drawnCards[this.i + 1] / 4 < f4.Max() / 4)
                         {
                             current = 5;
                             Power = f4.Max() + current * 100;
@@ -1578,12 +1591,12 @@
                 }
                 if (f4.Length == 4) ////different cards in hand
                 {
-                    if (this.Reserve[this.i] % 4 != this.Reserve[this.i + 1] % 4 && this.Reserve[this.i] % 4 == f4[0] % 4)
+                    if (this.drawnCards[this.i] % 4 != this.drawnCards[this.i + 1] % 4 && this.drawnCards[this.i] % 4 == f4[0] % 4)
                     {
-                        if (this.Reserve[this.i] / 4 > f4.Max() / 4)
+                        if (this.drawnCards[this.i] / 4 > f4.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i] + current * 100;
+                            Power = this.drawnCards[this.i] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1605,12 +1618,12 @@
                             vf = true;
                         }
                     }
-                    if (this.Reserve[this.i + 1] % 4 != this.Reserve[this.i] % 4 && this.Reserve[this.i + 1] % 4 == f4[0] % 4)
+                    if (this.drawnCards[this.i + 1] % 4 != this.drawnCards[this.i] % 4 && this.drawnCards[this.i + 1] % 4 == f4[0] % 4)
                     {
-                        if (this.Reserve[this.i + 1] / 4 > f4.Max() / 4)
+                        if (this.drawnCards[this.i + 1] / 4 > f4.Max() / 4)
                         {
                             current = 5;
-                            Power = this.Reserve[this.i + 1] + current * 100;
+                            Power = this.drawnCards[this.i + 1] + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -1635,10 +1648,10 @@
                 }
                 if (f4.Length == 5)
                 {
-                    if (this.Reserve[this.i] % 4 == f4[0] % 4 && this.Reserve[this.i] / 4 > f4.Min() / 4)
+                    if (this.drawnCards[this.i] % 4 == f4[0] % 4 && this.drawnCards[this.i] / 4 > f4.Min() / 4)
                     {
                         current = 5;
-                        Power = this.Reserve[this.i] + current * 100;
+                        Power = this.drawnCards[this.i] + current * 100;
                         this.Win.Add(new Type
                         {
                             Power = Power,
@@ -1647,10 +1660,10 @@
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
                     }
-                    if (this.Reserve[this.i + 1] % 4 == f4[0] % 4 && this.Reserve[this.i + 1] / 4 > f4.Min() / 4)
+                    if (this.drawnCards[this.i + 1] % 4 == f4[0] % 4 && this.drawnCards[this.i + 1] / 4 > f4.Min() / 4)
                     {
                         current = 5;
-                        Power = this.Reserve[this.i + 1] + current * 100;
+                        Power = this.drawnCards[this.i + 1] + current * 100;
                         this.Win.Add(new Type
                         {
                             Power = Power,
@@ -1659,7 +1672,7 @@
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                         vf = true;
                     }
-                    else if (this.Reserve[this.i] / 4 < f4.Min() / 4 && this.Reserve[this.i + 1] / 4 < f4.Min())
+                    else if (this.drawnCards[this.i] / 4 < f4.Min() / 4 && this.drawnCards[this.i + 1] / 4 < f4.Min())
                     {
                         current = 5;
                         Power = f4.Max() + current * 100;
@@ -1675,7 +1688,7 @@
                 ////ace
                 if (f1.Length > 0)
                 {
-                    if (this.Reserve[this.i] / 4 == 0 && this.Reserve[this.i] % 4 == f1[0] % 4 && vf && f1.Length > 0)
+                    if (this.drawnCards[this.i] / 4 == 0 && this.drawnCards[this.i] % 4 == f1[0] % 4 && vf && f1.Length > 0)
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
@@ -1686,7 +1699,7 @@
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
-                    if (this.Reserve[this.i + 1] / 4 == 0 && this.Reserve[this.i + 1] % 4 == f1[0] % 4 && vf && f1.Length > 0)
+                    if (this.drawnCards[this.i + 1] / 4 == 0 && this.drawnCards[this.i + 1] % 4 == f1[0] % 4 && vf && f1.Length > 0)
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
@@ -1700,7 +1713,7 @@
                 }
                 if (f2.Length > 0)
                 {
-                    if (this.Reserve[this.i] / 4 == 0 && this.Reserve[this.i] % 4 == f2[0] % 4 && vf && f2.Length > 0)
+                    if (this.drawnCards[this.i] / 4 == 0 && this.drawnCards[this.i] % 4 == f2[0] % 4 && vf && f2.Length > 0)
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
@@ -1711,7 +1724,7 @@
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
-                    if (this.Reserve[this.i + 1] / 4 == 0 && this.Reserve[this.i + 1] % 4 == f2[0] % 4 && vf && f2.Length > 0)
+                    if (this.drawnCards[this.i + 1] / 4 == 0 && this.drawnCards[this.i + 1] % 4 == f2[0] % 4 && vf && f2.Length > 0)
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
@@ -1725,7 +1738,7 @@
                 }
                 if (f3.Length > 0)
                 {
-                    if (this.Reserve[this.i] / 4 == 0 && this.Reserve[this.i] % 4 == f3[0] % 4 && vf && f3.Length > 0)
+                    if (this.drawnCards[this.i] / 4 == 0 && this.drawnCards[this.i] % 4 == f3[0] % 4 && vf && f3.Length > 0)
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
@@ -1736,7 +1749,7 @@
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
-                    if (this.Reserve[this.i + 1] / 4 == 0 && this.Reserve[this.i + 1] % 4 == f3[0] % 4 && vf && f3.Length > 0)
+                    if (this.drawnCards[this.i + 1] / 4 == 0 && this.drawnCards[this.i + 1] % 4 == f3[0] % 4 && vf && f3.Length > 0)
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
@@ -1750,7 +1763,7 @@
                 }
                 if (f4.Length > 0)
                 {
-                    if (this.Reserve[this.i] / 4 == 0 && this.Reserve[this.i] % 4 == f4[0] % 4 && vf && f4.Length > 0)
+                    if (this.drawnCards[this.i] / 4 == 0 && this.drawnCards[this.i] % 4 == f4[0] % 4 && vf && f4.Length > 0)
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
@@ -1761,7 +1774,7 @@
                         });
                         this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
-                    if (this.Reserve[this.i + 1] / 4 == 0 && this.Reserve[this.i + 1] % 4 == f4[0] % 4 && vf)
+                    if (this.drawnCards[this.i + 1] / 4 == 0 && this.drawnCards[this.i + 1] % 4 == f4[0] % 4 && vf)
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
@@ -1874,7 +1887,7 @@
                 {
                     int max = cardInTableIndex - minIndexOfCardInTable;
 
-                    if (this.Reserve[this.i] / 4 != this.Reserve[this.i + 1] / 4)
+                    if (this.drawnCards[this.i] / 4 != this.drawnCards[this.i + 1] / 4)
                     {
                         for (int k = 1; k <= max; k++)
                         {
@@ -1885,17 +1898,17 @@
 
                             if (cardInTableIndex - k >= 12)
                             {
-                                if (this.Reserve[this.i] / 4 == this.Reserve[cardInTableIndex] / 4 && 
-                                    this.Reserve[this.i + 1] / 4 == this.Reserve[cardInTableIndex - k] / 4 || 
-                                    this.Reserve[this.i + 1] / 4 == this.Reserve[cardInTableIndex] / 4 && 
-                                    this.Reserve[this.i] / 4 == this.Reserve[cardInTableIndex - k] / 4)
+                                if (this.drawnCards[this.i] / 4 == this.drawnCards[cardInTableIndex] / 4 && 
+                                    this.drawnCards[this.i + 1] / 4 == this.drawnCards[cardInTableIndex - k] / 4 || 
+                                    this.drawnCards[this.i + 1] / 4 == this.drawnCards[cardInTableIndex] / 4 && 
+                                    this.drawnCards[this.i] / 4 == this.drawnCards[cardInTableIndex - k] / 4)
                                 {
                                     if (!messageBox)
                                     {
-                                        if (this.Reserve[this.i] / 4 == 0)
+                                        if (this.drawnCards[this.i] / 4 == 0)
                                         {
                                             current = 2;
-                                            Power = 13 * 4 + (this.Reserve[this.i + 1] / 4) * 2 + current * 100;
+                                            Power = 13 * 4 + (this.drawnCards[this.i + 1] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
                                                 Power = Power,
@@ -1907,10 +1920,10 @@
                                                 .First();
                                         }
 
-                                        if (this.Reserve[this.i + 1] / 4 == 0)
+                                        if (this.drawnCards[this.i + 1] / 4 == 0)
                                         {
                                             current = 2;
-                                            Power = 13 * 4 + (this.Reserve[this.i] / 4) * 2 + current * 100;
+                                            Power = 13 * 4 + (this.drawnCards[this.i] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
                                                 Power = Power,
@@ -1922,10 +1935,10 @@
                                                 .First();
                                         }
 
-                                        if (this.Reserve[this.i + 1] / 4 != 0 && this.Reserve[this.i] / 4 != 0)
+                                        if (this.drawnCards[this.i + 1] / 4 != 0 && this.drawnCards[this.i] / 4 != 0)
                                         {
                                             current = 2;
-                                            Power = (this.Reserve[this.i] / 4) * 2 + (this.Reserve[this.i + 1] / 4) * 2 + current * 100;
+                                            Power = (this.drawnCards[this.i] / 4) * 2 + (this.drawnCards[this.i + 1] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
                                                 Power = Power,
@@ -1970,18 +1983,18 @@
 
                         if (cardsInTableIndex - k >= 12)
                         {
-                            if (this.Reserve[cardsInTableIndex] / 4 == this.Reserve[cardsInTableIndex - k] / 4)
+                            if (this.drawnCards[cardsInTableIndex] / 4 == this.drawnCards[cardsInTableIndex - k] / 4)
                             {
-                                if (this.Reserve[cardsInTableIndex] / 4 != this.Reserve[this.i] / 4 && 
-                                    this.Reserve[cardsInTableIndex] / 4 != this.Reserve[this.i + 1] / 4 &&
+                                if (this.drawnCards[cardsInTableIndex] / 4 != this.drawnCards[this.i] / 4 && 
+                                    this.drawnCards[cardsInTableIndex] / 4 != this.drawnCards[this.i + 1] / 4 &&
                                     current == 1)
                                 {
                                     if (!mesaggeBox)
                                     {
-                                        if (this.Reserve[this.i + 1] / 4 == 0)
+                                        if (this.drawnCards[this.i + 1] / 4 == 0)
                                         {
                                             current = 2;
-                                            Power = (this.Reserve[this.i] / 4) * 2 + 13 * 4 + current * 100;
+                                            Power = (this.drawnCards[this.i] / 4) * 2 + 13 * 4 + current * 100;
                                             this.Win.Add(new Type
                                             {
                                                 Power = Power,
@@ -1993,10 +2006,10 @@
                                                 .First();
                                         }
 
-                                        if (this.Reserve[this.i] / 4 == 0)
+                                        if (this.drawnCards[this.i] / 4 == 0)
                                         {
                                             current = 2;
-                                            Power = (this.Reserve[this.i + 1] / 4) * 2 + 13 * 4 + current * 100;
+                                            Power = (this.drawnCards[this.i + 1] / 4) * 2 + 13 * 4 + current * 100;
                                             this.Win.Add(new Type
                                             {
                                                 Power = Power,
@@ -2008,10 +2021,10 @@
                                                 .First();
                                         }
 
-                                        if (this.Reserve[this.i + 1] / 4 != 0)
+                                        if (this.drawnCards[this.i + 1] / 4 != 0)
                                         {
                                             current = 2;
-                                            Power = (this.Reserve[cardsInTableIndex] / 4) * 2 + (this.Reserve[this.i + 1] / 4) * 2 + current * 100;
+                                            Power = (this.drawnCards[cardsInTableIndex] / 4) * 2 + (this.drawnCards[this.i + 1] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
                                                 Power = Power,
@@ -2023,10 +2036,10 @@
                                                 .First();
                                         }
 
-                                        if (this.Reserve[this.i] / 4 != 0)
+                                        if (this.drawnCards[this.i] / 4 != 0)
                                         {
                                             current = 2;
-                                            Power = (this.Reserve[cardsInTableIndex] / 4) * 2 + (this.Reserve[this.i] / 4) * 2 + current * 100;
+                                            Power = (this.drawnCards[cardsInTableIndex] / 4) * 2 + (this.drawnCards[this.i] / 4) * 2 + current * 100;
                                             this.Win.Add(new Type
                                             {
                                                 Power = Power,
@@ -2046,12 +2059,12 @@
                                 {
                                     if (!otherMesaggeBox)
                                     {
-                                        if (this.Reserve[this.i] / 4 > this.Reserve[this.i + 1] / 4)
+                                        if (this.drawnCards[this.i] / 4 > this.drawnCards[this.i + 1] / 4)
                                         {
-                                            if (this.Reserve[cardsInTableIndex] / 4 == 0)
+                                            if (this.drawnCards[cardsInTableIndex] / 4 == 0)
                                             {
                                                 current = 0;
-                                                Power = 13 + this.Reserve[this.i] / 4 + current * 100;
+                                                Power = 13 + this.drawnCards[this.i] / 4 + current * 100;
                                                 this.Win.Add(new Type
                                                 {
                                                     Power = Power,
@@ -2065,7 +2078,7 @@
                                             else
                                             {
                                                 current = 0;
-                                                Power = this.Reserve[cardsInTableIndex] / 4 + this.Reserve[this.i] / 4 + current * 100;
+                                                Power = this.drawnCards[cardsInTableIndex] / 4 + this.drawnCards[this.i] / 4 + current * 100;
                                                 this.Win.Add(new Type
                                                 {
                                                     Power = Power,
@@ -2079,10 +2092,10 @@
                                         }
                                         else
                                         {
-                                            if (this.Reserve[cardsInTableIndex] / 4 == 0)
+                                            if (this.drawnCards[cardsInTableIndex] / 4 == 0)
                                             {
                                                 current = 0;
-                                                Power = 13 + this.Reserve[this.i + 1] + current * 100;
+                                                Power = 13 + this.drawnCards[this.i + 1] + current * 100;
                                                 this.Win.Add(new Type
                                                 {
                                                     Power = Power,
@@ -2096,7 +2109,7 @@
                                             else
                                             {
                                                 current = 0;
-                                                Power = this.Reserve[cardsInTableIndex] / 4 + this.Reserve[this.i + 1] / 4 + current * 100;
+                                                Power = this.drawnCards[cardsInTableIndex] / 4 + this.drawnCards[this.i + 1] / 4 + current * 100;
                                                 this.Win.Add(new Type
                                                 {
                                                     Power = Power,
@@ -2126,11 +2139,11 @@
             if (current >= -1)
             {
                 var msgbox = false;
-                if (this.Reserve[this.i] / 4 == this.Reserve[this.i + 1] / 4)
+                if (this.drawnCards[this.i] / 4 == this.drawnCards[this.i + 1] / 4)
                 {
                     if (!msgbox)
                     {
-                        if (this.Reserve[this.i] / 4 == 0)
+                        if (this.drawnCards[this.i] / 4 == 0)
                         {
                             current = 1;
                             Power = 13 * 4 + current * 100;
@@ -2144,7 +2157,7 @@
                         else
                         {
                             current = 1;
-                            Power = (this.Reserve[this.i + 1] / 4) * 4 + current * 100;
+                            Power = (this.drawnCards[this.i + 1] / 4) * 4 + current * 100;
                             this.Win.Add(new Type
                             {
                                 Power = Power,
@@ -2157,14 +2170,14 @@
                 }
                 for (var tc = 16; tc >= 12; tc--)
                 {
-                    if (this.Reserve[this.i + 1] / 4 == this.Reserve[tc] / 4)
+                    if (this.drawnCards[this.i + 1] / 4 == this.drawnCards[tc] / 4)
                     {
                         if (!msgbox)
                         {
-                            if (this.Reserve[this.i + 1] / 4 == 0)
+                            if (this.drawnCards[this.i + 1] / 4 == 0)
                             {
                                 current = 1;
-                                Power = 13 * 4 + this.Reserve[this.i] / 4 + current * 100;
+                                Power = 13 * 4 + this.drawnCards[this.i] / 4 + current * 100;
                                 this.Win.Add(new Type
                                 {
                                     Power = Power,
@@ -2175,7 +2188,7 @@
                             else
                             {
                                 current = 1;
-                                Power = (this.Reserve[this.i + 1] / 4) * 4 + this.Reserve[this.i] / 4 + current * 100;
+                                Power = (this.drawnCards[this.i + 1] / 4) * 4 + this.drawnCards[this.i] / 4 + current * 100;
                                 this.Win.Add(new Type
                                 {
                                     Power = Power,
@@ -2186,14 +2199,14 @@
                         }
                         msgbox = true;
                     }
-                    if (this.Reserve[this.i] / 4 == this.Reserve[tc] / 4)
+                    if (this.drawnCards[this.i] / 4 == this.drawnCards[tc] / 4)
                     {
                         if (!msgbox)
                         {
-                            if (this.Reserve[this.i] / 4 == 0)
+                            if (this.drawnCards[this.i] / 4 == 0)
                             {
                                 current = 1;
-                                Power = 13 * 4 + this.Reserve[this.i + 1] / 4 + current * 100;
+                                Power = 13 * 4 + this.drawnCards[this.i + 1] / 4 + current * 100;
                                 this.Win.Add(new Type
                                 {
                                     Power = Power,
@@ -2204,7 +2217,7 @@
                             else
                             {
                                 current = 1;
-                                Power = (this.Reserve[tc] / 4) * 4 + this.Reserve[this.i + 1] / 4 + current * 100;
+                                Power = (this.drawnCards[tc] / 4) * 4 + this.drawnCards[this.i + 1] / 4 + current * 100;
                                 this.Win.Add(new Type
                                 {
                                     Power = Power,
@@ -2223,10 +2236,10 @@
         {
             if (current == -1)
             {
-                if (this.Reserve[this.i] / 4 > this.Reserve[this.i + 1] / 4)
+                if (this.drawnCards[this.i] / 4 > this.drawnCards[this.i + 1] / 4)
                 {
                     current = -1;
-                    Power = this.Reserve[this.i] / 4;
+                    Power = this.drawnCards[this.i] / 4;
 
                     this.Win.Add(new Type
                     {
@@ -2238,7 +2251,7 @@
                 else
                 {
                     current = -1;
-                    Power = this.Reserve[this.i + 1] / 4;
+                    Power = this.drawnCards[this.i + 1] / 4;
 
                     this.Win.Add(new Type
                     {
@@ -2249,7 +2262,7 @@
                     this.sorted = this.Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                 }
 
-                if (this.Reserve[this.i] / 4 == 0 || this.Reserve[this.i + 1] / 4 == 0)
+                if (this.drawnCards[this.i] / 4 == 0 || this.drawnCards[this.i + 1] / 4 == 0)
                 {
                     current = -1;
                     Power = 13;
