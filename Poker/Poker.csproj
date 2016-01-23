@@ -51,6 +51,8 @@
       <DependentUpon>AddChips.cs</DependentUpon>
     </Compile>
     <Compile Include="Contracts\IPlayer.cs" />
+    <Compile Include="Core\PokerDatabase.cs" />
+    <Compile Include="PokerEngine.cs" />
     <Compile Include="PokerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +65,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="ProgressBars.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\RuleFlush.cs" />
+    <Compile Include="Rules\FourOfAKind.cs" />
+    <Compile Include="Rules\FullHouse.cs" />
+    <Compile Include="Rules\PairFromHand.cs" />
+    <Compile Include="Rules\PairTwoPairRule.cs" />
+    <Compile Include="Rules\RuleHighCard.cs" />
+    <Compile Include="Rules\RuleStraight.cs" />
+    <Compile Include="Rules\RuleStraightFlush.cs" />
+    <Compile Include="Rules\RuleThreeOfAKind.cs" />
+    <Compile Include="Rules\RuleManager.cs" />
+    <Compile Include="Rules\RuleTwoPairRule.cs" />
     <Compile Include="Type.cs" />
     <EmbeddedResource Include="AddChips.resx">
       <DependentUpon>AddChips.cs</DependentUpon>
