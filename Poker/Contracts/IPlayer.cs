@@ -7,6 +7,10 @@
     {
         string Name { get; set; }
 
+        double Power { get; set; }
+
+        double Current { get; set; }
+
         int Chips { get; set; }
 
         bool Turn { get; set; }

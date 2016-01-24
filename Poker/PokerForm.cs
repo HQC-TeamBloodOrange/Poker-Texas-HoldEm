@@ -699,7 +699,7 @@
                         this.FixCall(this.bot1Status, ref this.bot1Call, ref this.bot1Raise, 2);
                         this.Rules(2, 3, "Bot 1", ref this.bot1Type, ref this.bot1Power, this.B1Fturn);
                         MessageBox.Show("Bot 1's Turn");
-                        this.AI(2, 3, ref this.bot1Chips, ref this.isBot1Turn, ref this.B1Fturn, this.bot1Status, 0, this.bot1Power, this.bot1Type);
+                        this.ArtificialIntelligence(2, 3, ref this.bot1Chips, ref this.isBot1Turn, ref this.B1Fturn, this.bot1Status, 0, this.bot1Power, this.bot1Type);
                         this.turnCount++;
                         this.last = 1;
                         this.isBot1Turn = false;
@@ -729,7 +729,7 @@
                         this.FixCall(this.bot2Status, ref this.bot2Call, ref this.bot2Raise, 2);
                         this.Rules(4, 5, "Bot 2", ref this.bot2Type, ref this.bot2Power, this.B2Fturn);
                         MessageBox.Show("Bot 2's Turn");
-                        this.AI(4, 5, ref this.bot2Chips, ref this.isBot2Turn, ref this.B2Fturn, this.bot2Status, 1, this.bot2Power, this.bot2Type);
+                        this.ArtificialIntelligence(4, 5, ref this.bot2Chips, ref this.isBot2Turn, ref this.B2Fturn, this.bot2Status, 1, this.bot2Power, this.bot2Type);
                         this.turnCount++;
                         this.last = 2;
                         this.isBot2Turn = false;
@@ -759,7 +759,7 @@
                         this.FixCall(this.bot3Status, ref this.bot3Call, ref this.bot3Raise, 2);
                         this.Rules(6, 7, "Bot 3", ref this.bot3Type, ref this.bot3Power, this.B3Fturn);
                         MessageBox.Show("Bot 3's Turn");
-                        this.AI(6, 7, ref this.bot3Chips, ref this.isBot3Turn, ref this.B3Fturn, this.bot3Status, 2, this.bot3Power, this.bot3Type);
+                        this.ArtificialIntelligence(6, 7, ref this.bot3Chips, ref this.isBot3Turn, ref this.B3Fturn, this.bot3Status, 2, this.bot3Power, this.bot3Type);
                         this.turnCount++;
                         this.last = 3;
                         this.isBot3Turn = false;
@@ -789,7 +789,7 @@
                         this.FixCall(this.bot4Status, ref this.bot4Call, ref this.bot4Raise, 2);
                         this.Rules(8, 9, "Bot 4", ref this.bot4Type, ref this.bot4Power, this.B4Fturn);
                         MessageBox.Show("Bot 4's Turn");
-                        this.AI(8, 9, ref this.bot4Chips, ref this.isBot4Turn, ref this.B4Fturn, this.bot4Status, 3, this.bot4Power, this.bot4Type);
+                        this.ArtificialIntelligence(8, 9, ref this.bot4Chips, ref this.isBot4Turn, ref this.B4Fturn, this.bot4Status, 3, this.bot4Power, this.bot4Type);
                         this.turnCount++;
                         this.last = 4;
                         this.isBot4Turn = false;
@@ -819,7 +819,7 @@
                         this.FixCall(this.bot5Status, ref this.bot5Call, ref this.bot5Raise, 2);
                         this.Rules(10, 11, "Bot 5", ref this.bot5Type, ref this.bot5Power, this.B5Fturn);
                         MessageBox.Show("Bot 5's Turn");
-                        this.AI(10, 11, ref this.bot5Chips, ref this.isBot5Turn, ref this.B5Fturn, this.bot5Status, 4, this.bot5Power, this.bot5Type);
+                        this.ArtificialIntelligence(10, 11, ref this.bot5Chips, ref this.isBot5Turn, ref this.B5Fturn, this.bot5Status, 4, this.bot5Power, this.bot5Type);
                         this.turnCount++;
                         this.last = 5;
                         this.isBot5Turn = false;
@@ -1659,7 +1659,16 @@
             this.Winner(this.bot5Type, this.bot5Power, "Bot 5", this.bot5Chips, fixedLast);
         }
         // ----------------------------------------------------------------------
-        private void AI(int c1, int c2, ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower, double botCurrent)
+        private void ArtificialIntelligence(
+            int c1, 
+            int c2, 
+            ref int sChips,
+            ref bool sTurn,
+            ref bool sFTurn,
+            Label sStatus,
+            int name,
+            double botPower,
+            double botCurrent)
         {
             // TODO: make it with switch case.
             if (!sFTurn)

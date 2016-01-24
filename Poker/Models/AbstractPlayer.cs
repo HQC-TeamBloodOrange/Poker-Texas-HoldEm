@@ -23,6 +23,10 @@
 
         public string Name { get; set; }
 
+        public double Power { get; set; }
+
+        public double Current { get; set; }
+
         public int Chips { get; set; }
 
         public bool Turn { get; set; }

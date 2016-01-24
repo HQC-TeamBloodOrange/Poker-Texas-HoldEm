@@ -77,6 +77,7 @@
     <Compile Include="Rules\RuleManager.cs" />
     <Compile Include="Rules\RuleTwoPairRule.cs" />
     <Compile Include="Type.cs" />
+    <Compile Include="Win\Winner.cs" />
     <EmbeddedResource Include="AddChips.resx">
       <DependentUpon>AddChips.cs</DependentUpon>
     </EmbeddedResource>
