@@ -50,6 +50,8 @@
     <Compile Include="AddChips.Designer.cs">
       <DependentUpon>AddChips.cs</DependentUpon>
     </Compile>
+    <Compile Include="AI\AI.cs" />
+    <Compile Include="AI\CombinationManager.cs" />
     <Compile Include="Contracts\IPlayer.cs" />
     <Compile Include="Core\PokerDatabase.cs" />
     <Compile Include="PokerEngine.cs" />

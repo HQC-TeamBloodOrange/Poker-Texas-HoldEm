@@ -53,7 +53,8 @@
         private Label playerLabel, bot1Label, bot2Label, bot3Label, bot4Label, bot5Label;
         private ProgressBar progressBar = new ProgressBar();
 
-        private int call = 500, foldedPlayers = 5;
+        private int call = 500;
+        private int foldedPlayers = 5;
         public int playerChips = 10000, bot1Chips = 10000, bot2Chips = 10000, bot3Chips = 10000, bot4Chips = 10000, bot5Chips = 10000;
 
         private double type, rounds, bot1Power, bot2Power, bot3Power, bot4Power, bot5Power, playerPower, playerType = -1, raise, bot1Type = -1, bot2Type = -1, bot3Type = -1, bot4Type = -1, bot5Type = -1;
@@ -660,8 +661,6 @@
                     this.timer.Start();
                     this.bRaise.Enabled = true;
                     this.buttonCall.Enabled = true;
-                    this.bRaise.Enabled = true;
-                    this.bRaise.Enabled = true;
                     this.buttonFold.Enabled = true;
                     this.turnCount++;
                     this.FixCall(this.playerStatus, ref this.playerCall, ref this.playerRaise, 2);
@@ -699,7 +698,7 @@
                         this.FixCall(this.bot1Status, ref this.bot1Call, ref this.bot1Raise, 2);
                         this.Rules(2, 3, "Bot 1", ref this.bot1Type, ref this.bot1Power, this.B1Fturn);
                         MessageBox.Show("Bot 1's Turn");
-                        this.ArtificialIntelligence(2, 3, ref this.bot1Chips, ref this.isBot1Turn, ref this.B1Fturn, this.bot1Status, 0, this.bot1Power, this.bot1Type);
+                        ArtificialIntelligence(2, 3, ref this.bot1Chips, ref this.isBot1Turn, ref this.B1Fturn, this.bot1Status, 0, this.bot1Power, this.bot1Type);
                         this.turnCount++;
                         this.last = 1;
                         this.isBot1Turn = false;
@@ -902,12 +901,6 @@
                         //this.rFourOfAKind(ref current, ref Power, cardsOnTableWithPlayerCards);
                         //this.rStraightFlush(ref current, ref Power, cardsOfClubs, cardsOfDiamonds, cardsOfHearts, cardsOfSpades);
                         //this.rHighCard(ref current, ref Power);
-
-
-
-
-
-
                     }
                 }
             }
@@ -1620,7 +1613,7 @@
             this.Win.Clear();
             this.sorted.Current = 0;
             this.sorted.Power = 0;
-            var fixedLast = "qwerty";
+            var fixedLast = string.Empty;
             if (!this.playerStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Player";
@@ -1662,77 +1655,78 @@
         private void ArtificialIntelligence(
             int c1, 
             int c2, 
-            ref int sChips,
-            ref bool sTurn,
-            ref bool sFTurn,
-            Label sStatus,
+            ref int botChips,
+            ref bool botTurn,
+            ref bool botFTurn,
+            Label botStatus,
             int name,
             double botPower,
             double botCurrent)
         {
             // TODO: make it with switch case.
-            if (!sFTurn)
+            if (!botFTurn)
             {
                 if (botCurrent == -1)
                 {
-                    this.HighCard(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower);
+                    HighCard(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower);
                 }
                 if (botCurrent == 0)
                 {
-                    this.PairTable(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower);
+                    PairTable(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower);
                 }
                 if (botCurrent == 1)
                 {
-                    this.PairHand(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower);
+                    PairHand(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower);
                 }
                 if (botCurrent == 2)
                 {
-                    this.TwoPair(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower);
+                    TwoPair(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower);
                 }
                 if (botCurrent == 3)
                 {
-                    this.ThreeOfAKind(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    ThreeOfAKind(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
                 }
                 if (botCurrent == 4)
                 {
-                    this.Straight(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    Straight(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
                 }
                 if (botCurrent == 5 || botCurrent == 5.5)
                 {
-                    this.Flush(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    Flush(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
                 }
                 if (botCurrent == 6)
                 {
-                    this.FullHouse(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    FullHouse(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
                 }
                 if (botCurrent == 7)
                 {
-                    this.FourOfAKind(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    FourOfAKind(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
                 }
                 if (botCurrent == 8 || botCurrent == 9)
                 {
-                    this.StraightFlush(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    StraightFlush(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
                 }
             }
-            if (sFTurn)
+            if (botFTurn)
             {
                 this.Holder[c1].Visible = false;
                 this.Holder[c2].Visible = false;
             }
         }
 
-        // TODO: Stoqn
-        private void HighCard(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
+        // Moved to class CombinationManager (renamed there). 
+        // TODO: Implement logic
+#region CombinationManager
+        private void HighCard(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
         {
-            this.HP(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower, 20, 25);
+            this.HP(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower, 20, 25);
         }
 
-        private void PairTable(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
+        private void PairTable(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
         {
-            this.HP(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower, 16, 25);
+            this.HP(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower, 16, 25);
         }
 
-        // TODO: Tedi - edited
         private void PairHand(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
         {
             var pairHand = new Random();
@@ -1777,91 +1771,89 @@
             }
         }
 
-        // TODO: Tisho
-        private void ThreeOfAKind(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        private void ThreeOfAKind(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
         {
             var tk = new Random();
             var tCall = tk.Next(3, 7);
             var tRaise = tk.Next(4, 8);
             if (botPower <= 390 && botPower >= 330)
             {
-                this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
+                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
             }
             if (botPower <= 327 && botPower >= 321) ////10  8
             {
-                this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
+                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
             }
             if (botPower < 321 && botPower >= 303) ////7 2
             {
-                this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
+                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
             }
         }
 
-        private void Straight(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        private void Straight(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
         {
             var str = new Random();
             var sCall = str.Next(3, 6);
             var sRaise = str.Next(3, 8);
             if (botPower <= 480 && botPower >= 410)
             {
-                this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sCall, sRaise);
+                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
             }
             if (botPower <= 409 && botPower >= 407) ////10  8
             {
-                this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sCall, sRaise);
+                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
             }
             if (botPower < 407 && botPower >= 404)
             {
-                this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sCall, sRaise);
+                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
             }
         }
 
-        // TODO: Aleks
-        private void Flush(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        private void Flush(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
         {
             var fsh = new Random();
             var fCall = fsh.Next(2, 6);
             var fRaise = fsh.Next(3, 7);
-            this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fCall, fRaise);
+            this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fCall, fRaise);
         }
 
-        private void FullHouse(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        private void FullHouse(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
         {
             var flh = new Random();
             var fhCall = flh.Next(1, 5);
             var fhRaise = flh.Next(2, 6);
             if (botPower <= 626 && botPower >= 620)
             {
-                this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fhCall, fhRaise);
+                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fhCall, fhRaise);
             }
             if (botPower < 620 && botPower >= 602)
             {
-                this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fhCall, fhRaise);
+                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fhCall, fhRaise);
             }
         }
 
-        // TODO: Milen
-        private void FourOfAKind(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        private void FourOfAKind(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
         {
             var fk = new Random();
             var fkCall = fk.Next(1, 4);
             var fkRaise = fk.Next(2, 5);
             if (botPower <= 752 && botPower >= 704)
             {
-                this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fkCall, fkRaise);
+                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fkCall, fkRaise);
             }
         }
 
-        private void StraightFlush(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        private void StraightFlush(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
         {
             var sf = new Random();
             var sfCall = sf.Next(1, 3);
             var sfRaise = sf.Next(1, 3);
             if (botPower <= 913 && botPower >= 804)
             {
-                this.Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sfCall, sfRaise);
+                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sfCall, sfRaise);
             }
         }
+#endregion CombinationManager
         //-----------------------------------------------------------------------------------------
         // TODO: Add to namespace Statuses.
         private void Fold(ref bool sTurn, ref bool sFTurn, Label sStatus)
@@ -1904,7 +1896,8 @@
             return a;
         }
 
-        private void HP(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower, int n, int n1)
+        // make static
+        public void HP(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower, int n, int n1)
         {
             var rand = new Random();
             var rnd = rand.Next(1, 4);
@@ -1963,7 +1956,8 @@
             }
         }
 
-        private void PH(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int randomCall, int n1, int randomRaise)
+        // make static
+        public void PH(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int randomCall, int n1, int randomRaise)
         {
             var rand = new Random();
             var rnd = rand.Next(1, 3);
@@ -2058,7 +2052,8 @@
             }
         }
 
-        private void Smooth(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, int n, int r)
+        // make static
+        public void Smooth(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, int n, int r)
         {
             var rand = new Random();
             var rnd = rand.Next(1, 3);
