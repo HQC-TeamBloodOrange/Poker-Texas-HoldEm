@@ -12,11 +12,11 @@
         private System.Windows.Forms.TextBox textBoxChips;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.TextBox textBoxAdd;
-        private System.Windows.Forms.TextBox textBoxBot5Chips;
-        private System.Windows.Forms.TextBox textBoxBot4Chips;
-        private System.Windows.Forms.TextBox textBoxBot3Chips;
-        private System.Windows.Forms.TextBox textBoxBot2Chips;
-        private System.Windows.Forms.TextBox textBoxBot1Chips;
+        private System.Windows.Forms.TextBox textBoxBotFiveChips;
+        private System.Windows.Forms.TextBox textBoxBotFourChips;
+        private System.Windows.Forms.TextBox textBoxBotThreeChips;
+        private System.Windows.Forms.TextBox textBoxBotTwoChips;
+        private System.Windows.Forms.TextBox textBoxBotOneChips;
         private System.Windows.Forms.TextBox textBoxPot;
         private System.Windows.Forms.Button buttonOptions;
         private System.Windows.Forms.Button buttonBB;
@@ -65,11 +65,11 @@
             this.textBoxChips = new System.Windows.Forms.TextBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.textBoxAdd = new System.Windows.Forms.TextBox();
-            this.textBoxBot5Chips = new System.Windows.Forms.TextBox();
-            this.textBoxBot4Chips = new System.Windows.Forms.TextBox();
-            this.textBoxBot3Chips = new System.Windows.Forms.TextBox();
-            this.textBoxBot2Chips = new System.Windows.Forms.TextBox();
-            this.textBoxBot1Chips = new System.Windows.Forms.TextBox();
+            this.textBoxBotFiveChips = new System.Windows.Forms.TextBox();
+            this.textBoxBotFourChips = new System.Windows.Forms.TextBox();
+            this.textBoxBotThreeChips = new System.Windows.Forms.TextBox();
+            this.textBoxBotTwoChips = new System.Windows.Forms.TextBox();
+            this.textBoxBotOneChips = new System.Windows.Forms.TextBox();
             this.textBoxPot = new System.Windows.Forms.TextBox();
             this.buttonOptions = new System.Windows.Forms.Button();
             this.buttonBB = new System.Windows.Forms.Button();
@@ -176,52 +176,52 @@
             // 
             // tbBotChips5
             // 
-            this.textBoxBot5Chips.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxBot5Chips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBot5Chips.Location = new System.Drawing.Point(1012, 553);
-            this.textBoxBot5Chips.Name = "textBoxBot5Chips";
-            this.textBoxBot5Chips.Size = new System.Drawing.Size(152, 23);
-            this.textBoxBot5Chips.TabIndex = 9;
-            this.textBoxBot5Chips.Text = "Chips : 0";
+            this.textBoxBotFiveChips.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxBotFiveChips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxBotFiveChips.Location = new System.Drawing.Point(1012, 553);
+            this.textBoxBotFiveChips.Name = "textBoxBotFiveChips";
+            this.textBoxBotFiveChips.Size = new System.Drawing.Size(152, 23);
+            this.textBoxBotFiveChips.TabIndex = 9;
+            this.textBoxBotFiveChips.Text = "Chips : 0";
             // 
             // tbBotChips4
             // 
-            this.textBoxBot4Chips.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxBot4Chips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBot4Chips.Location = new System.Drawing.Point(970, 81);
-            this.textBoxBot4Chips.Name = "textBoxBot4Chips";
-            this.textBoxBot4Chips.Size = new System.Drawing.Size(123, 23);
-            this.textBoxBot4Chips.TabIndex = 10;
-            this.textBoxBot4Chips.Text = "Chips : 0";
+            this.textBoxBotFourChips.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxBotFourChips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxBotFourChips.Location = new System.Drawing.Point(970, 81);
+            this.textBoxBotFourChips.Name = "textBoxBotFourChips";
+            this.textBoxBotFourChips.Size = new System.Drawing.Size(123, 23);
+            this.textBoxBotFourChips.TabIndex = 10;
+            this.textBoxBotFourChips.Text = "Chips : 0";
             // 
             // tbBotChips3
             // 
-            this.textBoxBot3Chips.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxBot3Chips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBot3Chips.Location = new System.Drawing.Point(755, 81);
-            this.textBoxBot3Chips.Name = "textBoxBot3Chips";
-            this.textBoxBot3Chips.Size = new System.Drawing.Size(125, 23);
-            this.textBoxBot3Chips.TabIndex = 11;
-            this.textBoxBot3Chips.Text = "Chips : 0";
+            this.textBoxBotThreeChips.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxBotThreeChips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxBotThreeChips.Location = new System.Drawing.Point(755, 81);
+            this.textBoxBotThreeChips.Name = "textBoxBotThreeChips";
+            this.textBoxBotThreeChips.Size = new System.Drawing.Size(125, 23);
+            this.textBoxBotThreeChips.TabIndex = 11;
+            this.textBoxBotThreeChips.Text = "Chips : 0";
             // 
             // tbBotChips2
             // 
-            this.textBoxBot2Chips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBot2Chips.Location = new System.Drawing.Point(276, 81);
-            this.textBoxBot2Chips.Name = "textBoxBot2Chips";
-            this.textBoxBot2Chips.Size = new System.Drawing.Size(133, 23);
-            this.textBoxBot2Chips.TabIndex = 12;
-            this.textBoxBot2Chips.Text = "Chips : 0";
+            this.textBoxBotTwoChips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxBotTwoChips.Location = new System.Drawing.Point(276, 81);
+            this.textBoxBotTwoChips.Name = "textBoxBotTwoChips";
+            this.textBoxBotTwoChips.Size = new System.Drawing.Size(133, 23);
+            this.textBoxBotTwoChips.TabIndex = 12;
+            this.textBoxBotTwoChips.Text = "Chips : 0";
             // 
             // tbBotChips1
             // 
-            this.textBoxBot1Chips.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxBot1Chips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBot1Chips.Location = new System.Drawing.Point(181, 553);
-            this.textBoxBot1Chips.Name = "textBoxBot1Chips";
-            this.textBoxBot1Chips.Size = new System.Drawing.Size(142, 23);
-            this.textBoxBot1Chips.TabIndex = 13;
-            this.textBoxBot1Chips.Text = "Chips : 0";
+            this.textBoxBotOneChips.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxBotOneChips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxBotOneChips.Location = new System.Drawing.Point(181, 553);
+            this.textBoxBotOneChips.Name = "textBoxBotOneChips";
+            this.textBoxBotOneChips.Size = new System.Drawing.Size(142, 23);
+            this.textBoxBotOneChips.TabIndex = 13;
+            this.textBoxBotOneChips.Text = "Chips : 0";
             // 
             // tbPot
             // 
@@ -366,11 +366,11 @@
             this.Controls.Add(this.buttonBB);
             this.Controls.Add(this.buttonOptions);
             this.Controls.Add(this.textBoxPot);
-            this.Controls.Add(this.textBoxBot1Chips);
-            this.Controls.Add(this.textBoxBot2Chips);
-            this.Controls.Add(this.textBoxBot3Chips);
-            this.Controls.Add(this.textBoxBot4Chips);
-            this.Controls.Add(this.textBoxBot5Chips);
+            this.Controls.Add(this.textBoxBotOneChips);
+            this.Controls.Add(this.textBoxBotTwoChips);
+            this.Controls.Add(this.textBoxBotThreeChips);
+            this.Controls.Add(this.textBoxBotFourChips);
+            this.Controls.Add(this.textBoxBotFiveChips);
             this.Controls.Add(this.textBoxAdd);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.textBoxChips);

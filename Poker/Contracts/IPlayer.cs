@@ -15,6 +15,8 @@
 
         bool Turn { get; set; }
 
+        bool FTurn { get; set; }
+
         bool GameEnded { get; set; }
 
         string Status { get; set; }
@@ -28,6 +30,8 @@
         int Call { get; set; }
 
         int Raise { get; set; }
+
+        double Type { get; set; }
 
         Panel CardsPanel { get; }
 

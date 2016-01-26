@@ -47,7 +47,7 @@
 
         //Fields
 
-        private IPlayer player, bot1, bot2, bot3, bot4, bot5;
+        private IPlayer player, botOne, botTwo, botThree, botFour, botFive;
         private IPlayer[] players;
 
         private Label playerLabel, bot1Label, bot2Label, bot3Label, bot4Label, bot5Label;
@@ -55,7 +55,7 @@
 
         private int call = 500;
         private int foldedPlayers = 5;
-        public int playerChips = 10000, bot1Chips = 10000, bot2Chips = 10000, bot3Chips = 10000, bot4Chips = 10000, bot5Chips = 10000;
+        // public int players[0].Chips = 10000, players[1].Chips = 10000, players[2].Chips = 10000, players[3].Chips = 10000, players[4].Chips = 10000, players[5].Chips = 10000;
 
         private double type, rounds, bot1Power, bot2Power, bot3Power, bot4Power, bot5Power, playerPower, playerType = -1, raise, bot1Type = -1, bot2Type = -1, bot3Type = -1, bot4Type = -1, bot5Type = -1;
         private bool isBot1Turn, isBot2Turn, isBot3Turn, isBot4Turn, isBot5Turn;
@@ -112,19 +112,19 @@
             this.bot5Label.Text = string.Empty;
 
             this.player = new Player(this.playerLabel);
-            this.bot1 = new Player(this.bot1Label);
-            this.bot2 = new Player(this.bot2Label);
-            this.bot3 = new Player(this.bot3Label);
-            this.bot4 = new Player(this.bot4Label);
-            this.bot5 = new Player(this.bot5Label);
+            this.botOne = new Bot("Bot1", this.bot1Label);
+            this.botTwo = new Bot("Bot2", this.bot2Label);
+            this.botThree = new Bot("Bot3", this.bot3Label);
+            this.botFour = new Bot("Bot4", this.bot4Label);
+            this.botFive = new Bot("Bot5", this.bot5Label);
 
             this.players = new IPlayer[6];
             players[0] = this.player;
-            players[1] = this.bot1;
-            players[2] = this.bot2;
-            players[3] = this.bot3;
-            players[4] = this.bot4;
-            players[5] = this.bot5;
+            players[1] = this.botOne;
+            players[2] = this.botTwo;
+            players[3] = this.botThree;
+            players[4] = this.botFour;
+            players[5] = this.botFive;
 
             this.call = this.bigBlind;
             this.MaximizeBox = false;
@@ -136,17 +136,17 @@
             this.Shuffle();
             this.textBoxPot.Enabled = false;
             this.textBoxChips.Enabled = false;
-            this.textBoxBot1Chips.Enabled = false;
-            this.textBoxBot2Chips.Enabled = false;
-            this.textBoxBot3Chips.Enabled = false;
-            this.textBoxBot4Chips.Enabled = false;
-            this.textBoxBot5Chips.Enabled = false;
-            this.textBoxChips.Text = "Chips : " + this.playerChips;
-            this.textBoxBot1Chips.Text = "Chips : " + this.bot1Chips;
-            this.textBoxBot2Chips.Text = "Chips : " + this.bot2Chips;
-            this.textBoxBot3Chips.Text = "Chips : " + this.bot3Chips;
-            this.textBoxBot4Chips.Text = "Chips : " + this.bot4Chips;
-            this.textBoxBot5Chips.Text = "Chips : " + this.bot5Chips;
+            this.textBoxBotOneChips.Enabled = false;
+            this.textBoxBotTwoChips.Enabled = false;
+            this.textBoxBotThreeChips.Enabled = false;
+            this.textBoxBotFourChips.Enabled = false;
+            this.textBoxBotFiveChips.Enabled = false;
+            this.textBoxChips.Text = "Chips : " + this.players[0].Chips;
+            this.textBoxBotOneChips.Text = "Chips : " + this.players[1].Chips;
+            this.textBoxBotTwoChips.Text = "Chips : " + this.players[2].Chips;
+            this.textBoxBotThreeChips.Text = "Chips : " + this.players[3].Chips;
+            this.textBoxBotFourChips.Text = "Chips : " + this.players[4].Chips;
+            this.textBoxBotFiveChips.Text = "Chips : " + this.players[5].Chips;
             this.timer.Interval = (1 * 1 * 1000);
             this.timer.Tick += this.TimerTick;
             this.Updates.Interval = (1 * 1 * 100);
@@ -222,12 +222,13 @@
 
             var check = false;
             var backImage = new Bitmap("Assets\\Back\\Back.png");
-            int horizontal = 580, vertical = 480;
-            var r = new Random();
+            int playerCardsZPosition = 580;
+            int playerCardsYPosition = 480;
+            var random = new Random();
 
             for (this.i = this.ImgLocation.Length; this.i > 0; this.i--)
             {
-                var j = r.Next(this.i);
+                var j = random.Next(this.i);
                 var k = this.ImgLocation[j];
                 this.ImgLocation[j] = this.ImgLocation[this.i - 1];
                 this.ImgLocation[this.i - 1] = k;
@@ -269,8 +270,8 @@
                     this.Holder[this.i].Anchor = (AnchorStyles.Bottom);
 
                     ////Holder[i].Dock = DockStyle.Top;
-                    this.Holder[this.i].Location = new Point(horizontal, vertical);
-                    horizontal += this.Holder[this.i].Width;
+                    this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
+                    playerCardsZPosition += this.Holder[this.i].Width;
                     this.Controls.Add(this.playerPanel);
                     this.players[0].CardsPanel.Location = new Point(this.Holder[0].Left - 10, this.Holder[0].Top - 10);
                     //this.playerPanel.Location = new Point(this.Holder[0].Left - 10, this.Holder[0].Top - 10);
@@ -280,7 +281,7 @@
                     this.playerPanel.Visible = false;
                 }
 
-                if (this.bot1Chips > 0)
+                if (this.players[1].Chips > 0)
                 {
                     this.foldedPlayers--;
                     if (this.i >= 2 && this.i < 4)
@@ -293,16 +294,16 @@
                         this.Holder[2].Tag = this.DrawnCards[2];
                         if (!check)
                         {
-                            horizontal = 15;
-                            vertical = 420;
+                            playerCardsZPosition = 15;
+                            playerCardsYPosition = 420;
                         }
 
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
                         this.Holder[this.i].Image = backImage;
                         ////Holder[i].Image = Deck[i];
-                        this.Holder[this.i].Location = new Point(horizontal, vertical);
-                        horizontal += this.Holder[this.i].Width;
+                        this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
+                        playerCardsZPosition += this.Holder[this.i].Width;
                         this.Holder[this.i].Visible = true;
                         this.Controls.Add(this.bot1Panel);
                         this.players[1].CardsPanel.Location = new Point(this.Holder[2].Left - 10, this.Holder[2].Top - 10);
@@ -318,7 +319,7 @@
                     }
                 }
 
-                if (this.bot2Chips > 0)
+                if (this.players[2].Chips > 0)
                 {
                     this.foldedPlayers--;
                     if (this.i >= 4 && this.i < 6)
@@ -331,16 +332,16 @@
                         this.Holder[4].Tag = this.DrawnCards[4];
                         if (!check)
                         {
-                            horizontal = 75;
-                            vertical = 65;
+                            playerCardsZPosition = 75;
+                            playerCardsYPosition = 65;
                         }
 
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Top | AnchorStyles.Left);
                         this.Holder[this.i].Image = backImage;
                         ////Holder[i].Image = Deck[i];
-                        this.Holder[this.i].Location = new Point(horizontal, vertical);
-                        horizontal += this.Holder[this.i].Width;
+                        this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
+                        playerCardsZPosition += this.Holder[this.i].Width;
                         this.Holder[this.i].Visible = true;
                         this.Controls.Add(this.bot2Panel);
                         this.bot2Panel.Location = new Point(this.Holder[4].Left - 10, this.Holder[4].Top - 10);
@@ -355,7 +356,7 @@
                     }
                 }
 
-                if (this.bot3Chips > 0)
+                if (this.players[3].Chips > 0)
                 {
                     this.foldedPlayers--;
                     if (this.i >= 6 && this.i < 8)
@@ -368,15 +369,15 @@
                         this.Holder[6].Tag = this.DrawnCards[6];
                         if (!check)
                         {
-                            horizontal = 590;
-                            vertical = 25;
+                            playerCardsZPosition = 590;
+                            playerCardsYPosition = 25;
                         }
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Top);
                         this.Holder[this.i].Image = backImage;
                         ////Holder[i].Image = Deck[i];
-                        this.Holder[this.i].Location = new Point(horizontal, vertical);
-                        horizontal += this.Holder[this.i].Width;
+                        this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
+                        playerCardsZPosition += this.Holder[this.i].Width;
                         this.Holder[this.i].Visible = true;
                         this.Controls.Add(this.bot3Panel);
                         this.bot3Panel.Location = new Point(this.Holder[6].Left - 10, this.Holder[6].Top - 10);
@@ -391,7 +392,7 @@
                     }
                 }
 
-                if (this.bot4Chips > 0)
+                if (this.players[4].Chips > 0)
                 {
                     this.foldedPlayers--;
                     if (this.i >= 8 && this.i < 10)
@@ -404,16 +405,16 @@
                         this.Holder[8].Tag = this.DrawnCards[8];
                         if (!check)
                         {
-                            horizontal = 1115;
-                            vertical = 65;
+                            playerCardsZPosition = 1115;
+                            playerCardsYPosition = 65;
                         }
 
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Top | AnchorStyles.Right);
                         this.Holder[this.i].Image = backImage;
                         ////Holder[i].Image = Deck[i];
-                        this.Holder[this.i].Location = new Point(horizontal, vertical);
-                        horizontal += this.Holder[this.i].Width;
+                        this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
+                        playerCardsZPosition += this.Holder[this.i].Width;
                         this.Holder[this.i].Visible = true;
                         this.Controls.Add(this.bot4Panel);
                         this.bot4Panel.Location = new Point(this.Holder[8].Left - 10, this.Holder[8].Top - 10);
@@ -428,7 +429,7 @@
                     }
                 }
 
-                if (this.bot5Chips > 0)
+                if (this.players[5].Chips > 0)
                 {
                     this.foldedPlayers--;
                     if (this.i >= 10 && this.i < 12)
@@ -441,16 +442,16 @@
                         this.Holder[10].Tag = this.DrawnCards[10];
                         if (!check)
                         {
-                            horizontal = 1160;
-                            vertical = 420;
+                            playerCardsZPosition = 1160;
+                            playerCardsYPosition = 420;
                         }
 
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
                         this.Holder[this.i].Image = backImage;
                         ////Holder[i].Image = Deck[i];
-                        this.Holder[this.i].Location = new Point(horizontal, vertical);
-                        horizontal += this.Holder[this.i].Width;
+                        this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
+                        playerCardsZPosition += this.Holder[this.i].Width;
                         this.Holder[this.i].Visible = true;
                         this.Controls.Add(this.bot5Panel);
                         this.bot5Panel.Location = new Point(this.Holder[10].Left - 10, this.Holder[10].Top - 10);
@@ -492,8 +493,8 @@
 
                     if (!check)
                     {
-                        horizontal = 410;
-                        vertical = 265;
+                        playerCardsZPosition = 410;
+                        playerCardsYPosition = 265;
                     }
 
                     check = true;
@@ -503,14 +504,14 @@
                         this.Holder[this.i].Image = backImage;
 
                         ////Holder[i].Image = Deck[i];
-                        this.Holder[this.i].Location = new Point(horizontal, vertical);
-                        horizontal += 110;
+                        this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
+                        playerCardsZPosition += 110;
                     }
                 }
 
                 #endregion
 
-                if (this.bot1Chips <= 0)
+                if (this.players[1].Chips <= 0)
                 {
                     this.B1Fturn = true;
                     this.Holder[2].Visible = false;
@@ -529,7 +530,7 @@
                     }
                 }
 
-                if (this.bot2Chips <= 0)
+                if (this.players[2].Chips <= 0)
                 {
                     this.B2Fturn = true;
                     this.Holder[4].Visible = false;
@@ -548,7 +549,7 @@
                     }
                 }
 
-                if (this.bot3Chips <= 0)
+                if (this.players[3].Chips <= 0)
                 {
                     this.B3Fturn = true;
                     this.Holder[6].Visible = false;
@@ -567,7 +568,7 @@
                     }
                 }
 
-                if (this.bot4Chips <= 0)
+                if (this.players[4].Chips <= 0)
                 {
                     this.B4Fturn = true;
                     this.Holder[8].Visible = false;
@@ -586,7 +587,7 @@
                     }
                 }
 
-                if (this.bot5Chips <= 0)
+                if (this.players[5].Chips <= 0)
                 {
                     this.B5Fturn = true;
                     this.Holder[10].Visible = false;
@@ -648,11 +649,13 @@
         {
             #region Rotating
 
-            if (!this.PFturn)
+            
+            //Player Turn
+            if (!this.players[0].FTurn)
             {
-                if (this.isPlayerTurn)
+                if (this.players[0].Turn)
                 {
-                    this.FixCall(this.playerStatus, ref this.playerCall, ref this.playerRaise, 1);
+                    this.FixCall(this.players[0], 1);
                     ////MessageBox.Show("Player's Turn");
                     this.progressBarTimer.Visible = true;
                     this.progressBarTimer.Value = 1000;
@@ -663,7 +666,7 @@
                     this.buttonCall.Enabled = true;
                     this.buttonFold.Enabled = true;
                     this.turnCount++;
-                    this.FixCall(this.playerStatus, ref this.playerCall, ref this.playerRaise, 2);
+                    this.FixCall(this.players[0], 2);
                 }
             }
 
@@ -689,166 +692,191 @@
                 this.bRaise.Enabled = false;
                 this.buttonFold.Enabled = false;
                 this.timer.Stop();
-                this.isBot1Turn = true;
-                if (!this.B1Fturn)
+                //this.isBot1Turn = true;
+
+
+                var bots = players.Skip(1);
+                int counter = 0;
+
+                foreach (IPlayer bot in bots)
                 {
-                    if (this.isBot1Turn)
-                    {
-                        this.FixCall(this.bot1Status, ref this.bot1Call, ref this.bot1Raise, 1);
-                        this.FixCall(this.bot1Status, ref this.bot1Call, ref this.bot1Raise, 2);
-                        this.Rules(2, 3, "Bot 1", ref this.bot1Type, ref this.bot1Power, this.B1Fturn);
-                        MessageBox.Show("Bot 1's Turn");
-                        ArtificialIntelligence(2, 3, ref this.bot1Chips, ref this.isBot1Turn, ref this.B1Fturn, this.bot1Status, 0, this.bot1Power, this.bot1Type);
-                        this.turnCount++;
-                        this.last = 1;
-                        this.isBot1Turn = false;
-                        this.isBot2Turn = true;
-                    }
+                    counter++;
+                    bot.Turn = true;
+                    this.RotateTurns(bot,1 ,1, counter);
+                    bot.Turn = false;
+
                 }
 
-                if (this.B1Fturn && !this.bot1Folded)
-                {
-                    this.bools.RemoveAt(1);
-                    this.bools.Insert(1, null);
-                    this.maxLeft--;
-                    this.bot1Folded = true;
-                }
+                //Bot1 Turn
+                //if (!this.B1Fturn)
+                //{
+                //    if (this.isBot1Turn)
+                //    {
+                //        this.FixCall(this.bot1Status, ref this.bot1Call, ref this.bot1Raise, 1);
+                //        this.FixCall(this.bot1Status, ref this.bot1Call, ref this.bot1Raise, 2);
+                //        this.Rules(2, 3, "Bot 1", ref this.bot1Type, ref this.bot1Power, this.B1Fturn);
+                //        MessageBox.Show("Bot 1's Turn");
+                //        //ArtificialIntelligence(2, 3, this.players[1].Chips, ref this.isBot1Turn, ref this.B1Fturn, this.bot1Status, 0, this.bot1Power, this.bot1Type);
+                //        this.ArtificialIntelligence(2, 3, this.players[1], 0);
+                //        this.turnCount++;
+                //        this.last = 1;
+                //        this.isBot1Turn = false;
+                //        this.isBot2Turn = true;
 
-                if (this.B1Fturn || !this.isBot1Turn)
-                {
-                    await this.CheckRaise(1, 1);
-                    this.isBot2Turn = true;
-                }
+                //    }
+                //}
 
-                if (!this.B2Fturn)
-                {
-                    if (this.isBot2Turn)
-                    {
-                        this.FixCall(this.bot2Status, ref this.bot2Call, ref this.bot2Raise, 1);
-                        this.FixCall(this.bot2Status, ref this.bot2Call, ref this.bot2Raise, 2);
-                        this.Rules(4, 5, "Bot 2", ref this.bot2Type, ref this.bot2Power, this.B2Fturn);
-                        MessageBox.Show("Bot 2's Turn");
-                        this.ArtificialIntelligence(4, 5, ref this.bot2Chips, ref this.isBot2Turn, ref this.B2Fturn, this.bot2Status, 1, this.bot2Power, this.bot2Type);
-                        this.turnCount++;
-                        this.last = 2;
-                        this.isBot2Turn = false;
-                        this.isBot3Turn = true;
-                    }
-                }
+                //if (this.B1Fturn && !this.bot1Folded)
+                //{
+                //    this.bools.RemoveAt(1);
+                //    this.bools.Insert(1, null);
+                //    this.maxLeft--;
+                //    this.bot1Folded = true;
+                //}
 
-                if (this.B2Fturn && !this.bot2Folded)
-                {
-                    this.bools.RemoveAt(2);
-                    this.bools.Insert(2, null);
-                    this.maxLeft--;
-                    this.bot2Folded = true;
-                }
+                //if (this.B1Fturn || !this.isBot1Turn)
+                //{
+                //    await this.CheckRaise(1, 1);
+                //    this.isBot2Turn = true;
+                //}
 
-                if (this.B2Fturn || !this.isBot2Turn)
-                {
-                    await this.CheckRaise(2, 2);
-                    this.isBot3Turn = true;
-                }
+                ////Bot2 Turn
+                //if (!this.B2Fturn)
+                //{
+                //    if (this.isBot2Turn)
+                //    {
+                //        this.FixCall(this.bot2Status, ref this.bot2Call, ref this.bot2Raise, 1);
+                //        this.FixCall(this.bot2Status, ref this.bot2Call, ref this.bot2Raise, 2);
+                //        this.Rules(4, 5, "Bot 2", ref this.bot2Type, ref this.bot2Power, this.B2Fturn);
+                //        MessageBox.Show("Bot 2's Turn");
+                //        //this.ArtificialIntelligence(4, 5, this.players[2].Chips, ref this.isBot2Turn, ref this.B2Fturn, this.bot2Status, 1, this.bot2Power, this.bot2Type);
+                //        this.ArtificialIntelligence(4, 5, this.players[2], 1);
+                //        this.turnCount++;
+                //        this.last = 2;
+                //        this.isBot2Turn = false;
+                //        this.isBot3Turn = true;
+                //    }
+                //}
 
-                if (!this.B3Fturn)
-                {
-                    if (this.isBot3Turn)
-                    {
-                        this.FixCall(this.bot3Status, ref this.bot3Call, ref this.bot3Raise, 1);
-                        this.FixCall(this.bot3Status, ref this.bot3Call, ref this.bot3Raise, 2);
-                        this.Rules(6, 7, "Bot 3", ref this.bot3Type, ref this.bot3Power, this.B3Fturn);
-                        MessageBox.Show("Bot 3's Turn");
-                        this.ArtificialIntelligence(6, 7, ref this.bot3Chips, ref this.isBot3Turn, ref this.B3Fturn, this.bot3Status, 2, this.bot3Power, this.bot3Type);
-                        this.turnCount++;
-                        this.last = 3;
-                        this.isBot3Turn = false;
-                        this.isBot4Turn = true;
-                    }
-                }
+                //if (this.B2Fturn && !this.bot2Folded)
+                //{
+                //    this.bools.RemoveAt(2);
+                //    this.bools.Insert(2, null);
+                //    this.maxLeft--;
+                //    this.bot2Folded = true;
+                //}
 
-                if (this.B3Fturn && !this.bot3Folded)
-                {
-                    this.bools.RemoveAt(3);
-                    this.bools.Insert(3, null);
-                    this.maxLeft--;
-                    this.bot3Folded = true;
-                }
+                //if (this.B2Fturn || !this.isBot2Turn)
+                //{
+                //    await this.CheckRaise(2, 2);
+                //    this.isBot3Turn = true;
+                //}
 
-                if (this.B3Fturn || !this.isBot3Turn)
-                {
-                    await this.CheckRaise(3, 3);
-                    this.isBot4Turn = true;
-                }
+                ////Bot3 Turn
+                //if (!this.B3Fturn)
+                //{
+                //    if (this.isBot3Turn)
+                //    {
+                //        this.FixCall(this.bot3Status, ref this.bot3Call, ref this.bot3Raise, 1);
+                //        this.FixCall(this.bot3Status, ref this.bot3Call, ref this.bot3Raise, 2);
+                //        this.Rules(6, 7, "Bot 3", ref this.bot3Type, ref this.bot3Power, this.B3Fturn);
+                //        MessageBox.Show("Bot 3's Turn");
+                //        //this.ArtificialIntelligence(6, 7, this.players[3].Chips, ref this.isBot3Turn, ref this.B3Fturn, this.bot3Status, 2, this.bot3Power, this.bot3Type);
+                //        this.ArtificialIntelligence(6, 7, this.players[3], 2);
+                //        this.turnCount++;
+                //        this.last = 3;
+                //        this.isBot3Turn = false;
+                //        this.isBot4Turn = true;
+                //    }
+                //}
 
-                if (!this.B4Fturn)
-                {
-                    if (this.isBot4Turn)
-                    {
-                        this.FixCall(this.bot4Status, ref this.bot4Call, ref this.bot4Raise, 1);
-                        this.FixCall(this.bot4Status, ref this.bot4Call, ref this.bot4Raise, 2);
-                        this.Rules(8, 9, "Bot 4", ref this.bot4Type, ref this.bot4Power, this.B4Fturn);
-                        MessageBox.Show("Bot 4's Turn");
-                        this.ArtificialIntelligence(8, 9, ref this.bot4Chips, ref this.isBot4Turn, ref this.B4Fturn, this.bot4Status, 3, this.bot4Power, this.bot4Type);
-                        this.turnCount++;
-                        this.last = 4;
-                        this.isBot4Turn = false;
-                        this.isBot5Turn = true;
-                    }
-                }
+                //if (this.B3Fturn && !this.bot3Folded)
+                //{
+                //    this.bools.RemoveAt(3);
+                //    this.bools.Insert(3, null);
+                //    this.maxLeft--;
+                //    this.bot3Folded = true;
+                //}
 
-                if (this.B4Fturn && !this.bot4Folded)
-                {
-                    this.bools.RemoveAt(4);
-                    this.bools.Insert(4, null);
-                    this.maxLeft--;
-                    this.bot4Folded = true;
-                }
+                //if (this.B3Fturn || !this.isBot3Turn)
+                //{
+                //    await this.CheckRaise(3, 3);
+                //    this.isBot4Turn = true;
+                //}
 
-                if (this.B4Fturn || !this.isBot4Turn)
-                {
-                    await this.CheckRaise(4, 4);
-                    this.isBot5Turn = true;
-                }
+                ////Bot4 Turn
+                //if (!this.B4Fturn)
+                //{
+                //    if (this.isBot4Turn)
+                //    {
+                //        this.FixCall(this.bot4Status, ref this.bot4Call, ref this.bot4Raise, 1);
+                //        this.FixCall(this.bot4Status, ref this.bot4Call, ref this.bot4Raise, 2);
+                //        this.Rules(8, 9, "Bot 4", ref this.bot4Type, ref this.bot4Power, this.B4Fturn);
+                //        MessageBox.Show("Bot 4's Turn");
+                //        //this.ArtificialIntelligence(8, 9, this.players[4].Chips, ref this.isBot4Turn, ref this.B4Fturn, this.bot4Status, 3, this.bot4Power, this.bot4Type);
+                //        this.ArtificialIntelligence(8, 9, this.players[4], 3);
+                //        this.turnCount++;
+                //        this.last = 4;
+                //        this.isBot4Turn = false;
+                //        this.isBot5Turn = true;
+                //    }
+                //}
 
-                if (!this.B5Fturn)
-                {
-                    if (this.isBot5Turn)
-                    {
-                        this.FixCall(this.bot5Status, ref this.bot5Call, ref this.bot5Raise, 1);
-                        this.FixCall(this.bot5Status, ref this.bot5Call, ref this.bot5Raise, 2);
-                        this.Rules(10, 11, "Bot 5", ref this.bot5Type, ref this.bot5Power, this.B5Fturn);
-                        MessageBox.Show("Bot 5's Turn");
-                        this.ArtificialIntelligence(10, 11, ref this.bot5Chips, ref this.isBot5Turn, ref this.B5Fturn, this.bot5Status, 4, this.bot5Power, this.bot5Type);
-                        this.turnCount++;
-                        this.last = 5;
-                        this.isBot5Turn = false;
-                    }
-                }
+                //if (this.B4Fturn && !this.bot4Folded)
+                //{
+                //    this.bools.RemoveAt(4);
+                //    this.bools.Insert(4, null);
+                //    this.maxLeft--;
+                //    this.bot4Folded = true;
+                //}
 
-                if (this.B5Fturn && !this.bot5Folded)
-                {
-                    this.bools.RemoveAt(5);
-                    this.bools.Insert(5, null);
-                    this.maxLeft--;
-                    this.bot5Folded = true;
-                }
+                //if (this.B4Fturn || !this.isBot4Turn)
+                //{
+                //    await this.CheckRaise(4, 4);
+                //    this.isBot5Turn = true;
+                //}
 
-                if (this.B5Fturn || !this.isBot5Turn)
-                {
-                    await this.CheckRaise(5, 5);
-                    this.isPlayerTurn = true;
-                }
+                ////Bot5 Turn
+                //if (!this.B5Fturn)
+                //{
+                //    if (this.isBot5Turn)
+                //    {
+                //        this.FixCall(this.bot5Status, ref this.bot5Call, ref this.bot5Raise, 1);
+                //        this.FixCall(this.bot5Status, ref this.bot5Call, ref this.bot5Raise, 2);
+                //        this.Rules(10, 11, "Bot 5", ref this.bot5Type, ref this.bot5Power, this.B5Fturn);
+                //        MessageBox.Show("Bot 5's Turn");
+                //        //this.ArtificialIntelligence(10, 11, this.players[5].Chips, ref this.isBot5Turn, ref this.B5Fturn, this.bot5Status, 4, this.bot5Power, this.bot5Type);
+                //        this.ArtificialIntelligence(10, 11, this.players[5], 4);
+                //        this.turnCount++;
+                //        this.last = 5;
+                //        this.isBot5Turn = false;
+                //    }
+                //}
 
-                if (this.PFturn && !this.playerFolded)
-                {
-                    if (this.buttonCall.Text.Contains("All in") == false || this.bRaise.Text.Contains("All in") == false)
-                    {
-                        this.bools.RemoveAt(0);
-                        this.bools.Insert(0, null);
-                        this.maxLeft--;
-                        this.playerFolded = true;
-                    }
-                }
+                //if (this.B5Fturn && !this.bot5Folded)
+                //{
+                //    this.bools.RemoveAt(5);
+                //    this.bools.Insert(5, null);
+                //    this.maxLeft--;
+                //    this.bot5Folded = true;
+                //}
+
+                //if (this.B5Fturn || !this.isBot5Turn)
+                //{
+                //    await this.CheckRaise(5, 5);
+                //    this.isPlayerTurn = true;
+                //}
+
+                //if (this.PFturn && !this.playerFolded)
+                //{
+                //    if (this.buttonCall.Text.Contains("All in") == false || this.bRaise.Text.Contains("All in") == false)
+                //    {
+                //        this.bools.RemoveAt(0);
+                //        this.bools.Insert(0, null);
+                //        this.maxLeft--;
+                //        this.playerFolded = true;
+                //    }
+                //}
 
                 #endregion
 
@@ -861,8 +889,43 @@
                 this.restart = false;
             }
         }
+
+        private async void RotateTurns(IPlayer botPlayer, int card1, int card2, int index)
+        {
+            if (!botPlayer.FTurn)
+            {
+                if (botPlayer.Turn)
+                {
+                    this.FixCall(botPlayer, 1);
+                    this.FixCall(botPlayer, 2);
+                    this.Rules(card1, card2, botPlayer.Name,ref botPlayer.Type, ref botPlayer.Power, botPlayer.FTurn);
+                    MessageBox.Show(botPlayer.Name + "'s Turn");
+                    //ArtificialIntelligence(2, 3, this.players[1].Chips, ref this.isBot1Turn, ref this.B1Fturn, this.bot1Status, 0, this.bot1Power, this.bot1Type);
+                    this.ArtificialIntelligence(card1, card2, botPlayer);
+                    this.turnCount++;
+                    this.last = index;
+                    //this.isBot1Turn = false;
+                    //this.isBot2Turn = true;
+                }
+            }
+
+            if (botPlayer.FTurn && !botPlayer.Folded)
+            {
+                this.bools.RemoveAt(index);
+                this.bools.Insert(index, null);
+                this.maxLeft--;
+                botPlayer.Folded = true;
+            }
+
+            if (botPlayer.FTurn || !botPlayer.Turn)
+            {
+                await this.CheckRaise(index, index);
+                //this.isBot2Turn = true;
+            }
+        }
+
         // ----------------------------------------------------------------------
-//        Rules.Rules
+        //        Rules.Rules
 
         private void Rules(int c1, int c2, string currentText, ref double current, ref double Power, bool foldedTurn)
         {
@@ -990,38 +1053,38 @@
                 {
                     if (this.CheckWinners.Contains("Player"))
                     {
-                        this.playerChips += int.Parse(this.textBoxPot.Text) / this.winners;
-                        this.textBoxChips.Text = this.playerChips.ToString();
+                        this.players[0].Chips += int.Parse(this.textBoxPot.Text) / this.winners;
+                        this.textBoxChips.Text = this.players[0].Chips.ToString();
                         ////pPanel.Visible = true;
                     }
                     if (this.CheckWinners.Contains("Bot 1"))
                     {
-                        this.bot1Chips += int.Parse(this.textBoxPot.Text) / this.winners;
-                        this.textBoxBot1Chips.Text = this.bot1Chips.ToString();
+                        this.players[1].Chips += int.Parse(this.textBoxPot.Text) / this.winners;
+                        this.textBoxBotOneChips.Text = this.players[1].Chips.ToString();
                         ////b1Panel.Visible = true;
                     }
                     if (this.CheckWinners.Contains("Bot 2"))
                     {
-                        this.bot2Chips += int.Parse(this.textBoxPot.Text) / this.winners;
-                        this.textBoxBot2Chips.Text = this.bot2Chips.ToString();
+                        this.players[2].Chips += int.Parse(this.textBoxPot.Text) / this.winners;
+                        this.textBoxBotTwoChips.Text = this.players[2].Chips.ToString();
                         ////b2Panel.Visible = true;
                     }
                     if (this.CheckWinners.Contains("Bot 3"))
                     {
-                        this.bot3Chips += int.Parse(this.textBoxPot.Text) / this.winners;
-                        this.textBoxBot3Chips.Text = this.bot3Chips.ToString();
+                        this.players[3].Chips += int.Parse(this.textBoxPot.Text) / this.winners;
+                        this.textBoxBotThreeChips.Text = this.players[3].Chips.ToString();
                         ////b3Panel.Visible = true;
                     }
                     if (this.CheckWinners.Contains("Bot 4"))
                     {
-                        this.bot4Chips += int.Parse(this.textBoxPot.Text) / this.winners;
-                        this.textBoxBot4Chips.Text = this.bot4Chips.ToString();
+                        this.players[4].Chips += int.Parse(this.textBoxPot.Text) / this.winners;
+                        this.textBoxBotFourChips.Text = this.players[4].Chips.ToString();
                         ////b4Panel.Visible = true;
                     }
                     if (this.CheckWinners.Contains("Bot 5"))
                     {
-                        this.bot5Chips += int.Parse(this.textBoxPot.Text) / this.winners;
-                        this.textBoxBot5Chips.Text = this.bot5Chips.ToString();
+                        this.players[5].Chips += int.Parse(this.textBoxPot.Text) / this.winners;
+                        this.textBoxBotFiveChips.Text = this.players[5].Chips.ToString();
                         ////b5Panel.Visible = true;
                     }
                     ////await Finish(1);
@@ -1030,37 +1093,37 @@
                 {
                     if (this.CheckWinners.Contains("Player"))
                     {
-                        this.playerChips += int.Parse(this.textBoxPot.Text);
+                        this.players[0].Chips += int.Parse(this.textBoxPot.Text);
                         ////await Finish(1);
                         ////pPanel.Visible = true;
                     }
                     if (this.CheckWinners.Contains("Bot 1"))
                     {
-                        this.bot1Chips += int.Parse(this.textBoxPot.Text);
+                        this.players[1].Chips += int.Parse(this.textBoxPot.Text);
                         ////await Finish(1);
                         ////b1Panel.Visible = true;
                     }
                     if (this.CheckWinners.Contains("Bot 2"))
                     {
-                        this.bot2Chips += int.Parse(this.textBoxPot.Text);
+                        this.players[2].Chips += int.Parse(this.textBoxPot.Text);
                         ////await Finish(1);
                         ////b2Panel.Visible = true;
                     }
                     if (this.CheckWinners.Contains("Bot 3"))
                     {
-                        this.bot3Chips += int.Parse(this.textBoxPot.Text);
+                        this.players[3].Chips += int.Parse(this.textBoxPot.Text);
                         ////await Finish(1);
                         ////b3Panel.Visible = true;
                     }
                     if (this.CheckWinners.Contains("Bot 4"))
                     {
-                        this.bot4Chips += int.Parse(this.textBoxPot.Text);
+                        this.players[4].Chips += int.Parse(this.textBoxPot.Text);
                         ////await Finish(1);
                         ////b4Panel.Visible = true;
                     }
                     if (this.CheckWinners.Contains("Bot 5"))
                     {
-                        this.bot5Chips += int.Parse(this.textBoxPot.Text);
+                        this.players[5].Chips += int.Parse(this.textBoxPot.Text);
                         ////await Finish(1);
                         ////b5Panel.Visible = true;
                     }
@@ -1215,12 +1278,12 @@
                     fixedLast = "Bot 5";
                     this.Rules(10, 11, "Bot 5", ref this.bot5Type, ref this.bot5Power, this.B5Fturn);
                 }
-                this.Winner(this.playerType, this.playerPower, "Player", this.playerChips, fixedLast);
-                this.Winner(this.bot1Type, this.bot1Power, "Bot 1", this.bot1Chips, fixedLast);
-                this.Winner(this.bot2Type, this.bot2Power, "Bot 2", this.bot2Chips, fixedLast);
-                this.Winner(this.bot3Type, this.bot3Power, "Bot 3", this.bot3Chips, fixedLast);
-                this.Winner(this.bot4Type, this.bot4Power, "Bot 4", this.bot4Chips, fixedLast);
-                this.Winner(this.bot5Type, this.bot5Power, "Bot 5", this.bot5Chips, fixedLast);
+                this.Winner(this.playerType, this.playerPower, "Player", this.players[0].Chips, fixedLast);
+                this.Winner(this.bot1Type, this.bot1Power, "Bot 1", this.players[1].Chips, fixedLast);
+                this.Winner(this.bot2Type, this.bot2Power, "Bot 2", this.players[2].Chips, fixedLast);
+                this.Winner(this.bot3Type, this.bot3Power, "Bot 3", this.players[3].Chips, fixedLast);
+                this.Winner(this.bot4Type, this.bot4Power, "Bot 4", this.players[4].Chips, fixedLast);
+                this.Winner(this.bot5Type, this.bot5Power, "Bot 5", this.players[5].Chips, fixedLast);
                 this.restart = true;
                 this.isPlayerTurn = true;
                 this.PFturn = false;
@@ -1229,18 +1292,18 @@
                 this.B3Fturn = false;
                 this.B4Fturn = false;
                 this.B5Fturn = false;
-                if (this.playerChips <= 0)
+                if (this.players[0].Chips <= 0)
                 {
                     var f2 = new AddChips();
                     f2.ShowDialog();
                     if (f2.a != 0)
                     {
-                        this.playerChips = f2.a;
-                        this.bot1Chips += f2.a;
-                        this.bot2Chips += f2.a;
-                        this.bot3Chips += f2.a;
-                        this.bot4Chips += f2.a;
-                        this.bot5Chips += f2.a;
+                        this.players[0].Chips = f2.a;
+                        this.players[1].Chips += f2.a;
+                        this.players[2].Chips += f2.a;
+                        this.players[3].Chips += f2.a;
+                        this.players[4].Chips += f2.a;
+                        this.players[5].Chips += f2.a;
                         this.PFturn = false;
                         this.isPlayerTurn = true;
                         this.bRaise.Enabled = true;
@@ -1305,39 +1368,39 @@
             }
         }
 
-        private void FixCall(Label status, ref int cCall, ref int cRaise, int options)
+        private void FixCall(IPlayer botPlayer, int options)
         {
             if (this.rounds != 4)
             {
                 if (options == 1)
                 {
-                    if (status.Text.Contains("Raise"))
+                    if (botPlayer.Label.Text.Contains("Raise"))
                     {
-                        var changeRaise = status.Text.Substring(6);
-                        cRaise = int.Parse(changeRaise);
+                        var changeRaise = botPlayer.Label.Text.Substring(6);
+                        botPlayer.Raise = int.Parse(changeRaise);
                     }
-                    if (status.Text.Contains("Call"))
+                    if (botPlayer.Label.Text.Contains("Call"))
                     {
-                        var changeCall = status.Text.Substring(5);
-                        cCall = int.Parse(changeCall);
+                        var changeCall = botPlayer.Label.Text.Substring(5);
+                        botPlayer.Call = int.Parse(changeCall);
                     }
-                    if (status.Text.Contains("Check"))
+                    if (botPlayer.Label.Text.Contains("Check"))
                     {
-                        cRaise = 0;
-                        cCall = 0;
+                        botPlayer.Raise = 0;
+                        botPlayer.Call = 0;
                     }
                 }
                 if (options == 2)
                 {
-                    if (cRaise != this.raise && cRaise <= this.raise)
+                    if (botPlayer.Raise != this.raise && botPlayer.Raise <= this.raise)
                     {
-                        this.call = Convert.ToInt32(this.raise) - cRaise;
+                        this.call = Convert.ToInt32(this.raise) - botPlayer.Raise;
                     }
-                    if (cCall != this.call || cCall <= this.call)
+                    if (botPlayer.Call != this.call || botPlayer.Call <= this.call)
                     {
-                        this.call = this.call - cCall;
+                        this.call = this.call - botPlayer.Call;
                     }
-                    if (cRaise == this.raise && this.raise > 0)
+                    if (botPlayer.Raise == this.raise && this.raise > 0)
                     {
                         this.call = 0;
                         this.buttonCall.Enabled = false;
@@ -1351,61 +1414,61 @@
         {
             #region All in
 
-            if (this.playerChips <= 0 && !this.intsadded)
+            if (this.players[0].Chips <= 0 && !this.intsadded)
             {
                 if (this.playerStatus.Text.Contains("Raise"))
                 {
-                    this.Pot.Add(this.playerChips);
+                    this.Pot.Add(this.players[0].Chips);
                     this.intsadded = true;
                 }
                 if (this.playerStatus.Text.Contains("Call"))
                 {
-                    this.Pot.Add(this.playerChips);
+                    this.Pot.Add(this.players[0].Chips);
                     this.intsadded = true;
                 }
             }
             this.intsadded = false;
-            if (this.bot1Chips <= 0 && !this.B1Fturn)
+            if (this.players[1].Chips <= 0 && !this.B1Fturn)
             {
                 if (!this.intsadded)
                 {
-                    this.Pot.Add(this.bot1Chips);
+                    this.Pot.Add(this.players[1].Chips);
                     this.intsadded = true;
                 }
                 this.intsadded = false;
             }
-            if (this.bot2Chips <= 0 && !this.B2Fturn)
+            if (this.players[2].Chips <= 0 && !this.B2Fturn)
             {
                 if (!this.intsadded)
                 {
-                    this.Pot.Add(this.bot2Chips);
+                    this.Pot.Add(this.players[2].Chips);
                     this.intsadded = true;
                 }
                 this.intsadded = false;
             }
-            if (this.bot3Chips <= 0 && !this.B3Fturn)
+            if (this.players[3].Chips <= 0 && !this.B3Fturn)
             {
                 if (!this.intsadded)
                 {
-                    this.Pot.Add(this.bot3Chips);
+                    this.Pot.Add(this.players[3].Chips);
                     this.intsadded = true;
                 }
                 this.intsadded = false;
             }
-            if (this.bot4Chips <= 0 && !this.B4Fturn)
+            if (this.players[4].Chips <= 0 && !this.B4Fturn)
             {
                 if (!this.intsadded)
                 {
-                    this.Pot.Add(this.bot4Chips);
+                    this.Pot.Add(this.players[4].Chips);
                     this.intsadded = true;
                 }
                 this.intsadded = false;
             }
-            if (this.bot5Chips <= 0 && !this.B5Fturn)
+            if (this.players[5].Chips <= 0 && !this.B5Fturn)
             {
                 if (!this.intsadded)
                 {
-                    this.Pot.Add(this.bot5Chips);
+                    this.Pot.Add(this.players[5].Chips);
                     this.intsadded = true;
                 }
             }
@@ -1429,43 +1492,43 @@
                 var index = this.bools.IndexOf(false);
                 if (index == 0)
                 {
-                    this.playerChips += int.Parse(this.textBoxPot.Text);
-                    this.textBoxChips.Text = this.playerChips.ToString();
+                    this.players[0].Chips += int.Parse(this.textBoxPot.Text);
+                    this.textBoxChips.Text = this.players[0].Chips.ToString();
                     this.playerPanel.Visible = true;
                     MessageBox.Show("Player Wins");
                 }
                 if (index == 1)
                 {
-                    this.bot1Chips += int.Parse(this.textBoxPot.Text);
-                    this.textBoxChips.Text = this.bot1Chips.ToString();
+                    this.players[1].Chips += int.Parse(this.textBoxPot.Text);
+                    this.textBoxChips.Text = this.players[1].Chips.ToString();
                     this.bot1Panel.Visible = true;
                     MessageBox.Show("Bot 1 Wins");
                 }
                 if (index == 2)
                 {
-                    this.bot2Chips += int.Parse(this.textBoxPot.Text);
-                    this.textBoxChips.Text = this.bot2Chips.ToString();
+                    this.players[2].Chips += int.Parse(this.textBoxPot.Text);
+                    this.textBoxChips.Text = this.players[2].Chips.ToString();
                     this.bot2Panel.Visible = true;
                     MessageBox.Show("Bot 2 Wins");
                 }
                 if (index == 3)
                 {
-                    this.bot3Chips += int.Parse(this.textBoxPot.Text);
-                    this.textBoxChips.Text = this.bot3Chips.ToString();
+                    this.players[3].Chips += int.Parse(this.textBoxPot.Text);
+                    this.textBoxChips.Text = this.players[3].Chips.ToString();
                     this.bot3Panel.Visible = true;
                     MessageBox.Show("Bot 3 Wins");
                 }
                 if (index == 4)
                 {
-                    this.bot4Chips += int.Parse(this.textBoxPot.Text);
-                    this.textBoxChips.Text = this.bot4Chips.ToString();
+                    this.players[4].Chips += int.Parse(this.textBoxPot.Text);
+                    this.textBoxChips.Text = this.players[4].Chips.ToString();
                     this.bot4Panel.Visible = true;
                     MessageBox.Show("Bot 4 Wins");
                 }
                 if (index == 5)
                 {
-                    this.bot5Chips += int.Parse(this.textBoxPot.Text);
-                    this.textBoxChips.Text = this.bot5Chips.ToString();
+                    this.players[5].Chips += int.Parse(this.textBoxPot.Text);
+                    this.textBoxChips.Text = this.players[5].Chips.ToString();
                     this.bot5Panel.Visible = true;
                     MessageBox.Show("Bot 5 Wins");
                 }
@@ -1577,18 +1640,18 @@
             this.bot3Status.Text = "";
             this.bot4Status.Text = "";
             this.bot5Status.Text = "";
-            if (this.playerChips <= 0)
+            if (this.players[0].Chips <= 0)
             {
                 var f2 = new AddChips();
                 f2.ShowDialog();
                 if (f2.a != 0)
                 {
-                    this.playerChips = f2.a;
-                    this.bot1Chips += f2.a;
-                    this.bot2Chips += f2.a;
-                    this.bot3Chips += f2.a;
-                    this.bot4Chips += f2.a;
-                    this.bot5Chips += f2.a;
+                    this.players[0].Chips = f2.a;
+                    this.players[1].Chips += f2.a;
+                    this.players[2].Chips += f2.a;
+                    this.players[3].Chips += f2.a;
+                    this.players[4].Chips += f2.a;
+                    this.players[5].Chips += f2.a;
                     this.PFturn = false;
                     this.isPlayerTurn = true;
                     this.bRaise.Enabled = true;
@@ -1644,70 +1707,96 @@
                 fixedLast = "Bot 5";
                 this.Rules(10, 11, "Bot 5", ref this.bot5Type, ref this.bot5Power, this.B5Fturn);
             }
-            this.Winner(this.playerType, this.playerPower, "Player", this.playerChips, fixedLast);
-            this.Winner(this.bot1Type, this.bot1Power, "Bot 1", this.bot1Chips, fixedLast);
-            this.Winner(this.bot2Type, this.bot2Power, "Bot 2", this.bot2Chips, fixedLast);
-            this.Winner(this.bot3Type, this.bot3Power, "Bot 3", this.bot3Chips, fixedLast);
-            this.Winner(this.bot4Type, this.bot4Power, "Bot 4", this.bot4Chips, fixedLast);
-            this.Winner(this.bot5Type, this.bot5Power, "Bot 5", this.bot5Chips, fixedLast);
+            this.Winner(this.playerType, this.playerPower, "Player", this.players[0].Chips, fixedLast);
+            this.Winner(this.bot1Type, this.bot1Power, "Bot 1", this.players[1].Chips, fixedLast);
+            this.Winner(this.bot2Type, this.bot2Power, "Bot 2", this.players[2].Chips, fixedLast);
+            this.Winner(this.bot3Type, this.bot3Power, "Bot 3", this.players[3].Chips, fixedLast);
+            this.Winner(this.bot4Type, this.bot4Power, "Bot 4", this.players[4].Chips, fixedLast);
+            this.Winner(this.bot5Type, this.bot5Power, "Bot 5", this.players[5].Chips, fixedLast);
         }
         // ----------------------------------------------------------------------
         private void ArtificialIntelligence(
-            int c1, 
-            int c2, 
-            ref int botChips,
-            ref bool botTurn,
-            ref bool botFTurn,
-            Label botStatus,
-            int name,
-            double botPower,
-            double botCurrent)
+        //int c1, 
+        //int c2, 
+        ////ref int botChips,
+        //int botChips,
+        //ref bool botTurn,
+        //ref bool botPlayer.FTurn,
+        //Label botStatus,
+        //,
+        //double botPower,
+        //double botPlayer.PokerHandMultiplier)
+
+        int c1,
+        int c2,
+        IPlayer botPlayer
+        //
+        )
         {
             // TODO: make it with switch case.
-            if (!botFTurn)
+            if (!botPlayer.FTurn)
             {
-                if (botCurrent == -1)
+                if (botPlayer.PokerHandMultiplier == -1)
                 {
-                    HighCard(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower);
+                    //HighCard(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
+                    this.HighCard(botPlayer);
                 }
-                if (botCurrent == 0)
+                //Switch bro
+                if (botPlayer.PokerHandMultiplier == 0)
                 {
-                    PairTable(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower);
+                    //PairTable(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
+                    this.PairTable(botPlayer);
                 }
-                if (botCurrent == 1)
+                if (botPlayer.PokerHandMultiplier == 1)
                 {
-                    PairHand(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower);
+                    //PairHand(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
+                    this.PairHand(botPlayer);
+
                 }
-                if (botCurrent == 2)
+                if (botPlayer.PokerHandMultiplier == 2)
                 {
-                    TwoPair(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower);
+                    //TwoPair(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
+                    this.TwoPair(botPlayer);
+
                 }
-                if (botCurrent == 3)
+                if (botPlayer.PokerHandMultiplier == 3)
                 {
-                    ThreeOfAKind(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
+                    //ThreeOfAKind(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    this.ThreeOfAKind(botPlayer);
+
                 }
-                if (botCurrent == 4)
+                if (botPlayer.PokerHandMultiplier == 4)
                 {
-                    Straight(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
+                    //Straight(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    this.Straight(botPlayer);
+
                 }
-                if (botCurrent == 5 || botCurrent == 5.5)
+                if (botPlayer.PokerHandMultiplier == 5 || botPlayer.PokerHandMultiplier == 5.5)
                 {
-                    Flush(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
+                    //Flush(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    this.Flush(botPlayer);
+
                 }
-                if (botCurrent == 6)
+                if (botPlayer.PokerHandMultiplier == 6)
                 {
-                    FullHouse(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
+                    //FullHouse(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    this.FullHouse(botPlayer);
+
                 }
-                if (botCurrent == 7)
+                if (botPlayer.PokerHandMultiplier == 7)
                 {
-                    FourOfAKind(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
+                    //FourOfAKind(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    this.FourOfAKind(botPlayer);
+
                 }
-                if (botCurrent == 8 || botCurrent == 9)
+                if (botPlayer.PokerHandMultiplier == 8 || botPlayer.PokerHandMultiplier == 9)
                 {
-                    StraightFlush(ref botChips, ref botTurn, ref botFTurn, botStatus, name, botPower);
+                    //StraightFlush(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    this.StraightFlush(botPlayer);
+
                 }
             }
-            if (botFTurn)
+            if (botPlayer.FTurn)
             {
                 this.Holder[c1].Visible = false;
                 this.Holder[c2].Visible = false;
@@ -1716,147 +1805,166 @@
 
         // Moved to class CombinationManager (renamed there). 
         // TODO: Implement logic
-#region CombinationManager
-        private void HighCard(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
+        #region CombinationManager
+        private void HighCard(IPlayer botPlayer)
         {
-            this.HP(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower, 20, 25);
+            //this.HP(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower, 20, 25);
+            this.HP(botPlayer, 20, 25);
         }
 
-        private void PairTable(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
+        private void PairTable(IPlayer botPlayer)
         {
-            this.HP(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower, 16, 25);
+            //this.HP(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower, 16, 25);
+            this.HP(botPlayer, 16, 25);
         }
 
-        private void PairHand(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
+        //private void PairHand(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
+        private void PairHand(IPlayer botPlayer)
         {
             var pairHand = new Random();
             var randomCall = pairHand.Next(10, 16);
             var randomRaise = pairHand.Next(10, 13);
 
-            if (botPower <= 199 && botPower >= 140)
+            if (botPlayer.Power <= 199 && botPlayer.Power >= 140)
             {
-                this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 6, randomRaise);
+                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 6, randomRaise);
+                this.PH(botPlayer, randomCall, 6, randomRaise);
             }
 
-            if (botPower <= 139 && botPower >= 128)
+            if (botPlayer.Power <= 139 && botPlayer.Power >= 128)
             {
-                this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 7, randomRaise);
+                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 7, randomRaise);
+                this.PH(botPlayer, randomCall, 7, randomRaise);
             }
 
-            if (botPower < 128 && botPower >= 101)
+            if (botPlayer.Power < 128 && botPlayer.Power >= 101)
             {
-                this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 9, randomRaise);
+                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 9, randomRaise);
+                this.PH(botPlayer, randomCall, 9, randomRaise);
             }
         }
 
-        private void TwoPair(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
+        private void TwoPair(IPlayer botPlayer)
         {
             var twoPair = new Random();
             var randomCall = twoPair.Next(6, 11);
             var randomRaise = twoPair.Next(6, 11);
 
-            if (botPower <= 290 && botPower >= 246)
+            if (botPlayer.Power <= 290 && botPlayer.Power >= 246)
             {
-                this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 3, randomRaise);
+                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 3, randomRaise);
+                this.PH(botPlayer, randomCall, 3, randomRaise);
             }
 
-            if (botPower <= 244 && botPower >= 234)
+            if (botPlayer.Power <= 244 && botPlayer.Power >= 234)
             {
-                this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 4, randomRaise);
+                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 4, randomRaise);
+                this.PH(botPlayer, randomCall, 4, randomRaise);
             }
 
-            if (botPower < 234 && botPower >= 201)
+            if (botPlayer.Power < 234 && botPlayer.Power >= 201)
             {
-                this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 4, randomRaise);
+                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 4, randomRaise);
+                this.PH(botPlayer, randomCall, 4, randomRaise);
             }
         }
 
-        private void ThreeOfAKind(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
+        private void ThreeOfAKind(IPlayer botPlayer)
         {
             var tk = new Random();
             var tCall = tk.Next(3, 7);
             var tRaise = tk.Next(4, 8);
-            if (botPower <= 390 && botPower >= 330)
+            if (botPlayer.Power <= 390 && botPlayer.Power >= 330)
             {
-                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
+                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
+                this.Smooth(botPlayer, tCall, tRaise);
             }
-            if (botPower <= 327 && botPower >= 321) ////10  8
+            if (botPlayer.Power <= 327 && botPlayer.Power >= 321) ////10  8
             {
-                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
+                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
+                this.Smooth(botPlayer, tCall, tRaise);
             }
-            if (botPower < 321 && botPower >= 303) ////7 2
+            if (botPlayer.Power < 321 && botPlayer.Power >= 303) ////7 2
             {
-                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
+                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
+                this.Smooth(botPlayer, tCall, tRaise);
             }
         }
 
-        private void Straight(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
+        private void Straight(IPlayer botPlayer)
         {
             var str = new Random();
             var sCall = str.Next(3, 6);
             var sRaise = str.Next(3, 8);
-            if (botPower <= 480 && botPower >= 410)
+            if (botPlayer.Power <= 480 && botPlayer.Power >= 410)
             {
-                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
+                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
+                this.Smooth(botPlayer, sCall, sRaise);
             }
-            if (botPower <= 409 && botPower >= 407) ////10  8
+            if (botPlayer.Power <= 409 && botPlayer.Power >= 407) ////10  8
             {
-                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
+                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
+                this.Smooth(botPlayer, sCall, sRaise);
             }
-            if (botPower < 407 && botPower >= 404)
+            if (botPlayer.Power < 407 && botPlayer.Power >= 404)
             {
-                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
+                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
+                this.Smooth(botPlayer, sCall, sRaise);
             }
         }
 
-        private void Flush(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
+        private void Flush(IPlayer botPlayer)
         {
             var fsh = new Random();
             var fCall = fsh.Next(2, 6);
             var fRaise = fsh.Next(3, 7);
-            this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fCall, fRaise);
+            this.Smooth(botPlayer, fCall, fRaise);
         }
 
-        private void FullHouse(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
+        private void FullHouse(IPlayer botPlayer)
         {
             var flh = new Random();
             var fhCall = flh.Next(1, 5);
             var fhRaise = flh.Next(2, 6);
-            if (botPower <= 626 && botPower >= 620)
+            if (botPlayer.Power <= 626 && botPlayer.Power >= 620)
             {
-                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fhCall, fhRaise);
+                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fhCall, fhRaise);
+                this.Smooth(botPlayer, fhCall, fhRaise);
             }
-            if (botPower < 620 && botPower >= 602)
+            if (botPlayer.Power < 620 && botPlayer.Power >= 602)
             {
-                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fhCall, fhRaise);
+                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fhCall, fhRaise);
+                this.Smooth(botPlayer, fhCall, fhRaise);
             }
         }
 
-        private void FourOfAKind(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
+        private void FourOfAKind(IPlayer botPlayer)
         {
             var fk = new Random();
             var fkCall = fk.Next(1, 4);
             var fkRaise = fk.Next(2, 5);
-            if (botPower <= 752 && botPower >= 704)
+            if (botPlayer.Power <= 752 && botPlayer.Power >= 704)
             {
-                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fkCall, fkRaise);
+                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fkCall, fkRaise);
+                this.Smooth(botPlayer, fkCall, fkRaise);
             }
         }
 
-        private void StraightFlush(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, double botPower)
+        private void StraightFlush(IPlayer botPlayer)
         {
             var sf = new Random();
             var sfCall = sf.Next(1, 3);
             var sfRaise = sf.Next(1, 3);
-            if (botPower <= 913 && botPower >= 804)
+            if (botPlayer.Power <= 913 && botPlayer.Power >= 804)
             {
-                this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sfCall, sfRaise);
+                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sfCall, sfRaise);
+                this.Smooth(botPlayer, sfCall, sfRaise);
             }
         }
-#endregion CombinationManager
+        #endregion CombinationManager
         //-----------------------------------------------------------------------------------------
         // TODO: Add to namespace Statuses.
-        private void Fold(ref bool sTurn, ref bool sFTurn, Label sStatus)
+        private void Fold(bool sTurn, bool sFTurn, Label sStatus)
         {
             this.raising = false;
             sStatus.Text = "Fold";
@@ -1864,14 +1972,15 @@
             sFTurn = true;
         }
 
-        private void Check(ref bool cTurn, Label cStatus)
+        //private void Check(ref bool cTurn, Label cStatus)
+        private void Check(bool cTurn, Label cStatus)
         {
             cStatus.Text = "Check";
             cTurn = false;
             this.raising = false;
         }
 
-        private void Call(ref int sChips, ref bool sTurn, Label sStatus)
+        private void Call(int sChips, bool sTurn, Label sStatus)
         {
             this.raising = false;
             sTurn = false;
@@ -1880,15 +1989,28 @@
             this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + this.call).ToString();
         }
 
-        private void Raised(ref int sChips, ref bool sTurn, Label sStatus)
+        private void Raised(IPlayer bot, bool sTurn, Label sStatus)
         {
-            sChips -= Convert.ToInt32(this.raise);
-            sStatus.Text = "Raise " + this.raise;
+            bot.Chips -= Convert.ToInt32(this.raise);
+            //sChips -= Convert.ToInt32(this.raise);
+            bot.Label.Text = "Raise " + this.raise;
+            //sStatus.Text = "Raise " + this.raise;
             this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + Convert.ToInt32(this.raise)).ToString();
             this.call = Convert.ToInt32(this.raise);
             this.raising = true;
-            sTurn = false;
+            //sTurn = false;
+            bot.Turn = false;
         }
+
+        //private void Raised(ref int sChips, ref bool sTurn, Label sStatus)
+        //{
+        //    sChips -= Convert.ToInt32(this.raise);
+        //    sStatus.Text = "Raise " + this.raise;
+        //    this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + Convert.ToInt32(this.raise)).ToString();
+        //    this.call = Convert.ToInt32(this.raise);
+        //    this.raising = true;
+        //    sTurn = false;
+        //}
 
         private static double RoundN(int sChips, int n)
         {
@@ -1897,36 +2019,37 @@
         }
 
         // make static
-        public void HP(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower, int n, int n1)
+        //public void HP(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower, int n, int n1)
+        public void HP(IPlayer botPlayer, int n, int n1)
         {
             var rand = new Random();
             var rnd = rand.Next(1, 4);
             if (this.call <= 0)
             {
-                this.Check(ref sTurn, sStatus);
+                this.Check(botPlayer.Turn, botPlayer.Label);
             }
             if (this.call > 0)
             {
                 if (rnd == 1)
                 {
-                    if (this.call <= RoundN(sChips, n))
+                    if (this.call <= RoundN(botPlayer.Chips, n))
                     {
-                        this.Call(ref sChips, ref sTurn, sStatus);
+                        this.Call(botPlayer.Chips, botPlayer.Turn, botPlayer.Label);
                     }
                     else
                     {
-                        this.Fold(ref sTurn, ref sFTurn, sStatus);
+                        this.Fold(botPlayer.Turn, botPlayer.FTurn, botPlayer.Label);
                     }
                 }
                 if (rnd == 2)
                 {
-                    if (this.call <= RoundN(sChips, n1))
+                    if (this.call <= RoundN(botPlayer.Chips, n1))
                     {
-                        this.Call(ref sChips, ref sTurn, sStatus);
+                        this.Call(botPlayer.Chips, botPlayer.Turn, botPlayer.Label);
                     }
                     else
                     {
-                        this.Fold(ref sTurn, ref sFTurn, sStatus);
+                        this.Fold(botPlayer.Turn, botPlayer.FTurn, botPlayer.Label);
                     }
                 }
             }
@@ -1935,29 +2058,30 @@
                 if (this.raise == 0)
                 {
                     this.raise = this.call * 2;
-                    this.Raised(ref sChips, ref sTurn, sStatus);
+                    this.Raised(botPlayer, botPlayer.Turn, botPlayer.Label);
                 }
                 else
                 {
-                    if (this.raise <= RoundN(sChips, n))
+                    if (this.raise <= RoundN(botPlayer.Chips, n))
                     {
                         this.raise = this.call * 2;
-                        this.Raised(ref sChips, ref sTurn, sStatus);
+                        this.Raised(botPlayer, botPlayer.Turn, botPlayer.Label);
                     }
                     else
                     {
-                        this.Fold(ref sTurn, ref sFTurn, sStatus);
+                        this.Fold(botPlayer.Turn, botPlayer.FTurn, botPlayer.Label);
                     }
                 }
             }
-            if (sChips <= 0)
+            if (botPlayer.Chips <= 0)
             {
-                sFTurn = true;
+                botPlayer.FTurn = true;
             }
         }
 
         // make static
-        public void PH(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int randomCall, int n1, int randomRaise)
+        //public void PH(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int randomCall, int n1, int randomRaise)
+        public void PH(IPlayer botPlayer, int randomCall, int n1, int randomRaise)
         {
             var rand = new Random();
             var rnd = rand.Next(1, 3);
@@ -1965,39 +2089,39 @@
             {
                 if (this.call <= 0)
                 {
-                    this.Check(ref sTurn, sStatus);
+                    this.Check(botPlayer.Turn, botPlayer.Label);
                 }
                 if (this.call > 0)
                 {
-                    if (this.call >= RoundN(sChips, n1))
+                    if (this.call >= RoundN(botPlayer.Chips, n1))
                     {
-                        this.Fold(ref sTurn, ref sFTurn, sStatus);
+                        this.Fold(botPlayer.Turn, botPlayer.FTurn, botPlayer.Label);
                     }
-                    if (this.raise > RoundN(sChips, randomCall))
+                    if (this.raise > RoundN(botPlayer.Chips, randomCall))
                     {
-                        this.Fold(ref sTurn, ref sFTurn, sStatus);
+                        this.Fold(botPlayer.Turn, botPlayer.FTurn, botPlayer.Label);
                     }
-                    if (!sFTurn)
+                    if (!botPlayer.FTurn)
                     {
-                        if (this.call >= RoundN(sChips, randomCall) && this.call <= RoundN(sChips, n1))
+                        if (this.call >= RoundN(botPlayer.Chips, randomCall) && this.call <= RoundN(botPlayer.Chips, n1))
                         {
-                            this.Call(ref sChips, ref sTurn, sStatus);
+                            this.Call(botPlayer.Chips, botPlayer.Turn, botPlayer.Label);
                         }
-                        if (this.raise <= RoundN(sChips, randomCall) && this.raise >= (RoundN(sChips, randomCall)) / 2)
+                        if (this.raise <= RoundN(botPlayer.Chips, randomCall) && this.raise >= (RoundN(botPlayer.Chips, randomCall)) / 2)
                         {
-                            this.Call(ref sChips, ref sTurn, sStatus);
+                            this.Call(botPlayer.Chips, botPlayer.Turn, botPlayer.Label);
                         }
-                        if (this.raise <= (RoundN(sChips, randomCall)) / 2)
+                        if (this.raise <= (RoundN(botPlayer.Chips, randomCall)) / 2)
                         {
                             if (this.raise > 0)
                             {
-                                this.raise = RoundN(sChips, randomCall);
-                                this.Raised(ref sChips, ref sTurn, sStatus);
+                                this.raise = RoundN(botPlayer.Chips, randomCall);
+                                this.Raised(botPlayer, botPlayer.Turn, botPlayer.Label);
                             }
                             else
                             {
                                 this.raise = this.call * 2;
-                                this.Raised(ref sChips, ref sTurn, sStatus);
+                                this.Raised(botPlayer, botPlayer.Turn, botPlayer.Label);
                             }
                         }
                     }
@@ -2007,101 +2131,103 @@
             {
                 if (this.call > 0)
                 {
-                    if (this.call >= RoundN(sChips, n1 - rnd))
+                    if (this.call >= RoundN(botPlayer.Chips, n1 - rnd))
                     {
-                        this.Fold(ref sTurn, ref sFTurn, sStatus);
+                        this.Fold(botPlayer.Turn, botPlayer.FTurn, botPlayer.Label);
                     }
-                    if (this.raise > RoundN(sChips, randomCall - rnd))
+                    if (this.raise > RoundN(botPlayer.Chips, randomCall - rnd))
                     {
-                        this.Fold(ref sTurn, ref sFTurn, sStatus);
+                        this.Fold(botPlayer.Turn, botPlayer.FTurn, botPlayer.Label);
                     }
-                    if (!sFTurn)
+                    if (!botPlayer.FTurn)
                     {
-                        if (this.call >= RoundN(sChips, randomCall - rnd) && this.call <= RoundN(sChips, n1 - rnd))
+                        if (this.call >= RoundN(botPlayer.Chips, randomCall - rnd) && this.call <= RoundN(botPlayer.Chips, n1 - rnd))
                         {
-                            this.Call(ref sChips, ref sTurn, sStatus);
+                            this.Call(botPlayer.Chips, botPlayer.Turn, botPlayer.Label);
                         }
-                        if (this.raise <= RoundN(sChips, randomCall - rnd) && this.raise >= (RoundN(sChips, randomCall - rnd)) / 2)
+                        if (this.raise <= RoundN(botPlayer.Chips, randomCall - rnd) && this.raise >= (RoundN(botPlayer.Chips, randomCall - rnd)) / 2)
                         {
-                            this.Call(ref sChips, ref sTurn, sStatus);
+                            this.Call(botPlayer.Chips, botPlayer.Turn, botPlayer.Label);
                         }
-                        if (this.raise <= (RoundN(sChips, randomCall - rnd)) / 2)
+                        if (this.raise <= (RoundN(botPlayer.Chips, randomCall - rnd)) / 2)
                         {
                             if (this.raise > 0)
                             {
-                                this.raise = RoundN(sChips, randomCall - rnd);
-                                this.Raised(ref sChips, ref sTurn, sStatus);
+                                this.raise = RoundN(botPlayer.Chips, randomCall - rnd);
+                                this.Raised(botPlayer, botPlayer.Turn, botPlayer.Label);
                             }
                             else
                             {
                                 this.raise = this.call * 2;
-                                this.Raised(ref sChips, ref sTurn, sStatus);
+                                this.Raised(botPlayer, botPlayer.Turn, botPlayer.Label);
                             }
                         }
                     }
                 }
                 if (this.call <= 0)
                 {
-                    this.raise = RoundN(sChips, randomRaise - rnd);
-                    this.Raised(ref sChips, ref sTurn, sStatus);
+                    this.raise = RoundN(botPlayer.Chips, randomRaise - rnd);
+                    this.Raised(botPlayer, botPlayer.Turn, botPlayer.Label);
                 }
             }
-            if (sChips <= 0)
+            if (botPlayer.Chips <= 0)
             {
-                sFTurn = true;
+                botPlayer.FTurn = true;
             }
         }
 
         // make static
-        public void Smooth(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, int n, int r)
+        //public void Smooth(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, , int n, int r)
+        //public void Smooth(IPlayer botPlayer, , int call, int raise)
+        public void Smooth(IPlayer botPlayer, int call, int raise)
         {
             var rand = new Random();
             var rnd = rand.Next(1, 3);
             if (this.call <= 0)
             {
-                this.Check(ref botTurn, botStatus);
+                this.Check(botPlayer.Turn, botPlayer.Label);
             }
             else
             {
-                if (this.call >= RoundN(botChips, n))
+                if (this.call >= RoundN(botPlayer.Chips, call))
                 {
-                    if (botChips > this.call)
+                    if (botPlayer.Chips > this.call)
                     {
-                        this.Call(ref botChips, ref botTurn, botStatus);
+                        this.Call(botPlayer.Chips, botPlayer.Turn, botPlayer.Label);
                     }
-                    else if (botChips <= this.call)
+                    else if (botPlayer.Chips <= this.call)
                     {
                         this.raising = false;
-                        botTurn = false;
-                        botChips = 0;
-                        botStatus.Text = "Call " + botChips;
-                        this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + botChips).ToString();
+                        botPlayer.Turn = false;
+                        botPlayer.Chips = 0;
+                        botPlayer.Label.Text = "Call " + botPlayer.Chips;
+                        this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + botPlayer.Chips).ToString();
                     }
                 }
                 else
                 {
                     if (this.raise > 0)
                     {
-                        if (botChips >= this.raise * 2)
+                        if (botPlayer.Chips >= this.raise * 2)
                         {
                             this.raise *= 2;
-                            this.Raised(ref botChips, ref botTurn, botStatus);
+                            this.Raised(botPlayer, botPlayer.Turn, botPlayer.Label);
                         }
                         else
                         {
-                            this.Call(ref botChips, ref botTurn, botStatus);
+                            this.Call(botPlayer.Chips, botPlayer.Turn, botPlayer.Label);
                         }
                     }
                     else
                     {
                         this.raise = this.call * 2;
-                        this.Raised(ref botChips, ref botTurn, botStatus);
+                        this.Raised(botPlayer, botPlayer.Turn, botPlayer.Label);
                     }
                 }
             }
-            if (botChips <= 0)
+            if (botPlayer.Chips <= 0)
             {
-                botFTurn = true;
+                botPlayer.FTurn = true;
             }
         }
 
@@ -2125,37 +2251,37 @@
 
         private void UpdateTick(object sender, object e)
         {
-            if (this.playerChips <= 0)
+            if (this.players[0].Chips <= 0)
             {
                 this.textBoxChips.Text = "Chips : 0";
             }
-            if (this.bot1Chips <= 0)
+            if (this.players[1].Chips <= 0)
             {
-                this.textBoxBot1Chips.Text = "Chips : 0";
+                this.textBoxBotOneChips.Text = "Chips : 0";
             }
-            if (this.bot2Chips <= 0)
+            if (this.players[2].Chips <= 0)
             {
-                this.textBoxBot2Chips.Text = "Chips : 0";
+                this.textBoxBotTwoChips.Text = "Chips : 0";
             }
-            if (this.bot3Chips <= 0)
+            if (this.players[3].Chips <= 0)
             {
-                this.textBoxBot3Chips.Text = "Chips : 0";
+                this.textBoxBotThreeChips.Text = "Chips : 0";
             }
-            if (this.bot4Chips <= 0)
+            if (this.players[4].Chips <= 0)
             {
-                this.textBoxBot4Chips.Text = "Chips : 0";
+                this.textBoxBotFourChips.Text = "Chips : 0";
             }
-            if (this.bot5Chips <= 0)
+            if (this.players[5].Chips <= 0)
             {
-                this.textBoxBot5Chips.Text = "Chips : 0";
+                this.textBoxBotFiveChips.Text = "Chips : 0";
             }
-            this.textBoxChips.Text = "Chips : " + this.playerChips;
-            this.textBoxBot1Chips.Text = "Chips : " + this.bot1Chips;
-            this.textBoxBot2Chips.Text = "Chips : " + this.bot2Chips;
-            this.textBoxBot3Chips.Text = "Chips : " + this.bot3Chips;
-            this.textBoxBot4Chips.Text = "Chips : " + this.bot4Chips;
-            this.textBoxBot5Chips.Text = "Chips : " + this.bot5Chips;
-            if (this.playerChips <= 0)
+            this.textBoxChips.Text = "Chips : " + this.players[0].Chips;
+            this.textBoxBotOneChips.Text = "Chips : " + this.players[1].Chips;
+            this.textBoxBotTwoChips.Text = "Chips : " + this.players[2].Chips;
+            this.textBoxBotThreeChips.Text = "Chips : " + this.players[3].Chips;
+            this.textBoxBotFourChips.Text = "Chips : " + this.players[4].Chips;
+            this.textBoxBotFiveChips.Text = "Chips : " + this.players[5].Chips;
+            if (this.players[0].Chips <= 0)
             {
                 this.isPlayerTurn = false;
                 this.PFturn = true;
@@ -2168,7 +2294,7 @@
             {
                 this.maxBlind--;
             }
-            if (this.playerChips >= this.call)
+            if (this.players[0].Chips >= this.call)
             {
                 this.buttonCall.Text = "Call " + this.call;
             }
@@ -2187,7 +2313,7 @@
                 this.buttonCall.Text = "Call";
                 this.buttonCall.Enabled = false;
             }
-            if (this.playerChips <= 0)
+            if (this.players[0].Chips <= 0)
             {
                 this.bRaise.Enabled = false;
             }
@@ -2195,7 +2321,7 @@
 
             if (this.tbRaise.Text != "" && int.TryParse(this.tbRaise.Text, out parsedValue))
             {
-                if (this.playerChips <= int.Parse(this.tbRaise.Text))
+                if (this.players[0].Chips <= int.Parse(this.tbRaise.Text))
                 {
                     this.bRaise.Text = "All in";
                 }
@@ -2204,7 +2330,7 @@
                     this.bRaise.Text = "Raise";
                 }
             }
-            if (this.playerChips < this.call)
+            if (this.players[0].Chips < this.call)
             {
                 this.bRaise.Enabled = false;
             }
@@ -2237,10 +2363,10 @@
         private async void ButtonCallClick(object sender, EventArgs e)
         {
             this.Rules(0, 1, "Player", ref this.playerType, ref this.playerPower, this.PFturn);
-            if (this.playerChips >= this.call)
+            if (this.players[0].Chips >= this.call)
             {
-                this.playerChips -= this.call;
-                this.textBoxChips.Text = "Chips : " + this.playerChips;
+                this.players[0].Chips -= this.call;
+                this.textBoxChips.Text = "Chips : " + this.players[0].Chips;
                 if (this.textBoxPot.Text != "")
                 {
                     this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + this.call).ToString();
@@ -2253,15 +2379,15 @@
                 this.playerStatus.Text = "Call " + this.call;
                 this.playerCall = this.call;
             }
-            else if (this.playerChips <= this.call && this.call > 0)
+            else if (this.players[0].Chips <= this.call && this.call > 0)
             {
-                this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + this.playerChips).ToString();
-                this.playerStatus.Text = "All in " + this.playerChips;
-                this.playerChips = 0;
-                this.textBoxChips.Text = "Chips : " + this.playerChips;
+                this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + this.players[0].Chips).ToString();
+                this.playerStatus.Text = "All in " + this.players[0].Chips;
+                this.players[0].Chips = 0;
+                this.textBoxChips.Text = "Chips : " + this.players[0].Chips;
                 this.isPlayerTurn = false;
                 this.buttonFold.Enabled = false;
-                this.playerCall = this.playerChips;
+                this.playerCall = this.players[0].Chips;
             }
             await this.Turns();
         }
@@ -2272,7 +2398,7 @@
             int parsedValue;
             if (this.tbRaise.Text != "" && int.TryParse(this.tbRaise.Text, out parsedValue))
             {
-                if (this.playerChips > this.call)
+                if (this.players[0].Chips > this.call)
                 {
                     if (this.raise * 2 > int.Parse(this.tbRaise.Text))
                     {
@@ -2280,25 +2406,25 @@
                         MessageBox.Show("You must raise atleast twice as the current raise !");
                         return;
                     }
-                    if (this.playerChips >= int.Parse(this.tbRaise.Text))
+                    if (this.players[0].Chips >= int.Parse(this.tbRaise.Text))
                     {
                         this.call = int.Parse(this.tbRaise.Text);
                         this.raise = int.Parse(this.tbRaise.Text);
                         this.playerStatus.Text = "Raise " + this.call;
                         this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + this.call).ToString();
                         this.buttonCall.Text = "Call";
-                        this.playerChips -= int.Parse(this.tbRaise.Text);
+                        this.players[0].Chips -= int.Parse(this.tbRaise.Text);
                         this.raising = true;
                         this.last = 0;
                         this.playerRaise = Convert.ToInt32(this.raise);
                     }
                     else
                     {
-                        this.call = this.playerChips;
-                        this.raise = this.playerChips;
-                        this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + this.playerChips).ToString();
+                        this.call = this.players[0].Chips;
+                        this.raise = this.players[0].Chips;
+                        this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + this.players[0].Chips).ToString();
                         this.playerStatus.Text = "Raise " + this.call;
-                        this.playerChips = 0;
+                        this.players[0].Chips = 0;
                         this.raising = true;
                         this.last = 0;
                         this.playerRaise = Convert.ToInt32(this.raise);
@@ -2321,14 +2447,14 @@
             }
             else
             {
-                this.playerChips += int.Parse(this.textBoxAdd.Text);
-                this.bot1Chips += int.Parse(this.textBoxAdd.Text);
-                this.bot2Chips += int.Parse(this.textBoxAdd.Text);
-                this.bot3Chips += int.Parse(this.textBoxAdd.Text);
-                this.bot4Chips += int.Parse(this.textBoxAdd.Text);
-                this.bot5Chips += int.Parse(this.textBoxAdd.Text);
+                this.players[0].Chips += int.Parse(this.textBoxAdd.Text);
+                this.players[1].Chips += int.Parse(this.textBoxAdd.Text);
+                this.players[2].Chips += int.Parse(this.textBoxAdd.Text);
+                this.players[3].Chips += int.Parse(this.textBoxAdd.Text);
+                this.players[4].Chips += int.Parse(this.textBoxAdd.Text);
+                this.players[5].Chips += int.Parse(this.textBoxAdd.Text);
             }
-            this.textBoxChips.Text = "Chips : " + this.playerChips;
+            this.textBoxChips.Text = "Chips : " + this.players[0].Chips;
         }
 
         private void ButtonOptionsClick(object sender, EventArgs e)

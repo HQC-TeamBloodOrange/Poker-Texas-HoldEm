@@ -19,6 +19,7 @@
             this.PokerHandMultiplier = -1;
             this.Name = name;
             this.Label = label;
+            this.Type = -1;
         }
 
         public string Name { get; set; }
@@ -30,6 +31,8 @@
         public int Chips { get; set; }
 
         public bool Turn { get; set; }
+
+        public bool FTurn { get; set; }
 
         public bool GameEnded { get; set; }
 
@@ -48,5 +51,7 @@
         public Panel CardsPanel { get; }
 
         public Label Label { get; set; }
+
+        public double Type { get; set; }
     }
 }
