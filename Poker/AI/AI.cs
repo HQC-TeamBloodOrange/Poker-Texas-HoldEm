@@ -1,73 +1,99 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Poker.Contracts;
 
 namespace Poker.AI
 {
     public class AI
     {
+        // ----------------------------------------------------------------------
+        /// <summary>
+        /// Holds the logic for the win of the Bots.
+        /// </summary>
+        /// <param name="cardOne">Card One.</param>
+        /// <param name="cardTwo">Card Two.</param>
+        /// <param name="botPlayer">The bot player.</param>
         public void ArtificialIntelligence(
-            int c1,
-            int c2,
-            ref int sChips,
-            ref bool sTurn,
-            ref bool sFTurn,
-            Label sStatus,
-            int name,
-            double botPower,
-            double botCurrent, PictureBox[] holder)
+        //int cardOne, //int cardTwo, ////ref int botChips,//int botChips,//ref bool botTurn,//ref bool botPlayer.FTurn,
+        //Label botStatus,//double botPower,//double botPlayer.PokerHandMultiplier)
+        int cardOne,
+        int cardTwo,
+        IPlayer botPlayer, PictureBox[] holder
+        )
         {
+            CombinationManager combinationManager = new CombinationManager();
+
             // TODO: make it with switch case.
-            if (!sFTurn)
+            if (!botPlayer.FTurn)
             {
-                if (botCurrent == -1)
+                if (botPlayer.PokerHandMultiplier == -1)
                 {
-                    CombinationManager.HighCard(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower);
+                    //HighCard(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
+                    combinationManager.HighCard(botPlayer);
                 }
-                if (botCurrent == 0)
+                //Switch bro
+                if (botPlayer.PokerHandMultiplier == 0)
                 {
-                    CombinationManager.PairTable(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower);
+                    //PairTable(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
+                    combinationManager.PairTable(botPlayer);
                 }
-                if (botCurrent == 1)
+                if (botPlayer.PokerHandMultiplier == 1)
                 {
-                    CombinationManager.PairHand(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower);
+                    //PairHand(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
+                    combinationManager.PairHand(botPlayer);
+
                 }
-                if (botCurrent == 2)
+                if (botPlayer.PokerHandMultiplier == 2)
                 {
-                    CombinationManager.TwoPair(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower);
+                    //TwoPair(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
+                    combinationManager.TwoPair(botPlayer);
                 }
-                if (botCurrent == 3)
+                if (botPlayer.PokerHandMultiplier == 3)
                 {
-                    CombinationManager.ThreeOfAKind(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    //ThreeOfAKind(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    combinationManager.ThreeOfAKind(botPlayer);
+
                 }
-                if (botCurrent == 4)
+                if (botPlayer.PokerHandMultiplier == 4)
                 {
-                    CombinationManager.Straight(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    //Straight(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    combinationManager.Straight(botPlayer);
+
                 }
-                if (botCurrent == 5 || botCurrent == 5.5)
+                if (botPlayer.PokerHandMultiplier == 5 || botPlayer.PokerHandMultiplier == 5.5)
                 {
-                    CombinationManager.Flush(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    //Flush(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    combinationManager.Flush(botPlayer);
+
                 }
-                if (botCurrent == 6)
+                if (botPlayer.PokerHandMultiplier == 6)
                 {
-                    CombinationManager.FullHouse(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    //FullHouse(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    combinationManager.FullHouse(botPlayer);
+
                 }
-                if (botCurrent == 7)
+                if (botPlayer.PokerHandMultiplier == 7)
                 {
-                    CombinationManager.FourOfAKind(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    //FourOfAKind(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    combinationManager.FourOfAKind(botPlayer);
+
                 }
-                if (botCurrent == 8 || botCurrent == 9)
+                if (botPlayer.PokerHandMultiplier == 8 || botPlayer.PokerHandMultiplier == 9)
                 {
-                    CombinationManager.StraightFlush(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    //StraightFlush(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
+                    combinationManager.StraightFlush(botPlayer);
+
                 }
             }
-            if (sFTurn)
+            if (botPlayer.FTurn)
             {
-                holder[c1].Visible = false;
-                holder[c2].Visible = false;
+                holder[cardOne].Visible = false;
+                holder[cardTwo].Visible = false;
             }
         }
     }
