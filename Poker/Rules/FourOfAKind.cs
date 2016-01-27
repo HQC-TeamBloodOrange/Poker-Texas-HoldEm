@@ -8,11 +8,11 @@ namespace Poker.Rules
 {
     public class FourOfAKind
     {
-        public static void FollowRule(ref double current, ref double Power, int[] Straight, PokerForm form, int i)
+        public static void FollowRule(double current, double Power, int[] Straight, PokerForm form, int i)
         {
             if (current >= -1)
             {
-                for (var j = 0; j <= 3; j++)
+                for (var j = 0; j < 3; j++)
                 {
                     if (Straight[j] / 4 == Straight[j + 1] / 4 && Straight[j] / 4 == Straight[j + 2] / 4 && Straight[j] / 4 == Straight[j + 3] / 4)
                     {

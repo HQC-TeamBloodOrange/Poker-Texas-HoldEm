@@ -10,7 +10,7 @@ namespace Poker.Rules
 
     public class PairFromHand
     {
-        public static void FollowRule(ref double current, ref double Power, PokerForm form, int i)
+        public static void FollowRule(double current, double Power, PokerForm form, int i)
         {
 
             {

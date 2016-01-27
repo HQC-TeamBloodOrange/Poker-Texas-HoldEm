@@ -8,7 +8,7 @@ namespace Poker.Rules
 {
     public class FullHouse
     {
-        public static void FollowRule(ref double current, ref double Power, ref bool done, int[] Straight, double type, PokerForm form, int i)
+        public static void FollowRule(double current, double Power, ref bool done, int[] Straight, double type, PokerForm form, int i)
         {
             if (current >= -1)
             {

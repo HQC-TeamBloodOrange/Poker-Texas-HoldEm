@@ -8,7 +8,7 @@ namespace Poker.Rules
 {
     public class RuleHighCard
     {
-        public static void FollowRule(ref double current, ref double Power, PokerForm form, int i)
+        public static void FollowRule(double current, double Power, PokerForm form, int i)
         {
             if (current == -1)
             {

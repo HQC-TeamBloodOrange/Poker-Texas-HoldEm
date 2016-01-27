@@ -8,7 +8,7 @@ namespace Poker.Rules
 {
     public class RuleStraightFlush
     {
-        public static void FollowRule(ref double current, ref double power, int[] cardsOnTableWithPlayerCards, PokerForm form, int i)
+        public static void FollowRule(double current, double power, int[] cardsOnTableWithPlayerCards, PokerForm form, int i)
         {
             var clubs = cardsOnTableWithPlayerCards.Where(o => o % 4 == 0).ToArray();
             var diamonds = cardsOnTableWithPlayerCards.Where(o => o % 4 == 1).ToArray();

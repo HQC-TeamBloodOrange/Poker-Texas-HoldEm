@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace Poker.Rules
 {
+    using Poker.Contracts;
+
     public class RuleManager
     {
         private const int CardsOnTable = 16;
 
         public static void FollowRules(
-            int c1,
-            int c2,
-            string currentText,
-            ref double current,
-            ref double Power,
-            bool foldedTurn,
-            double type,
+            int card1,
+            int card2,
+            //string currentText,
+            //ref double current,
+            //ref double Power,
+            //bool foldedTurn,
+            //double type,
+            IPlayer botPlayer,
             PokerForm form)
         {
 
@@ -28,8 +31,8 @@ namespace Poker.Rules
             var cardsOnTable = new int[5];
             var cardsOnTableWithPlayerCards = new int[7];
 
-            cardsOnTableWithPlayerCards[0] = form.DrawnCards[c1];
-            cardsOnTableWithPlayerCards[1] = form.DrawnCards[c2];
+            cardsOnTableWithPlayerCards[0] = form.DrawnCards[card1];
+            cardsOnTableWithPlayerCards[1] = form.DrawnCards[card2];
 
             cardsOnTable[0] = cardsOnTableWithPlayerCards[2] = form.DrawnCards[12];
             cardsOnTable[1] = cardsOnTableWithPlayerCards[3] = form.DrawnCards[13];
@@ -42,18 +45,18 @@ namespace Poker.Rules
 
             for (int i = 0; i < CardsOnTable; i++)
             {
-                if (form.DrawnCards[i] == int.Parse(form.Holder[c1].Tag.ToString())
-                    && form.DrawnCards[i + 1] == int.Parse(form.Holder[c2].Tag.ToString()))
+                if (form.DrawnCards[i] == int.Parse(form.Holder[card1].Tag.ToString())
+                    && form.DrawnCards[i + 1] == int.Parse(form.Holder[card2].Tag.ToString()))
                 {
-                    PairFromHand.FollowRule(ref current, ref Power, form, i);
-                    PairTwoPairRule.FollowRule(ref current, ref Power, form, i);
-                    RuleThreeOfAKind.FollowRule(ref current, ref Power, cardsOnTableWithPlayerCards, form, i);
-                    RuleStraight.FollowRule(ref current, ref Power, cardsOnTableWithPlayerCards, form, i);
-                    RuleFlush.FollowRule(ref current, ref Power, ref vf, cardsOnTable, form, i);
-                    FullHouse.FollowRule(ref current, ref Power, ref done, cardsOnTable, type, form, i);
-                    FourOfAKind.FollowRule(ref current, ref Power, cardsOnTable, form, i);
-                    RuleStraightFlush.FollowRule(ref current, ref Power, cardsOnTableWithPlayerCards, form, i);
-                    RuleHighCard.FollowRule(ref current, ref Power, form, i);
+                    PairFromHand.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, form, i);
+                    PairTwoPairRule.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, form, i);
+                    RuleThreeOfAKind.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, cardsOnTableWithPlayerCards, form, i);
+                    RuleStraight.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, cardsOnTableWithPlayerCards, form, i);
+                    RuleFlush.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, ref vf, cardsOnTable, form, i);
+                    FullHouse.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, ref done, cardsOnTable, botPlayer.Type, form, i);
+                    FourOfAKind.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, cardsOnTable, form, i);
+                    RuleStraightFlush.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, cardsOnTableWithPlayerCards, form, i);
+                    RuleHighCard.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, form, i);
                 }
             }
         }

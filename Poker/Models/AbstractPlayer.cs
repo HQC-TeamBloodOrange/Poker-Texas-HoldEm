@@ -6,6 +6,7 @@
 
     public class AbstractPlayer : IPlayer
     {
+        private Label label;
         private const int InitialChips = 10000;
 
         protected AbstractPlayer(string name, Label label)
@@ -50,7 +51,18 @@
 
         public Panel CardsPanel { get; }
 
-        public Label Label { get; set; }
+        public Label Label
+        {
+            get
+            {
+                return this.label;
+            }
+
+            set
+            {
+                this.label = value;
+            }
+        }
 
         public double Type { get; set; }
     }

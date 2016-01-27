@@ -5,7 +5,7 @@
     public class Player : AbstractPlayer
     {
         public Player(Label label)
-            : base("player", label)
+            : base("Player", label)
         {
             this.Turn = true;
         }

@@ -8,7 +8,7 @@ namespace Poker.Rules
 {
     public class RuleFlush
     {
-        public static void FollowRule(ref double current, ref double Power, ref bool vf, int[] Straight1, PokerForm form, int i)
+        public static void FollowRule(double current, double Power, ref bool vf, int[] Straight1, PokerForm form, int i)
         {
             if (current >= -1)
             {
