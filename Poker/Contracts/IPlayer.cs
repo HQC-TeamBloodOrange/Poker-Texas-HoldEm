@@ -24,6 +24,14 @@
         double Power { get; set; }
 
         /// <summary>
+        /// Gets or sets the current value.
+        /// </summary>
+        /// <value>
+        /// The current.
+        /// </value>
+        double Current { get; set; }
+
+        /// <summary>
         /// Gets or sets the chips.
         /// </summary>
         /// <value>

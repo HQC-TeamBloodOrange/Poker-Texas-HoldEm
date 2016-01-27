@@ -55,6 +55,14 @@
         public double Power { get; set; }
 
         /// <summary>
+        /// Gets or sets the current value.
+        /// </summary>
+        /// <value>
+        /// The current.
+        /// </value>
+        public double Current { get; set; }
+
+        /// <summary>
         /// Gets or sets the chips.
         /// </summary>
         /// <value>
