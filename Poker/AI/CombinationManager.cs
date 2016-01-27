@@ -1,4 +1,5 @@
-﻿using Poker.Contracts;
+﻿using Poker.AI;
+using Poker.Contracts;
 
 namespace Poker
 {
@@ -7,6 +8,13 @@ namespace Poker
     public class CombinationManager
     {
         PokerForm poker = new PokerForm();
+
+        public CombinationManager(AIManager manager)
+        {
+            this.Manager = manager;
+        }
+
+        public AIManager Manager { get; private set; }
 
         public void HighCard(IPlayer botPlayer)
         {

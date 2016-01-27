@@ -9,9 +9,15 @@ using Poker.Contracts;
 
 namespace Poker.AI
 {
-    public class AI
+    public class AIManager
     {
-        // ----------------------------------------------------------------------
+        public AIManager(CombinationManager manager)
+        {
+            this.Manager = manager;
+        }
+
+        public CombinationManager Manager { get; private set; }
+
         /// <summary>
         /// Holds the logic for the win of the Bots.
         /// </summary>
@@ -26,70 +32,68 @@ namespace Poker.AI
         IPlayer botPlayer, PictureBox[] holder
         )
         {
-            CombinationManager combinationManager = new CombinationManager();
-
             // TODO: make it with switch case.
             if (!botPlayer.FTurn)
             {
                 if (botPlayer.PokerHandMultiplier == -1)
                 {
                     //HighCard(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
-                    combinationManager.HighCard(botPlayer);
+                    Manager.HighCard(botPlayer);
                 }
                 //Switch bro
                 if (botPlayer.PokerHandMultiplier == 0)
                 {
                     //PairTable(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
-                    combinationManager.PairTable(botPlayer);
+                    Manager.PairTable(botPlayer);
                 }
                 if (botPlayer.PokerHandMultiplier == 1)
                 {
                     //PairHand(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
-                    combinationManager.PairHand(botPlayer);
+                    Manager.PairHand(botPlayer);
 
                 }
                 if (botPlayer.PokerHandMultiplier == 2)
                 {
                     //TwoPair(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
-                    combinationManager.TwoPair(botPlayer);
+                    Manager.TwoPair(botPlayer);
                 }
                 if (botPlayer.PokerHandMultiplier == 3)
                 {
                     //ThreeOfAKind(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    combinationManager.ThreeOfAKind(botPlayer);
+                    Manager.ThreeOfAKind(botPlayer);
 
                 }
                 if (botPlayer.PokerHandMultiplier == 4)
                 {
                     //Straight(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    combinationManager.Straight(botPlayer);
+                    Manager.Straight(botPlayer);
 
                 }
                 if (botPlayer.PokerHandMultiplier == 5 || botPlayer.PokerHandMultiplier == 5.5)
                 {
                     //Flush(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    combinationManager.Flush(botPlayer);
+                    Manager.Flush(botPlayer);
 
                 }
                 if (botPlayer.PokerHandMultiplier == 6)
                 {
                     //FullHouse(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    combinationManager.FullHouse(botPlayer);
+                    Manager.FullHouse(botPlayer);
 
                 }
                 if (botPlayer.PokerHandMultiplier == 7)
                 {
                     //FourOfAKind(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    combinationManager.FourOfAKind(botPlayer);
+                    Manager.FourOfAKind(botPlayer);
 
                 }
                 if (botPlayer.PokerHandMultiplier == 8 || botPlayer.PokerHandMultiplier == 9)
                 {
                     //StraightFlush(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    combinationManager.StraightFlush(botPlayer);
-
+                    Manager.StraightFlush(botPlayer);
                 }
             }
+
             if (botPlayer.FTurn)
             {
                 holder[cardOne].Visible = false;

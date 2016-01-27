@@ -50,7 +50,7 @@
     <Compile Include="AddChips.Designer.cs">
       <DependentUpon>AddChips.cs</DependentUpon>
     </Compile>
-    <Compile Include="AI\AI.cs" />
+    <Compile Include="AI\AIManager.cs" />
     <Compile Include="AI\CombinationManager.cs" />
     <Compile Include="Contracts\IPlayer.cs" />
     <Compile Include="Core\PokerDatabase.cs" />
@@ -78,6 +78,7 @@
     <Compile Include="Rules\RuleThreeOfAKind.cs" />
     <Compile Include="Rules\RuleManager.cs" />
     <Compile Include="Rules\RuleTwoPairRule.cs" />
+    <Compile Include="StateType.cs" />
     <Compile Include="Type.cs" />
     <Compile Include="Win\Winner.cs" />
     <EmbeddedResource Include="AddChips.resx">
