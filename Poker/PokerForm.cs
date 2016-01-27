@@ -216,6 +216,10 @@
             }
         }
 
+        /// <summary>
+        /// Shuffles the cards of the deck.
+        /// </summary>
+        /// <returns>Returns the shuffled cards.</returns>
         private async Task Shuffle()
         {
             //this.bools.Add(this.PFturn);
@@ -952,7 +956,7 @@
         //private void Rules(int card1, int card2, string currentText, double current, double Power, bool foldedTurn)
         private void Rules(int card1, int card2, IPlayer botPlayer)
         {
-            //if (c1 == 0 && c2 == 1)
+            //if (cardOne == 0 && cardTwo == 1)
             //{
             //}
 
@@ -992,23 +996,15 @@
                 }
             }
         }
-        // TODO: RoyalFlush
-        // ----------------------------------------------------------------------
-        // TODO: Milen
 
-
-        // TODO: Aleks
-
-
-        // TODO: Tisho
-
-
-        // TODO: Tedi - eddited
-
-
-
-        // ----------------------------------------------------------------------
-
+        /// <summary>
+        /// Specifies the chips the winner will take and Shows the MessageBox.
+        /// </summary>
+        /// <param name="current">The current.</param>
+        /// <param name="Power">The power.</param>
+        /// <param name="currentText">The current text.</param>
+        /// <param name="chips">The chips.</param>
+        /// <param name="lastly">The lastly.</param>
         private void Winner(double current, double Power, string currentText, int chips, string lastly)
         {
             if (lastly == " ")
@@ -1413,6 +1409,11 @@
             }
         }
 
+        /// <summary>
+        /// Fixes the call of the Bot.
+        /// </summary>
+        /// <param name="botPlayer">The bot player.</param>
+        /// <param name="options">The two options.</param>
         private void FixCall(IPlayer botPlayer, int options)
         {
             if (this.rounds != 4)
@@ -1729,6 +1730,9 @@
             ////await Turns();
         }
 
+        /// <summary>
+        /// Fixes the winners of current hand.
+        /// </summary>
         private void FixWinners()
         {
             this.Win.Clear();
@@ -1784,22 +1788,18 @@
             //this.Winner(this.bot5Type, this.bot5Power, "Bot 5", this.players[5].Chips, fixedLast);
         }
         // ----------------------------------------------------------------------
+        /// <summary>
+        /// Holds the logic for the win of the Bots.
+        /// </summary>
+        /// <param name="cardOne">Card One.</param>
+        /// <param name="cardTwo">Card Two.</param>
+        /// <param name="botPlayer">The bot player.</param>
         private void ArtificialIntelligence(
-        //int c1, 
-        //int c2, 
-        ////ref int botChips,
-        //int botChips,
-        //ref bool botTurn,
-        //ref bool botPlayer.FTurn,
-        //Label botStatus,
-        //,
-        //double botPower,
-        //double botPlayer.PokerHandMultiplier)
-
-        int c1,
-        int c2,
+        //int cardOne, //int cardTwo, ////ref int botChips,//int botChips,//ref bool botTurn,//ref bool botPlayer.FTurn,
+        //Label botStatus,//double botPower,//double botPlayer.PokerHandMultiplier)
+        int cardOne,
+        int cardTwo,
         IPlayer botPlayer
-        //
         )
         {
             // TODO: make it with switch case.
@@ -1867,13 +1867,11 @@
             }
             if (botPlayer.FTurn)
             {
-                this.Holder[c1].Visible = false;
-                this.Holder[c2].Visible = false;
+                this.Holder[cardOne].Visible = false;
+                this.Holder[cardTwo].Visible = false;
             }
         }
 
-        // Moved to class CombinationManager (renamed there). 
-        // TODO: Implement logic
         #region CombinationManager
         private void HighCard(IPlayer botPlayer)
         {
@@ -2034,6 +2032,10 @@
         //-----------------------------------------------------------------------------------------
         // TODO: Add to namespace Statuses.
         //private void Fold(bool sTurn, bool sFTurn, Label sStatus)
+        /// <summary>
+        /// Checks if the current Bot has folded.
+        /// </summary>
+        /// <param name="botPlayer">The bot player.</param>
         private void Fold(IPlayer botPlayer)
         {
             this.raising = false;
@@ -2044,6 +2046,10 @@
 
         //private void Check(ref bool cTurn, Label cStatus)
         //private void Check(bool cTurn, Label cStatus)
+        /// <summary>
+        /// Checks if the current bot player has checked.
+        /// </summary>
+        /// <param name="botPlayer">The bot player.</param>
         private void Check(IPlayer botPlayer)
         {
             botPlayer.Label.Text = "Check";
@@ -2052,6 +2058,10 @@
         }
 
         //private void Call(int sChips, bool sTurn, Label sStatus)
+        /// <summary>
+        /// Check if the current bot player has Called.
+        /// </summary>
+        /// <param name="botPlayer">The bot player.</param>
         private void Call(IPlayer botPlayer)
         {
             this.raising = false;
@@ -2062,6 +2072,10 @@
         }
 
         //private void Raised(IPlayer bot, bool sTurn, Label sStatus)
+        /// <summary>
+        /// Checks if the current bot player has Raised.
+        /// </summary>
+        /// <param name="botPlayer">The bot player.</param>
         private void Raised(IPlayer botPlayer)
         {
             botPlayer.Chips -= Convert.ToInt32(this.raise);
@@ -2152,7 +2166,6 @@
             }
         }
 
-        // make static
         //public void PH(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int randomCall, int n1, int randomRaise)
         public void PH(IPlayer botPlayer, int randomCall, int n1, int randomRaise)
         {
@@ -2249,7 +2262,6 @@
             }
         }
 
-        // make static
         //public void Smooth(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, , int n, int r)
         //public void Smooth(IPlayer botPlayer, , int call, int raise)
         public void Smooth(IPlayer botPlayer, int call, int raise)
@@ -2409,6 +2421,11 @@
             }
         }
 
+        /// <summary>
+        /// Checks if the Fold button is clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ButtonFoldClick(object sender, EventArgs e)
         {
             this.players[0].Label.Text = "Fold";
@@ -2417,6 +2434,11 @@
             await this.Turns();
         }
 
+        /// <summary>
+        /// Checks if the Check button is clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ButtonCheckClick(object sender, EventArgs e)
         {
             if (this.call <= 0)
@@ -2433,6 +2455,11 @@
             await this.Turns();
         }
 
+        /// <summary>
+        /// Checks if the Call button is clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ButtonCallClick(object sender, EventArgs e)
         {
             //this.Rules(0, 1, "Player", ref this.playerType, ref this.playerPower, this.PFturn);
@@ -2473,6 +2500,11 @@
             await this.Turns();
         }
 
+        /// <summary>
+        /// Checks if the Raise button is clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ButtonRaiseClick(object sender, EventArgs e)
         {
             //this.Rules(0, 1, "Player", ref this.playerType, ref this.playerPower, this.PFturn);
@@ -2523,6 +2555,11 @@
             await this.Turns();
         }
 
+        /// <summary>
+        /// Checks if the Add button is clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonAddClick(object sender, EventArgs e)
         {
             if (this.textBoxAdd.Text == "")
@@ -2540,6 +2577,11 @@
             this.textBoxChips.Text = "Chips : " + this.players[0].Chips;
         }
 
+        /// <summary>
+        /// Checks if the Options button is clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonOptionsClick(object sender, EventArgs e)
         {
             this.textBoxBB.Text = this.bigBlind.ToString();
@@ -2560,6 +2602,11 @@
             }
         }
 
+        /// <summary>
+        /// Checks if the SB button is clicked..
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonSBClick(object sender, EventArgs e)
         {
             int parsedValue;
@@ -2591,6 +2638,11 @@
             }
         }
 
+        /// <summary>
+        /// Checks if the BB button is clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonBBClick(object sender, EventArgs e)
         {
             int parsedValue;
@@ -2622,6 +2674,11 @@
             }
         }
 
+        /// <summary>
+        /// Changes the layout.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="LayoutEventArgs"/> instance containing the event data.</param>
         private void LayoutChange(object sender, LayoutEventArgs e)
         {
             this.width = this.Width;
