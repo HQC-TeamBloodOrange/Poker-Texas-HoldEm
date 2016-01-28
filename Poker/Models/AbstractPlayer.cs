@@ -1,7 +1,8 @@
 ﻿namespace Poker.Models
 {
     using System.Windows.Forms;
-    using Contracts;
+
+    using Poker.Contracts;
 
     /// <summary>
     /// <see cref="AbstractPlayer"/> which holds properties about players.
@@ -32,10 +33,12 @@
             this.Folded = false;
             this.Call = 0;
             this.Raise = 0;
+            this.Power = 0;
             this.PokerHandMultiplier = -1;
             this.Name = name;
             this.Label = label;
-            this.Type = -1;
+            this.PokerHandMultiplier = -1;
+            this.Current = -1;
         }
 
         /// <summary>

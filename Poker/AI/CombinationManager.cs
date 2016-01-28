@@ -1,31 +1,28 @@
-﻿using Poker.AI;
-using Poker.Contracts;
-
-namespace Poker
+﻿namespace Poker
 {
     using System;
 
+    using Poker.Contracts;
+
     public class CombinationManager
     {
-        PokerForm poker = new PokerForm();
-
-        public CombinationManager(AIManager manager)
+        public CombinationManager(PokerForm form)
         {
-            this.Manager = manager;
+            this.Form = form;
         }
 
-        public AIManager Manager { get; private set; }
+        private PokerForm Form { get; }
 
         public void HighCard(IPlayer botPlayer)
         {
             //this.HP(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower, 20, 25);
-            poker.HP(botPlayer, 20, 25);
+            this.Form.HP(botPlayer, 20, 25);
         }
 
         public void PairTable(IPlayer botPlayer)
         {
             //this.HP(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower, 16, 25);
-            poker.HP(botPlayer, 16, 25);
+            this.Form.HP(botPlayer, 16, 25);
         }
 
         //private void PairHand(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
@@ -38,19 +35,19 @@ namespace Poker
             if (botPlayer.Power <= 199 && botPlayer.Power >= 140)
             {
                 //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 6, randomRaise);
-                poker.PH(botPlayer, randomCall, 6, randomRaise);
+                this.Form.PH(botPlayer, randomCall, 6, randomRaise);
             }
 
             if (botPlayer.Power <= 139 && botPlayer.Power >= 128)
             {
                 //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 7, randomRaise);
-                poker.PH(botPlayer, randomCall, 7, randomRaise);
+                this.Form.PH(botPlayer, randomCall, 7, randomRaise);
             }
 
             if (botPlayer.Power < 128 && botPlayer.Power >= 101)
             {
                 //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 9, randomRaise);
-                poker.PH(botPlayer, randomCall, 9, randomRaise);
+                this.Form.PH(botPlayer, randomCall, 9, randomRaise);
             }
         }
 
@@ -63,19 +60,19 @@ namespace Poker
             if (botPlayer.Power <= 290 && botPlayer.Power >= 246)
             {
                 //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 3, randomRaise);
-                poker.PH(botPlayer, randomCall, 3, randomRaise);
+                this.Form.PH(botPlayer, randomCall, 3, randomRaise);
             }
 
             if (botPlayer.Power <= 244 && botPlayer.Power >= 234)
             {
                 //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 4, randomRaise);
-                poker.PH(botPlayer, randomCall, 4, randomRaise);
+                this.Form.PH(botPlayer, randomCall, 4, randomRaise);
             }
 
             if (botPlayer.Power < 234 && botPlayer.Power >= 201)
             {
                 //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 4, randomRaise);
-                poker.PH(botPlayer, randomCall, 4, randomRaise);
+                this.Form.PH(botPlayer, randomCall, 4, randomRaise);
             }
         }
 
@@ -87,17 +84,17 @@ namespace Poker
             if (botPlayer.Power <= 390 && botPlayer.Power >= 330)
             {
                 //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
-                poker.Smooth(botPlayer, tCall, tRaise);
+                this.Form.Smooth(botPlayer, tCall, tRaise);
             }
             if (botPlayer.Power <= 327 && botPlayer.Power >= 321) ////10  8
             {
                 //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
-                poker.Smooth(botPlayer, tCall, tRaise);
+                this.Form.Smooth(botPlayer, tCall, tRaise);
             }
             if (botPlayer.Power < 321 && botPlayer.Power >= 303) ////7 2
             {
                 //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
-                poker.Smooth(botPlayer, tCall, tRaise);
+                this.Form.Smooth(botPlayer, tCall, tRaise);
             }
         }
 
@@ -109,17 +106,17 @@ namespace Poker
             if (botPlayer.Power <= 480 && botPlayer.Power >= 410)
             {
                 //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
-                poker.Smooth(botPlayer, sCall, sRaise);
+                this.Form.Smooth(botPlayer, sCall, sRaise);
             }
             if (botPlayer.Power <= 409 && botPlayer.Power >= 407) ////10  8
             {
                 //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
-                poker.Smooth(botPlayer, sCall, sRaise);
+                this.Form.Smooth(botPlayer, sCall, sRaise);
             }
             if (botPlayer.Power < 407 && botPlayer.Power >= 404)
             {
                 //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
-                poker.Smooth(botPlayer, sCall, sRaise);
+                this.Form.Smooth(botPlayer, sCall, sRaise);
             }
         }
 
@@ -128,10 +125,10 @@ namespace Poker
             var fsh = new Random();
             var fCall = fsh.Next(2, 6);
             var fRaise = fsh.Next(3, 7);
-            poker.Smooth(botPlayer, fCall, fRaise);
+            this.Form.Smooth(botPlayer, fCall, fRaise);
         }
 
-        public  void FullHouse(IPlayer botPlayer)
+        public void FullHouse(IPlayer botPlayer)
         {
             var flh = new Random();
             var fhCall = flh.Next(1, 5);
@@ -139,12 +136,12 @@ namespace Poker
             if (botPlayer.Power <= 626 && botPlayer.Power >= 620)
             {
                 //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fhCall, fhRaise);
-                poker.Smooth(botPlayer, fhCall, fhRaise);
+                this.Form.Smooth(botPlayer, fhCall, fhRaise);
             }
             if (botPlayer.Power < 620 && botPlayer.Power >= 602)
             {
                 //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fhCall, fhRaise);
-                poker.Smooth(botPlayer, fhCall, fhRaise);
+                this.Form.Smooth(botPlayer, fhCall, fhRaise);
             }
         }
 
@@ -156,7 +153,7 @@ namespace Poker
             if (botPlayer.Power <= 752 && botPlayer.Power >= 704)
             {
                 //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fkCall, fkRaise);
-                poker.Smooth(botPlayer, fkCall, fkRaise);
+                this.Form.Smooth(botPlayer, fkCall, fkRaise);
             }
         }
 
@@ -168,7 +165,7 @@ namespace Poker
             if (botPlayer.Power <= 913 && botPlayer.Power >= 804)
             {
                 //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sfCall, sfRaise);
-                poker.Smooth(botPlayer, sfCall, sfRaise);
+                this.Form.Smooth(botPlayer, sfCall, sfRaise);
             }
         }
     }

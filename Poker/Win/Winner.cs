@@ -3,11 +3,12 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
+
     using Poker.Models;
 
     public class Winner
     {
-        private int winnersCount = 0;
+        private int winnersCount;
 
         public void ShowWinner(
             double current,
@@ -32,7 +33,7 @@
                 }
             }
 
-            if (current == player.Current) // (current == sorted.Current) 
+            if (current == player.PokerHandMultiplier) // (current == sorted.Current) 
             {
                 if (power == player.Power)
                 {
@@ -111,7 +112,7 @@
 
                     if (this.winnersCount == 1)
                     {
-                       // winner += int.Parse(textBoxPot.Text);
+                        // winner += int.Parse(textBoxPot.Text);
                     }
                 }
             }

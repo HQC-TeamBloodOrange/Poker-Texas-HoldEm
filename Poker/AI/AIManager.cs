@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Poker.Contracts;
-
-namespace Poker.AI
+﻿namespace Poker.AI
 {
+    using System.Windows.Forms;
+
+    using Poker.Contracts;
+
     public class AIManager
     {
         public AIManager(CombinationManager manager)
@@ -16,7 +11,7 @@ namespace Poker.AI
             this.Manager = manager;
         }
 
-        public CombinationManager Manager { get; private set; }
+        public CombinationManager Manager { get; }
 
         /// <summary>
         /// Holds the logic for the win of the Bots.
@@ -25,12 +20,12 @@ namespace Poker.AI
         /// <param name="cardTwo">Card Two.</param>
         /// <param name="botPlayer">The bot player.</param>
         public void ArtificialIntelligence(
-        //int cardOne, //int cardTwo, ////ref int botChips,//int botChips,//ref bool botTurn,//ref bool botPlayer.FTurn,
-        //Label botStatus,//double botPower,//double botPlayer.PokerHandMultiplier)
-        int cardOne,
-        int cardTwo,
-        IPlayer botPlayer, PictureBox[] holder
-        )
+            //int cardOne, //int cardTwo, ////ref int botChips,//int botChips,//ref bool botTurn,//ref bool botPlayer.FTurn,
+            //Label botStatus,//double botPower,//double botPlayer.PokerHandMultiplier)
+            int cardOne,
+            int cardTwo,
+            IPlayer botPlayer,
+            PictureBox[] holder)
         {
             // TODO: make it with switch case.
             if (!botPlayer.FTurn)
@@ -38,59 +33,53 @@ namespace Poker.AI
                 if (botPlayer.PokerHandMultiplier == -1)
                 {
                     //HighCard(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
-                    Manager.HighCard(botPlayer);
+                    this.Manager.HighCard(botPlayer);
                 }
                 //Switch bro
                 if (botPlayer.PokerHandMultiplier == 0)
                 {
                     //PairTable(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
-                    Manager.PairTable(botPlayer);
+                    this.Manager.PairTable(botPlayer);
                 }
                 if (botPlayer.PokerHandMultiplier == 1)
                 {
                     //PairHand(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
-                    Manager.PairHand(botPlayer);
-
+                    this.Manager.PairHand(botPlayer);
                 }
                 if (botPlayer.PokerHandMultiplier == 2)
                 {
                     //TwoPair(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, botPower);
-                    Manager.TwoPair(botPlayer);
+                    this.Manager.TwoPair(botPlayer);
                 }
                 if (botPlayer.PokerHandMultiplier == 3)
                 {
                     //ThreeOfAKind(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    Manager.ThreeOfAKind(botPlayer);
-
+                    this.Manager.ThreeOfAKind(botPlayer);
                 }
                 if (botPlayer.PokerHandMultiplier == 4)
                 {
                     //Straight(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    Manager.Straight(botPlayer);
-
+                    this.Manager.Straight(botPlayer);
                 }
                 if (botPlayer.PokerHandMultiplier == 5 || botPlayer.PokerHandMultiplier == 5.5)
                 {
                     //Flush(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    Manager.Flush(botPlayer);
-
+                    this.Manager.Flush(botPlayer);
                 }
                 if (botPlayer.PokerHandMultiplier == 6)
                 {
                     //FullHouse(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    Manager.FullHouse(botPlayer);
-
+                    this.Manager.FullHouse(botPlayer);
                 }
                 if (botPlayer.PokerHandMultiplier == 7)
                 {
                     //FourOfAKind(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    Manager.FourOfAKind(botPlayer);
-
+                    this.Manager.FourOfAKind(botPlayer);
                 }
                 if (botPlayer.PokerHandMultiplier == 8 || botPlayer.PokerHandMultiplier == 9)
                 {
                     //StraightFlush(ref botChips, ref botTurn, ref botPlayer.FTurn, botStatus, name, botPower);
-                    Manager.StraightFlush(botPlayer);
+                    this.Manager.StraightFlush(botPlayer);
                 }
             }
 

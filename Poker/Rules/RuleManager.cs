@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.Rules
+﻿namespace Poker.Rules
 {
     using Poker.Contracts;
 
@@ -12,7 +6,9 @@ namespace Poker.Rules
     {
         private const int CardsOnTable = 16;
 
-        public static void FollowRules(
+        private readonly RulesHolder rules = new RulesHolder();
+
+        public void FollowRules(
             int card1,
             int card2,
             //string currentText,
@@ -23,7 +19,6 @@ namespace Poker.Rules
             IPlayer botPlayer,
             PokerForm form)
         {
-
             #region Variables
 
             bool done = false;
@@ -40,7 +35,6 @@ namespace Poker.Rules
             cardsOnTable[3] = cardsOnTableWithPlayerCards[5] = form.DrawnCards[15];
             cardsOnTable[4] = cardsOnTableWithPlayerCards[6] = form.DrawnCards[16];
 
-
             #endregion
 
             for (int i = 0; i < CardsOnTable; i++)
@@ -48,15 +42,37 @@ namespace Poker.Rules
                 if (form.DrawnCards[i] == int.Parse(form.Holder[card1].Tag.ToString())
                     && form.DrawnCards[i + 1] == int.Parse(form.Holder[card2].Tag.ToString()))
                 {
-                    PairFromHand.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, form, i);
-                    PairTwoPairRule.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, form, i);
-                    RuleThreeOfAKind.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, cardsOnTableWithPlayerCards, form, i);
-                    RuleStraight.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, cardsOnTableWithPlayerCards, form, i);
-                    RuleFlush.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, ref vf, cardsOnTable, form, i);
-                    FullHouse.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, ref done, cardsOnTable, botPlayer.Type, form, i);
-                    FourOfAKind.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, cardsOnTable, form, i);
-                    RuleStraightFlush.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, cardsOnTableWithPlayerCards, form, i);
-                    RuleHighCard.FollowRule(botPlayer.PokerHandMultiplier, botPlayer.Power, form, i);
+                    this.rules.PairFromHand(botPlayer.PokerHandMultiplier, botPlayer.Power, form, i);
+                    this.rules.PairTwoPair(botPlayer.PokerHandMultiplier, botPlayer.Power, form, i);
+                    this.rules.ThreeOfAKind(
+                        botPlayer.PokerHandMultiplier,
+                        botPlayer.Power,
+                        cardsOnTableWithPlayerCards,
+                        form,
+                        i);
+                    this.rules.Straight(
+                        botPlayer.PokerHandMultiplier,
+                        botPlayer.Power,
+                        cardsOnTableWithPlayerCards,
+                        form,
+                        i);
+                    this.rules.Flush(botPlayer.PokerHandMultiplier, botPlayer.Power, ref vf, cardsOnTable, form, i);
+                    this.rules.FullHouse(
+                        botPlayer.PokerHandMultiplier,
+                        botPlayer.Power,
+                        ref done,
+                        cardsOnTable,
+                        form,
+                        i);
+                    this.rules.FourOfAKind(botPlayer.PokerHandMultiplier, botPlayer.Power, cardsOnTable, form, i);
+                    this.rules.StraightFlush(
+                        botPlayer.PokerHandMultiplier,
+                        botPlayer.Power,
+                        cardsOnTableWithPlayerCards,
+                        form,
+                        i);
+                    this.rules.HighCard(botPlayer.PokerHandMultiplier, botPlayer.Power, form, i);
+                    this.rules.TwoPairRule(botPlayer.PokerHandMultiplier, botPlayer.Power, form, i);
                 }
             }
         }
