@@ -11,11 +11,6 @@
         public void FollowRules(
             int card1,
             int card2,
-            //string currentText,
-            //ref double current,
-            //ref double Power,
-            //bool foldedTurn,
-            //double type,
             IPlayer botPlayer,
             PokerForm form)
         {

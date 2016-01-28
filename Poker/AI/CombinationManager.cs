@@ -15,17 +15,14 @@
 
         public void HighCard(IPlayer botPlayer)
         {
-            //this.HP(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower, 20, 25);
             this.Form.HP(botPlayer, 20, 25);
         }
 
         public void PairTable(IPlayer botPlayer)
         {
-            //this.HP(ref botChips, ref botTurn, ref botFTurn, botStatus, botPower, 16, 25);
             this.Form.HP(botPlayer, 16, 25);
         }
 
-        //private void PairHand(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, double botPower)
         public void PairHand(IPlayer botPlayer)
         {
             var pairHand = new Random();
@@ -34,19 +31,16 @@
 
             if (botPlayer.Power <= 199 && botPlayer.Power >= 140)
             {
-                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 6, randomRaise);
                 this.Form.PH(botPlayer, randomCall, 6, randomRaise);
             }
 
             if (botPlayer.Power <= 139 && botPlayer.Power >= 128)
             {
-                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 7, randomRaise);
                 this.Form.PH(botPlayer, randomCall, 7, randomRaise);
             }
 
             if (botPlayer.Power < 128 && botPlayer.Power >= 101)
             {
-                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 9, randomRaise);
                 this.Form.PH(botPlayer, randomCall, 9, randomRaise);
             }
         }
@@ -59,19 +53,16 @@
 
             if (botPlayer.Power <= 290 && botPlayer.Power >= 246)
             {
-                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 3, randomRaise);
                 this.Form.PH(botPlayer, randomCall, 3, randomRaise);
             }
 
             if (botPlayer.Power <= 244 && botPlayer.Power >= 234)
             {
-                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 4, randomRaise);
                 this.Form.PH(botPlayer, randomCall, 4, randomRaise);
             }
 
             if (botPlayer.Power < 234 && botPlayer.Power >= 201)
             {
-                //this.PH(ref botChips, ref botTurn, ref botFTurn, botStatus, randomCall, 4, randomRaise);
                 this.Form.PH(botPlayer, randomCall, 4, randomRaise);
             }
         }
@@ -83,17 +74,14 @@
             var tRaise = tk.Next(4, 8);
             if (botPlayer.Power <= 390 && botPlayer.Power >= 330)
             {
-                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
                 this.Form.Smooth(botPlayer, tCall, tRaise);
             }
-            if (botPlayer.Power <= 327 && botPlayer.Power >= 321) ////10  8
+            if (botPlayer.Power <= 327 && botPlayer.Power >= 321) 
             {
-                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
                 this.Form.Smooth(botPlayer, tCall, tRaise);
             }
-            if (botPlayer.Power < 321 && botPlayer.Power >= 303) ////7 2
+            if (botPlayer.Power < 321 && botPlayer.Power >= 303)
             {
-                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, tCall, tRaise);
                 this.Form.Smooth(botPlayer, tCall, tRaise);
             }
         }
@@ -105,17 +93,14 @@
             var sRaise = str.Next(3, 8);
             if (botPlayer.Power <= 480 && botPlayer.Power >= 410)
             {
-                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
                 this.Form.Smooth(botPlayer, sCall, sRaise);
             }
-            if (botPlayer.Power <= 409 && botPlayer.Power >= 407) ////10  8
+            if (botPlayer.Power <= 409 && botPlayer.Power >= 407)
             {
-                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
                 this.Form.Smooth(botPlayer, sCall, sRaise);
             }
             if (botPlayer.Power < 407 && botPlayer.Power >= 404)
             {
-                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sCall, sRaise);
                 this.Form.Smooth(botPlayer, sCall, sRaise);
             }
         }
@@ -135,12 +120,10 @@
             var fhRaise = flh.Next(2, 6);
             if (botPlayer.Power <= 626 && botPlayer.Power >= 620)
             {
-                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fhCall, fhRaise);
                 this.Form.Smooth(botPlayer, fhCall, fhRaise);
             }
             if (botPlayer.Power < 620 && botPlayer.Power >= 602)
             {
-                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fhCall, fhRaise);
                 this.Form.Smooth(botPlayer, fhCall, fhRaise);
             }
         }
@@ -152,7 +135,6 @@
             var fkRaise = fk.Next(2, 5);
             if (botPlayer.Power <= 752 && botPlayer.Power >= 704)
             {
-                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, fkCall, fkRaise);
                 this.Form.Smooth(botPlayer, fkCall, fkRaise);
             }
         }
@@ -164,7 +146,6 @@
             var sfRaise = sf.Next(1, 3);
             if (botPlayer.Power <= 913 && botPlayer.Power >= 804)
             {
-                //this.Smooth(ref botChips, ref botTurn, ref botFTurn, botStatus, name, sfCall, sfRaise);
                 this.Form.Smooth(botPlayer, sfCall, sfRaise);
             }
         }

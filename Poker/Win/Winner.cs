@@ -33,7 +33,7 @@
                 }
             }
 
-            if (current == player.PokerHandMultiplier) // (current == sorted.Current) 
+            if (current == player.PokerHandMultiplier)
             {
                 if (power == player.Power)
                 {
@@ -101,18 +101,11 @@
         {
             foreach (var winner in winners)
             {
-                // lastfixed
                 if (winner.Name == lastly)
                 {
                     if (this.winnersCount > 1)
                     {
-                        // winner += int.Parse(textBoxPot.Text) / this.winnersCount;
                         textBoxChips.Text = chips.ToString();
-                    }
-
-                    if (this.winnersCount == 1)
-                    {
-                        // winner += int.Parse(textBoxPot.Text);
                     }
                 }
             }

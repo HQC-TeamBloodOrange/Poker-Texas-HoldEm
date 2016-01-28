@@ -159,12 +159,10 @@
                     this.Holder[this.i].Image = this.Deck[this.i];
                     this.Holder[this.i].Anchor = (AnchorStyles.Bottom);
 
-                    ////Holder[i].Dock = DockStyle.Top;
                     this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
                     playerCardsZPosition += this.Holder[this.i].Width;
                     this.Controls.Add(this.playerPanel);
                     this.players[0].CardsPanel.Location = new Point(this.Holder[0].Left - 10, this.Holder[0].Top - 10);
-                    //this.playerPanel.Location = new Point(this.Holder[0].Left - 10, this.Holder[0].Top - 10);
                     this.playerPanel.BackColor = Color.DarkBlue;
                     this.playerPanel.Height = 150;
                     this.playerPanel.Width = 180;
@@ -191,13 +189,11 @@
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
                         this.Holder[this.i].Image = backImage;
-                        ////Holder[i].Image = Deck[i];
                         this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
                         playerCardsZPosition += this.Holder[this.i].Width;
                         this.Holder[this.i].Visible = true;
                         this.Controls.Add(this.bot1Panel);
                         this.bot1Panel.Location = new Point(this.Holder[2].Left - 10, this.Holder[2].Top - 10);
-                        //this.bot1Panel.Location = new Point(this.Holder[2].Left - 10, this.Holder[2].Top - 10);
                         this.bot1Panel.BackColor = Color.DarkBlue;
                         this.bot1Panel.Height = 150;
                         this.bot1Panel.Width = 180;
@@ -229,7 +225,6 @@
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Top | AnchorStyles.Left);
                         this.Holder[this.i].Image = backImage;
-                        ////Holder[i].Image = Deck[i];
                         this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
                         playerCardsZPosition += this.Holder[this.i].Width;
                         this.Holder[this.i].Visible = true;
@@ -265,7 +260,6 @@
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Top);
                         this.Holder[this.i].Image = backImage;
-                        ////Holder[i].Image = Deck[i];
                         this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
                         playerCardsZPosition += this.Holder[this.i].Width;
                         this.Holder[this.i].Visible = true;
@@ -302,7 +296,6 @@
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Top | AnchorStyles.Right);
                         this.Holder[this.i].Image = backImage;
-                        ////Holder[i].Image = Deck[i];
                         this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
                         playerCardsZPosition += this.Holder[this.i].Width;
                         this.Holder[this.i].Visible = true;
@@ -339,7 +332,6 @@
                         check = true;
                         this.Holder[this.i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
                         this.Holder[this.i].Image = backImage;
-                        ////Holder[i].Image = Deck[i];
                         this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
                         playerCardsZPosition += this.Holder[this.i].Width;
                         this.Holder[this.i].Visible = true;
@@ -356,7 +348,7 @@
                     }
                 }
 
-                /// TODO: Refactor the list of if's. Replace the magic numbers.
+                // TODO: Refactor the list of if's. Replace the magic numbers.
                 if (this.i >= 12)
                 {
                     this.Holder[12].Tag = this.DrawnCards[12];
@@ -393,7 +385,6 @@
                         this.Holder[this.i].Anchor = AnchorStyles.None;
                         this.Holder[this.i].Image = backImage;
 
-                        ////Holder[i].Image = Deck[i];
                         this.Holder[this.i].Location = new Point(playerCardsZPosition, playerCardsYPosition);
                         playerCardsZPosition += 110;
                     }
@@ -584,7 +575,6 @@
                 this.bRaise.Enabled = false;
                 this.buttonFold.Enabled = false;
                 this.timer.Stop();
-                //this.isBot1Turn = true;
 
                 int counter = 0;
 
@@ -667,7 +657,6 @@
         /// </summary>
         /// <param name="player"> The player.</param>
         /// <param name="lastly">The lastly.</param>
-        //private void Winner(double current, double Power, string currentText, int chips, string lastly)
         private void Winner(IPlayer player, string lastly)
         {
             if (lastly == " ")
@@ -732,7 +721,7 @@
                 }
             }
 
-            if (player.Name == lastly) ////lastfixed
+            if (player.Name == lastly) 
             {
                 if (this.winners > 1)
                 {
@@ -1218,7 +1207,6 @@
                 this.Holder[os].Visible = false;
             }
             await this.Shuffle();
-            ////await Turns();
         }
 
         /// <summary>
@@ -1238,42 +1226,11 @@
                 fixedLast = player.Name;
                 this.Rules(card1 += 2, card2 += 2, player);
             }
-            //if (!this.players[0].Label.Text.Contains("Fold"))
-            //{
-            //    fixedLast = "Player";
-            //    this.Rules(0, 1, "Player", ref this.playerType, ref this.playerPower, this.PFturn);
-            //}
-            //if (!this.players[1].Label.Text.Contains("Fold"))
-            //{
-            //    fixedLast = "Bot 1";
-            //    this.Rules(2, 3, "Bot 1", ref this.bot1Type, ref this.bot1Power, this.B1Fturn);
-            //}
-            //if (!this.players[2].Label.Text.Contains("Fold"))
-            //{
-            //    fixedLast = "Bot 2";
-            //    this.Rules(4, 5, "Bot 2", ref this.bot2Type, ref this.bot2Power, this.B2Fturn);
-            //}
-            //if (!this.players[3].Label.Text.Contains("Fold"))
-            //{
-            //    fixedLast = "Bot 3";
-            //    this.Rules(6, 7, "Bot 3", ref this.bot3Type, ref this.bot3Power, this.B3Fturn);
-            //}
-            //if (!this.players[4].Label.Text.Contains("Fold"))
-            //{
-            //    fixedLast = "Bot 4";
-            //    this.Rules(8, 9, "Bot 4", ref this.bot4Type, ref this.bot4Power, this.B4Fturn);
-            //}
-            //if (!this.players[5].Label.Text.Contains("Fold"))
-            //{
-            //    fixedLast = "Bot 5";
-            //    this.Rules(10, 11, "Bot 5", ref this.bot5Type, ref this.bot5Power, this.B5Fturn);
-            //}
 
             foreach (IPlayer player in this.players)
             {
                 this.Winner(player, fixedLast);
             }
-            //this.Winner(this.playerType, this.playerPower, "Player", this.players[0].Chips, fixedLast);
         }
 
         // TODO: Add to namespace Statuses.
@@ -1647,7 +1604,6 @@
 
         private readonly IDictionary<string, int[]> cards = new Dictionary<string, int[]>();
 
-        //Try hard mode :(
         public int i;
 
         #endregion
@@ -1784,8 +1740,6 @@
             }
             else
             {
-                ////pStatus.Text = "All in " + Chips;
-
                 this.buttonCheck.Enabled = false;
             }
             await this.Turns();
@@ -1798,7 +1752,6 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ButtonCallClick(object sender, EventArgs e)
         {
-            //this.Rules(0, 1, "Player", ref this.playerType, ref this.playerPower, this.PFturn);
             var player = this.players[0];
             this.Rules(0, 1, player);
             if (player.Chips >= this.call)
@@ -1813,24 +1766,18 @@
                 {
                     this.textBoxPot.Text = this.call.ToString();
                 }
-                //this.isPlayerTurn = false;
                 player.Turn = false;
-                //this.players[0].Label.Text = "Call " + this.call;
                 player.Label.Text = "Call " + this.call;
-                //this.playerCall = this.call;
                 player.Call = this.call;
             }
             else if (player.Chips <= this.call && this.call > 0)
             {
                 this.textBoxPot.Text = (int.Parse(this.textBoxPot.Text) + player.Chips).ToString();
-                //this.players[0].Label.Text = "All in " + this.players[0].Chips;
                 player.Label.Text = "All in " + player.Chips;
                 player.Chips = 0;
                 this.textBoxChips.Text = "Chips : " + player.Chips;
-                //this.isPlayerTurn = false;
                 player.Turn = false;
                 this.buttonFold.Enabled = false;
-                //this.playerCall = this.players[0].Chips;
                 player.Call = player.Chips;
             }
             await this.Turns();
@@ -1843,7 +1790,6 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ButtonRaiseClick(object sender, EventArgs e)
         {
-            //this.Rules(0, 1, "Player", ref this.playerType, ref this.playerPower, this.PFturn);
             var player = this.players[0];
             this.Rules(0, 1, player);
             int parsedValue;
